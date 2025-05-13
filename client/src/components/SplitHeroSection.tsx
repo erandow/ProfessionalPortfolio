@@ -3,13 +3,17 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
+// Import images directly from the images directory
+import leftSideImagePath from "../images/leftSideImage.jpg";
+import rightSideImagePath from "../images/rightSideImage.jpg";
+
 export default function SplitHeroSection() {
   const [leftHovered, setLeftHovered] = useState(false);
   const [rightHovered, setRightHovered] = useState(false);
 
-  // Images for both sides (same but with different treatments)
-  const leftSideImage = "/images/hero-left.jpg";
-  const rightSideImage = "/images/hero-right.jpg";
+  // Using imported images from the images directory
+  const leftSideImage = leftSideImagePath;
+  const rightSideImage = rightSideImagePath;
   
   return (
     <section className="h-screen w-full relative overflow-hidden">
