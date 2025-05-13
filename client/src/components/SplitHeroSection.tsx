@@ -8,7 +8,8 @@ export default function SplitHeroSection() {
   const [rightHovered, setRightHovered] = useState(false);
 
   // Images for both sides (same but with different treatments)
-  const mainImage = "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80";
+  const leftSideImage = "/images/hero-left.jpg";
+  const rightSideImage = "/images/hero-right.jpg";
   
   return (
     <section className="h-screen w-full relative overflow-hidden">
@@ -30,7 +31,7 @@ export default function SplitHeroSection() {
             <div 
               className="w-full h-full bg-cover bg-center transition-all duration-700"
               style={{ 
-                backgroundImage: `url(${mainImage})`,
+                backgroundImage: `url(${leftSideImage})`,
                 filter: "hue-rotate(340deg) contrast(1.05) brightness(0.7)",
               }}
             />
@@ -80,7 +81,7 @@ export default function SplitHeroSection() {
             <div 
               className="w-full h-full bg-cover bg-center transition-all duration-700"
               style={{ 
-                backgroundImage: `url(${mainImage})`,
+                backgroundImage: `url(${rightSideImage})`,
                 filter: "hue-rotate(180deg) contrast(1.05) brightness(0.7)",
               }}
             />
