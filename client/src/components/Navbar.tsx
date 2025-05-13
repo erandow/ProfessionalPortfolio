@@ -42,9 +42,9 @@ export default function Navbar() {
               <div className="flex items-center">
                 <RouterLink to="/" className="flex items-center">
                   <span className="text-xl font-bold tracking-tight">
-                    <span className="text-primary">Dev</span>
+                    <span className="text-primary">EA</span>
                     <span className="text-purple-500">.</span>
-                    <span className="text-primary">AI</span>
+                    <span className="text-primary">dev</span>
                   </span>
                 </RouterLink>
               </div>

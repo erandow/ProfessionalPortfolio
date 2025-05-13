@@ -28,7 +28,7 @@ export default function HeroSection() {
               </span>
             </div>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight">
-              <span className="block">John Doe</span>
+              <span className="block">Erfan Asadi</span>
               <span className="block mt-2">
                 <span className="text-primary">Developer</span> &{" "}
                 <span className="text-purple-500">AI Engineer</span>

@@ -125,9 +125,9 @@ export default function SplitHeroSection() {
         transition={{ duration: 0.5 }}
       >
         <span className="text-white text-xl font-bold tracking-tight">
-          <span className="text-primary px-2">Dev</span>
+          <span className="text-primary px-2">EA</span>
           <span className="text-purple-500">.</span>
-          <span className="text-primary px-2">AI</span>
+          <span className="text-primary px-2">dev</span>
         </span>
       </motion.div>
     </section>

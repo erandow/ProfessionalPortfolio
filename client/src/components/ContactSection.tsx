@@ -115,10 +115,10 @@ export default function ContactSection() {
                       title="Email"
                     >
                       <a
-                        href="mailto:john.doe@example.com"
+                        href="mailto:erfan.asadi@example.com"
                         className="hover:text-primary transition-colors"
                       >
-                        john.doe@example.com
+                        erfan.asadi@example.com
                       </a>
                     </ContactItem>
 
