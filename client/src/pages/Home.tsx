@@ -6,7 +6,6 @@ import EducationSection from "@/components/EducationSection";
 import ProjectsSection from "@/components/ProjectsSection";
 import PublicationsSection from "@/components/PublicationsSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
-import BlogSection from "@/components/BlogSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import { useLanguageRoute } from "@/hooks/use-language-route";
@@ -35,7 +34,6 @@ export default function Home() {
       <ProjectsSection />
       <PublicationsSection />
       <TestimonialsSection />
-      <BlogSection />
       <ContactSection />
       <Footer />
     </>

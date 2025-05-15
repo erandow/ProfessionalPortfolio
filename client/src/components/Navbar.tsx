@@ -28,7 +28,7 @@ export default function Navbar() {
       // Determine which section is currently visible
       const sections = [
         "home", "about", "skills", "experience", "education",
-        "projects", "publications", "testimonials", "blog", "contact"
+        "projects", "publications", "testimonials", "contact"
       ];
       
       for (const section of sections) {
@@ -86,7 +86,6 @@ export default function Navbar() {
     { name: t('navbar.education'), href: "#education" },
     { name: t('navbar.publications'), href: "#publications" },
     { name: t('navbar.testimonials'), href: "#testimonials" },
-    { name: t('navbar.blog'), href: "#blog" },
     { name: t('navbar.contact'), href: "#contact" },
   ];
 

@@ -7,8 +7,6 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
 import MainLayout from "@/layouts/MainLayout";
 import Home from "@/pages/Home";
-import Blog from "@/pages/Blog";
-import BlogDetail from "@/pages/BlogDetail";
 import NotFound from "@/pages/not-found";
 
 function App() {
@@ -39,8 +37,6 @@ function App() {
             {/* Language-specific routes */}
             <Route path="/:lang">
               <Route index element={<Home />} />
-              <Route path="blog" element={<Blog />} />
-              <Route path="blog/:slug" element={<BlogDetail />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>

@@ -439,6 +439,40 @@ export function registerCmsRoutes(app: express.Express) {
         </div>
         
         <script>
+          // Check Notion status
+          fetch('/api/notion-status')
+            .then(response => response.json())
+            .then(data => {
+              const statusEl = document.getElementById('notion-status');
+              if (data.status === 'connected') {
+                statusEl.innerHTML = '<div class="bg-green-100 border-l-4 border-green-500 p-2">' +
+                  '<p class="text-green-700"><span class="font-bold">✅ Connected to Notion</span> - ' +
+                  'Found Blog Posts database with ' + data.postCount + ' posts</p></div>';
+              } else if (data.status === 'database_not_found') {
+                statusEl.innerHTML = '<div class="bg-yellow-100 border-l-4 border-yellow-500 p-2">' +
+                  '<p class="text-yellow-700"><span class="font-bold">⚠️ Partially Connected</span> - ' +
+                  'Connected to Notion but Blog Posts database not found. Run the setup script.</p></div>';
+              } else if (data.status === 'database_error') {
+                statusEl.innerHTML = '<div class="bg-red-100 border-l-4 border-red-500 p-2">' +
+                  '<p class="text-red-700"><span class="font-bold">❌ Database Error</span> - ' +
+                  'Found database but failed to fetch posts: ' + data.error + '</p></div>';
+              } else if (data.status === 'not_configured') {
+                statusEl.innerHTML = '<div class="bg-yellow-100 border-l-4 border-yellow-500 p-2">' +
+                  '<p class="text-yellow-700"><span class="font-bold">⚙️ Not Configured</span> - ' +
+                  'Notion integration needs configuration. Follow the setup instructions.</p></div>';
+              } else {
+                statusEl.innerHTML = '<div class="bg-red-100 border-l-4 border-red-500 p-2">' +
+                  '<p class="text-red-700"><span class="font-bold">❌ Connection Failed</span> - ' +
+                  'Failed to connect to Notion API: ' + data.error + '</p></div>';
+              }
+            })
+            .catch(error => {
+              document.getElementById('notion-status').innerHTML = 
+                '<div class="bg-red-100 border-l-4 border-red-500 p-2">' +
+                '<p class="text-red-700"><span class="font-bold">❌ Error</span> - ' +
+                'Could not check Notion status: ' + error + '</p></div>';
+            });
+        
           // Load blog posts
           fetch('/api/blog-posts?locale=en&pagination[pageSize]=100')
             .then(response => response.json())
