@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import { Link as RouterLink, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { useLanguageRoute } from "@/hooks/use-language-route";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,6 +14,9 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);
   const moreMenuRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
+  const { isRTL } = useLanguageRoute();
+  const location = useLocation();
 
   // Track scroll position and active section
   useEffect(() => {
@@ -68,20 +74,20 @@ export default function Navbar() {
 
   // Primary navigation items (always visible)
   const primaryNavItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
-    { name: "Work", href: "#experience" },
-    { name: "Projects", href: "#projects" },
+    { name: t('navbar.home'), href: "#home" },
+    { name: t('navbar.about'), href: "#about" },
+    { name: t('navbar.skills'), href: "#skills" },
+    { name: t('navbar.work'), href: "#experience" },
+    { name: t('navbar.projects'), href: "#projects" },
   ];
 
   // Secondary navigation items (in more dropdown)
   const secondaryNavItems = [
-    { name: "Education", href: "#education" },
-    { name: "Publications", href: "#publications" },
-    { name: "Testimonials", href: "#testimonials" },
-    { name: "Blog", href: "#blog" },
-    { name: "Contact", href: "#contact" },
+    { name: t('navbar.education'), href: "#education" },
+    { name: t('navbar.publications'), href: "#publications" },
+    { name: t('navbar.testimonials'), href: "#testimonials" },
+    { name: t('navbar.blog'), href: "#blog" },
+    { name: t('navbar.contact'), href: "#contact" },
   ];
 
   return (
@@ -123,8 +129,8 @@ export default function Navbar() {
                                 ${moreMenuOpen ? 'bg-accent text-accent-foreground' : 'hover:text-primary'}`}
                       onClick={toggleMoreMenu}
                     >
-                      More
-                      <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 
+                      {t('navbar.more')}
+                      <ChevronDown className={`${isRTL ? 'mr-1' : 'ml-1'} h-4 w-4 transition-transform duration-200 
                                              ${moreMenuOpen ? 'rotate-180' : ''}`} />
                     </Button>
                     
@@ -136,7 +142,7 @@ export default function Navbar() {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 10 }}
                           transition={{ duration: 0.2 }}
-                          className="absolute right-0 mt-2 w-48 bg-background rounded-md shadow-lg border overflow-hidden z-50"
+                          className={`absolute ${isRTL ? 'left-0' : 'right-0'} mt-2 w-48 bg-background rounded-md shadow-lg border overflow-hidden z-50`}
                         >
                           <div className="py-1">
                             {secondaryNavItems.map((item) => (
@@ -157,13 +163,15 @@ export default function Navbar() {
                   </div>
                 </div>
                 
-                <div className="pl-4 border-l">
+                <div className="pl-4 border-l flex items-center space-x-2">
+                  <LanguageSwitcher />
                   <ThemeToggle />
                 </div>
               </div>
 
               {/* Mobile menu button */}
               <div className="flex md:hidden items-center space-x-2">
+                <LanguageSwitcher />
                 <ThemeToggle />
                 <Button
                   variant="ghost"

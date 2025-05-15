@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
+import { useLanguageRoute } from "@/hooks/use-language-route";
 
 // Import images directly from the images directory
 import leftSideImagePath from "../images/leftSideImage.jpg";
