@@ -66,7 +66,13 @@ export default function SplitHeroSection() {
                 <Button
                   variant="outline"
                   className="border-white text-white hover:bg-white hover:text-black pointer-events-auto"
-                  onClick={() => (window.location.href = "#experience")}
+                  onClick={() => {
+                    const element = document.getElementById('experience');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      window.history.pushState(null, '', '#experience');
+                    }
+                  }}
                 >
                   {t('hero.viewProjects')} <ArrowRight className={`${isRTL ? 'mr-2 flip-in-rtl' : 'ml-2'} h-4 w-4`} />
                 </Button>
@@ -118,7 +124,13 @@ export default function SplitHeroSection() {
                 <Button
                   variant="outline"
                   className="border-white text-white hover:bg-white hover:text-black pointer-events-auto"
-                  onClick={() => (window.location.href = "#experience")}
+                  onClick={() => {
+                    const element = document.getElementById('education');
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                      window.history.pushState(null, '', '#education');
+                    }
+                  }}
                 >
                   {t('hero.viewResearch')} <ArrowRight className={`${isRTL ? 'mr-2 flip-in-rtl' : 'ml-2'} h-4 w-4`} />
                 </Button>
@@ -158,7 +170,7 @@ export default function SplitHeroSection() {
         }}
       >
         <span className="text-white text-sm mb-2 opacity-80">
-          {t('scroll down')}
+          {isRTL ? 'اسکرول کنید' : 'Scroll Down'}
         </span>
         <motion.div
           animate={{ y: [0, 10, 0] }}
