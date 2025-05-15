@@ -3,6 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { v4 as uuidv4 } from 'uuid';
+import { getBlogPostsFromNotion, findDatabaseByTitle } from './notion';
 
 // Define current directory equivalent to __dirname in CommonJS
 const __filename = fileURLToPath(import.meta.url);
@@ -270,6 +271,52 @@ function formatBlogPost(post: BlogPost) {
 
 // Register CMS routes
 export function registerCmsRoutes(app: express.Express) {
+  // Notion status endpoint
+  app.get('/api/notion-status', async (req: Request, res: Response) => {
+    try {
+      if (!process.env.NOTION_INTEGRATION_SECRET || !process.env.NOTION_PAGE_URL) {
+        return res.status(400).json({ 
+          status: 'not_configured',
+          message: 'Notion integration is not configured. Please set NOTION_INTEGRATION_SECRET and NOTION_PAGE_URL environment variables.'
+        });
+      }
+      
+      // Try to find the blog posts database
+      const blogDb = await findDatabaseByTitle('Blog Posts');
+      
+      if (blogDb) {
+        // Get a sample of posts from Notion
+        try {
+          const posts = await getBlogPostsFromNotion(blogDb.id, 'en');
+          return res.json({
+            status: 'connected',
+            message: 'Successfully connected to Notion and found the Blog Posts database',
+            databaseId: blogDb.id,
+            postCount: posts.length,
+            samplePosts: posts.slice(0, 2).map(p => ({ title: p.title, slug: p.slug }))
+          });
+        } catch (dbError) {
+          return res.status(500).json({
+            status: 'database_error',
+            message: 'Found the Blog Posts database but failed to fetch posts',
+            error: String(dbError)
+          });
+        }
+      } else {
+        return res.status(404).json({
+          status: 'database_not_found',
+          message: 'Connected to Notion but Blog Posts database not found. Run the setup script.'
+        });
+      }
+    } catch (error) {
+      return res.status(500).json({ 
+        status: 'connection_failed',
+        message: 'Failed to connect to Notion API',
+        error: String(error)
+      });
+    }
+  });
+
   // Blog post API routes (similar to Strapi)
   app.get('/api/blog-posts', (req: Request, res: Response) => {
     try {
@@ -357,13 +404,35 @@ export function registerCmsRoutes(app: express.Express) {
       <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Simple CMS</title>
+        <title>Portfolio CMS</title>
         <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
       </head>
       <body class="bg-gray-100">
         <div class="container mx-auto p-4">
-          <h1 class="text-2xl font-bold mb-4">Simple CMS for Blog Posts</h1>
-          <p class="mb-4">This is a lightweight CMS for managing blog posts.</p>
+          <h1 class="text-2xl font-bold mb-4">Portfolio CMS</h1>
+          <p class="mb-4">This is the CMS backend for managing blog posts in the portfolio website.</p>
+          
+          <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+            <h2 class="text-xl font-semibold mb-2">Notion Integration</h2>
+            <p class="mb-2">You can use Notion as your CMS for a better editing experience.</p>
+            <div id="notion-status" class="mb-4">
+              <div class="animate-pulse bg-gray-200 h-5 w-32 rounded"></div>
+            </div>
+            <div class="mb-4">
+              <h3 class="font-semibold mb-1">Setup Instructions:</h3>
+              <ol class="list-decimal list-inside pl-4">
+                <li>Go to <a href="https://www.notion.so/my-integrations" target="_blank" class="text-blue-600 hover:underline">https://www.notion.so/my-integrations</a></li>
+                <li>Create a new integration with a memorable name</li>
+                <li>Copy the integration secret - this will be your <code class="bg-gray-200 px-1 rounded">NOTION_INTEGRATION_SECRET</code></li>
+                <li>Open a Notion page (create a new one if needed)</li>
+                <li>Click "..." in the top right, go to "connections", and select your integration</li>
+                <li>Copy the page URL - this will be your <code class="bg-gray-200 px-1 rounded">NOTION_PAGE_URL</code></li>
+                <li>Add these as environment variables in your Replit project</li>
+                <li>Run the setup script to create a database and sample blog posts</li>
+              </ol>
+            </div>
+          </div>
+          
           <div id="content" class="mt-8">
             <div id="post-list" class="bg-white p-4 rounded shadow"></div>
           </div>
