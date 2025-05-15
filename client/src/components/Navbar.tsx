@@ -50,10 +50,16 @@ export default function Navbar() {
               </div>
 
               {/* Desktop navigation */}
-              <div className="hidden md:flex items-center space-x-8">
+              <div className="hidden md:flex items-center space-x-6">
                 <NavLink href="#home">Home</NavLink>
-                <NavLink href="#experience">Experience</NavLink>
+                <NavLink href="#about">About</NavLink>
                 <NavLink href="#skills">Skills</NavLink>
+                <NavLink href="#experience">Work</NavLink>
+                <NavLink href="#education">Education</NavLink>
+                <NavLink href="#projects">Projects</NavLink>
+                <NavLink href="#publications">Publications</NavLink>
+                <NavLink href="#testimonials">Testimonials</NavLink>
+                <NavLink href="#blog">Blog</NavLink>
                 <NavLink href="#contact">Contact</NavLink>
                 <ThemeToggle />
               </div>
@@ -91,11 +97,29 @@ export default function Navbar() {
                 <MobileNavLink href="#home" onClick={() => setIsOpen(false)}>
                   Home
                 </MobileNavLink>
-                <MobileNavLink href="#experience" onClick={() => setIsOpen(false)}>
-                  Experience
+                <MobileNavLink href="#about" onClick={() => setIsOpen(false)}>
+                  About
                 </MobileNavLink>
                 <MobileNavLink href="#skills" onClick={() => setIsOpen(false)}>
                   Skills
+                </MobileNavLink>
+                <MobileNavLink href="#experience" onClick={() => setIsOpen(false)}>
+                  Work
+                </MobileNavLink>
+                <MobileNavLink href="#education" onClick={() => setIsOpen(false)}>
+                  Education
+                </MobileNavLink>
+                <MobileNavLink href="#projects" onClick={() => setIsOpen(false)}>
+                  Projects
+                </MobileNavLink>
+                <MobileNavLink href="#publications" onClick={() => setIsOpen(false)}>
+                  Publications
+                </MobileNavLink>
+                <MobileNavLink href="#testimonials" onClick={() => setIsOpen(false)}>
+                  Testimonials
+                </MobileNavLink>
+                <MobileNavLink href="#blog" onClick={() => setIsOpen(false)}>
+                  Blog
                 </MobileNavLink>
                 <MobileNavLink href="#contact" onClick={() => setIsOpen(false)}>
                   Contact
