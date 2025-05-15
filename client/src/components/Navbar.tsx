@@ -4,12 +4,13 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLanguageRoute } from "@/hooks/use-language-route";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [moreMenuOpen, setMoreMenuOpen] = useState(false);
   const moreMenuRef = useRef<HTMLDivElement>(null);
@@ -20,6 +21,9 @@ export default function Navbar() {
   // Track scroll position and active section
   useEffect(() => {
     const handleScroll = () => {
+      // Show navbar after scrolling down 40% of the viewport height
+      setScrolled(window.scrollY > window.innerHeight * 0.4);
+      
       // Determine which section is currently visible
       const sections = [
         "home", "about", "skills", "experience", "education",
@@ -85,119 +89,129 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 w-full z-50 backdrop-blur-lg border-b bg-background/90 border-border">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
-          <div className="flex items-center">
-            <RouterLink to="/" className="flex items-center">
-              <span className="text-xl font-bold tracking-tight">
-                <span className="text-primary">EA</span>
-                <span className="text-purple-500">.</span>
-                <span className="text-primary">dev</span>
-              </span>
-            </RouterLink>
-            
-            {/* Desktop menu */}
-            <div className="hidden md:block ml-10">
-              <div className="flex items-center space-x-4">
-                {primaryNavItems.map(item => (
-                  <NavLink 
-                    key={item.href}
-                    href={item.href}
-                    isActive={activeSection === item.href.replace('#', '')}
-                  >
-                    {item.name}
-                  </NavLink>
-                ))}
+    <AnimatePresence>
+      {(scrolled || isOpen) && (
+        <motion.nav 
+          className="fixed top-0 w-full z-50 backdrop-blur-lg border-b bg-background/90 border-border"
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -100, opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+        >
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between h-16 items-center">
+              <div className="flex items-center">
+                <RouterLink to="/" className="flex items-center">
+                  <span className="text-xl font-bold tracking-tight">
+                    <span className="text-primary">EA</span>
+                    <span className="text-purple-500">.</span>
+                    <span className="text-primary">dev</span>
+                  </span>
+                </RouterLink>
                 
-                {/* More dropdown */}
-                <div ref={moreMenuRef} className="relative">
-                  <button
-                    onClick={toggleMoreMenu}
-                    className="flex items-center px-3 py-2 text-sm transition-colors duration-200 rounded-md hover:bg-accent/50"
-                  >
-                    <span>{t('navbar.more')}</span>
-                    <ChevronDown 
-                      className={`ml-1 h-4 w-4 transition-transform duration-200 ${moreMenuOpen ? 'transform rotate-180' : ''}`}
-                    />
-                  </button>
-                  
-                  {/* More menu dropdown */}
-                  {moreMenuOpen && (
-                    <div
-                      className={`absolute ${isRTL ? 'right-0' : 'left-0'} z-10 mt-2 w-40 rounded-md bg-popover shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
-                    >
-                      <div className="py-1">
-                        {secondaryNavItems.map(item => (
-                          <a
-                            key={item.href}
-                            href={item.href}
-                            className={`block px-4 py-2 text-sm transition-colors ${
-                              activeSection === item.href.replace('#', '')
-                                ? 'bg-primary/10 text-primary font-medium'
-                                : 'hover:bg-accent/40'
-                            }`}
-                            onClick={() => setMoreMenuOpen(false)}
-                          >
-                            {item.name}
-                          </a>
-                        ))}
-                      </div>
+                {/* Desktop menu */}
+                <div className="hidden md:block ml-10">
+                  <div className="flex items-center space-x-4">
+                    {primaryNavItems.map(item => (
+                      <NavLink 
+                        key={item.href}
+                        href={item.href}
+                        isActive={activeSection === item.href.replace('#', '')}
+                      >
+                        {item.name}
+                      </NavLink>
+                    ))}
+                    
+                    {/* More dropdown */}
+                    <div ref={moreMenuRef} className="relative">
+                      <button
+                        onClick={toggleMoreMenu}
+                        className="flex items-center px-3 py-2 text-sm transition-colors duration-200 rounded-md hover:bg-accent/50"
+                      >
+                        <span>{t('navbar.more')}</span>
+                        <ChevronDown 
+                          className={`ml-1 h-4 w-4 transition-transform duration-200 ${moreMenuOpen ? 'transform rotate-180' : ''}`}
+                        />
+                      </button>
+                      
+                      {/* More menu dropdown */}
+                      {moreMenuOpen && (
+                        <div
+                          className={`absolute ${isRTL ? 'right-0' : 'left-0'} z-10 mt-2 w-40 rounded-md bg-popover shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+                        >
+                          <div className="py-1">
+                            {secondaryNavItems.map(item => (
+                              <a
+                                key={item.href}
+                                href={item.href}
+                                className={`block px-4 py-2 text-sm transition-colors ${
+                                  activeSection === item.href.replace('#', '')
+                                    ? 'bg-primary/10 text-primary font-medium'
+                                    : 'hover:bg-accent/40'
+                                }`}
+                                onClick={() => setMoreMenuOpen(false)}
+                              >
+                                {item.name}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  )}
+                  </div>
+                </div>
+              </div>
+              
+              {/* Right side items */}
+              <div className="flex items-center space-x-2">
+                <LanguageSwitcher />
+                <ThemeToggle />
+                
+                {/* Mobile menu button */}
+                <div className="flex md:hidden">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={toggleMenu}
+                    aria-label="Toggle menu"
+                  >
+                    {isOpen ? (
+                      <X className="h-5 w-5" />
+                    ) : (
+                      <Menu className="h-5 w-5" />
+                    )}
+                  </Button>
                 </div>
               </div>
             </div>
-          </div>
-          
-          {/* Right side items */}
-          <div className="flex items-center space-x-2">
-            <LanguageSwitcher />
-            <ThemeToggle />
             
-            {/* Mobile menu button */}
-            <div className="flex md:hidden">
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={toggleMenu}
-                aria-label="Toggle menu"
+            {/* Mobile menu dropdown */}
+            {isOpen && (
+              <motion.div
+                className="md:hidden"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.2 }}
               >
-                {isOpen ? (
-                  <X className="h-5 w-5" />
-                ) : (
-                  <Menu className="h-5 w-5" />
-                )}
-              </Button>
-            </div>
+                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
+                  {primaryNavItems.concat(secondaryNavItems).map(item => (
+                    <MobileNavLink
+                      key={item.href}
+                      href={item.href}
+                      onClick={toggleMenu}
+                      isActive={activeSection === item.href.replace('#', '')}
+                    >
+                      {item.name}
+                    </MobileNavLink>
+                  ))}
+                </div>
+              </motion.div>
+            )}
           </div>
-        </div>
-        
-        {/* Mobile menu dropdown */}
-        {isOpen && (
-          <motion.div
-            className="md:hidden"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
-              {primaryNavItems.concat(secondaryNavItems).map(item => (
-                <MobileNavLink
-                  key={item.href}
-                  href={item.href}
-                  onClick={toggleMenu}
-                  isActive={activeSection === item.href.replace('#', '')}
-                >
-                  {item.name}
-                </MobileNavLink>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </div>
-    </nav>
+        </motion.nav>
+      )}
+    </AnimatePresence>
   );
 }
 
