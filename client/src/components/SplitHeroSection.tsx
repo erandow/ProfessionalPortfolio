@@ -12,6 +12,8 @@ import rightSideImagePath from "../images/rightSideImage.jpg";
 export default function SplitHeroSection() {
   const [leftHovered, setLeftHovered] = useState(false);
   const [rightHovered, setRightHovered] = useState(false);
+  const { t } = useTranslation();
+  const { isRTL } = useLanguageRoute();
 
   // Using imported images from the images directory
   const leftSideImage = leftSideImagePath;
@@ -44,7 +46,7 @@ export default function SplitHeroSection() {
           </div>
 
           {/* Overlay for text */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-transparent opacity-90 pointer-events-none z-10" />
+          <div className={`absolute inset-0 bg-gradient-to-${isRTL ? 'l' : 'r'} from-black/40 to-transparent opacity-90 pointer-events-none z-10`} />
 
           {/* Content */}
           <div className="absolute inset-0 flex items-center z-20 pointer-events-none">
@@ -55,18 +57,18 @@ export default function SplitHeroSection() {
                 transition={{ delay: 0.2, duration: 0.8 }}
               >
                 <h2 className="text-4xl md:text-5xl font-bold mb-3">
-                  Developer
+                  {t('hero.developer')}
                 </h2>
-                <div className="w-16 h-1 bg-white mb-6" />
+                <div className={`${isRTL ? 'ml-auto' : ''} w-16 h-1 bg-white mb-6`} />
                 <p className="text-lg md:text-xl mb-8 opacity-90">
-                  Crafting web & mobile applications with passion and precision.
+                  {t('hero.developerDesc')}
                 </p>
                 <Button
                   variant="outline"
                   className="border-white text-white hover:bg-white hover:text-black pointer-events-auto"
                   onClick={() => (window.location.href = "#experience")}
                 >
-                  View Projects <ArrowRight className="ml-2 h-4 w-4" />
+                  {t('hero.viewProjects')} <ArrowRight className={`${isRTL ? 'mr-2 flip-in-rtl' : 'ml-2'} h-4 w-4`} />
                 </Button>
               </motion.div>
             </div>
@@ -96,30 +98,29 @@ export default function SplitHeroSection() {
           </div>
 
           {/* Overlay for text */}
-          <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent opacity-90 pointer-events-none z-10" />
+          <div className={`absolute inset-0 bg-gradient-to-${isRTL ? 'r' : 'l'} from-black/40 to-transparent opacity-90 pointer-events-none z-10`} />
 
           {/* Content */}
           <div className="absolute inset-0 flex items-center justify-end z-20 pointer-events-none">
-            <div className="text-white p-10 md:p-16 max-w-md text-right">
+            <div className={`text-white p-10 md:p-16 max-w-md ${isRTL ? 'text-left' : 'text-right'}`}>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
               >
                 <h2 className="text-4xl md:text-5xl font-bold mb-3">
-                  Academic
+                  {t('hero.academic')}
                 </h2>
-                <div className="w-16 h-1 bg-white mb-6 ml-auto" />
+                <div className={`w-16 h-1 bg-white mb-6 ${isRTL ? '' : 'ml-auto'}`} />
                 <p className="text-lg md:text-xl mb-8 opacity-90">
-                  Pioneering research and publications in AI and computer
-                  science.
+                  {t('hero.academicDesc')}
                 </p>
                 <Button
                   variant="outline"
                   className="border-white text-white hover:bg-white hover:text-black pointer-events-auto"
                   onClick={() => (window.location.href = "#experience")}
                 >
-                  View Research <ArrowRight className="ml-2 h-4 w-4" />
+                  {t('hero.viewResearch')} <ArrowRight className={`${isRTL ? 'mr-2 flip-in-rtl' : 'ml-2'} h-4 w-4`} />
                 </Button>
               </motion.div>
             </div>
