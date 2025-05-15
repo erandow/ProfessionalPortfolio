@@ -1,0 +1,25 @@
+{
+  "name": "portfolio-cms",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Strapi CMS for the portfolio website",
+  "scripts": {
+    "develop": "strapi develop",
+    "start": "strapi start",
+    "build": "strapi build",
+    "strapi": "strapi"
+  },
+  "dependencies": {
+    "@strapi/strapi": "4.17.0",
+    "@strapi/plugin-i18n": "4.17.0",
+    "@strapi/plugin-users-permissions": "4.17.0",
+    "sqlite3": "5.1.2"
+  },
+  "engines": {
+    "node": ">=16.0.0 <=20.x.x",
+    "npm": ">=6.0.0"
+  },
+  "strapi": {
+    "uuid": "portfolio-cms"
+  }
+}
