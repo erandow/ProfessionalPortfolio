@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link as RouterLink } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
 import { motion, AnimatePresence } from "framer-motion";
@@ -8,13 +8,34 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+  const [moreMenuOpen, setMoreMenuOpen] = useState(false);
+  const moreMenuRef = useRef<HTMLDivElement>(null);
 
-  // Track scroll position
+  // Track scroll position and active section
   useEffect(() => {
     const handleScroll = () => {
-      // Show navbar after scrolling down 100vh (past the hero section)
       const scrollPosition = window.scrollY;
+      // Show navbar after scrolling down 80% of the hero section
       setScrolled(scrollPosition > window.innerHeight * 0.8);
+      
+      // Determine which section is currently visible
+      const sections = [
+        "home", "about", "skills", "experience", "education",
+        "projects", "publications", "testimonials", "blog", "contact"
+      ];
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // If the section is in view (with some buffer)
+          if (rect.top <= 200 && rect.bottom >= 200) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -23,9 +44,45 @@ export default function Navbar() {
     };
   }, []);
 
+  // Handle click outside of more menu
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (moreMenuRef.current && !moreMenuRef.current.contains(event.target as Node)) {
+        setMoreMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  const toggleMoreMenu = () => {
+    setMoreMenuOpen(!moreMenuOpen);
+  };
+
+  // Primary navigation items (always visible)
+  const primaryNavItems = [
+    { name: "Home", href: "#home" },
+    { name: "About", href: "#about" },
+    { name: "Skills", href: "#skills" },
+    { name: "Work", href: "#experience" },
+    { name: "Projects", href: "#projects" },
+  ];
+
+  // Secondary navigation items (in more dropdown)
+  const secondaryNavItems = [
+    { name: "Education", href: "#education" },
+    { name: "Publications", href: "#publications" },
+    { name: "Testimonials", href: "#testimonials" },
+    { name: "Blog", href: "#blog" },
+    { name: "Contact", href: "#contact" },
+  ];
 
   return (
     <AnimatePresence>
@@ -50,29 +107,70 @@ export default function Navbar() {
               </div>
 
               {/* Desktop navigation */}
-              <div className="hidden md:flex items-center space-x-6">
-                <NavLink href="#home">Home</NavLink>
-                <NavLink href="#about">About</NavLink>
-                <NavLink href="#skills">Skills</NavLink>
-                <NavLink href="#experience">Work</NavLink>
-                <NavLink href="#education">Education</NavLink>
-                <NavLink href="#projects">Projects</NavLink>
-                <NavLink href="#publications">Publications</NavLink>
-                <NavLink href="#testimonials">Testimonials</NavLink>
-                <NavLink href="#blog">Blog</NavLink>
-                <NavLink href="#contact">Contact</NavLink>
-                <ThemeToggle />
+              <div className="hidden md:flex items-center">
+                <div className="flex items-center space-x-1 mr-2">
+                  {primaryNavItems.map((item) => (
+                    <NavLink key={item.href} href={item.href} isActive={activeSection === item.href.slice(1)}>
+                      {item.name}
+                    </NavLink>
+                  ))}
+                  
+                  {/* More dropdown */}
+                  <div className="relative" ref={moreMenuRef}>
+                    <Button
+                      variant="ghost"
+                      className={`flex items-center px-3 py-2 text-sm transition-colors duration-200 
+                                ${moreMenuOpen ? 'bg-accent text-accent-foreground' : 'hover:text-primary'}`}
+                      onClick={toggleMoreMenu}
+                    >
+                      More
+                      <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 
+                                             ${moreMenuOpen ? 'rotate-180' : ''}`} />
+                    </Button>
+                    
+                    {/* Dropdown menu */}
+                    <AnimatePresence>
+                      {moreMenuOpen && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 0.2 }}
+                          className="absolute right-0 mt-2 w-48 bg-background rounded-md shadow-lg border overflow-hidden z-50"
+                        >
+                          <div className="py-1">
+                            {secondaryNavItems.map((item) => (
+                              <a
+                                key={item.href}
+                                href={item.href}
+                                className={`block px-4 py-2 text-sm hover:bg-accent/50 transition-colors duration-150
+                                          ${activeSection === item.href.slice(1) ? 'text-primary font-medium' : ''}`}
+                                onClick={() => setMoreMenuOpen(false)}
+                              >
+                                {item.name}
+                              </a>
+                            ))}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                </div>
+                
+                <div className="pl-4 border-l">
+                  <ThemeToggle />
+                </div>
               </div>
 
               {/* Mobile menu button */}
-              <div className="flex md:hidden items-center">
+              <div className="flex md:hidden items-center space-x-2">
                 <ThemeToggle />
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="ml-2"
                   onClick={toggleMenu}
                   aria-label="Toggle menu"
+                  className="text-foreground"
                 >
                   {isOpen ? (
                     <X className="h-5 w-5" />
@@ -87,43 +185,37 @@ export default function Navbar() {
           {/* Mobile menu */}
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.2 }}
-              className="md:hidden bg-background border-t border-border"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="md:hidden bg-background border-t border-border overflow-hidden"
             >
-              <div className="px-4 pt-2 pb-3 space-y-1">
-                <MobileNavLink href="#home" onClick={() => setIsOpen(false)}>
-                  Home
-                </MobileNavLink>
-                <MobileNavLink href="#about" onClick={() => setIsOpen(false)}>
-                  About
-                </MobileNavLink>
-                <MobileNavLink href="#skills" onClick={() => setIsOpen(false)}>
-                  Skills
-                </MobileNavLink>
-                <MobileNavLink href="#experience" onClick={() => setIsOpen(false)}>
-                  Work
-                </MobileNavLink>
-                <MobileNavLink href="#education" onClick={() => setIsOpen(false)}>
-                  Education
-                </MobileNavLink>
-                <MobileNavLink href="#projects" onClick={() => setIsOpen(false)}>
-                  Projects
-                </MobileNavLink>
-                <MobileNavLink href="#publications" onClick={() => setIsOpen(false)}>
-                  Publications
-                </MobileNavLink>
-                <MobileNavLink href="#testimonials" onClick={() => setIsOpen(false)}>
-                  Testimonials
-                </MobileNavLink>
-                <MobileNavLink href="#blog" onClick={() => setIsOpen(false)}>
-                  Blog
-                </MobileNavLink>
-                <MobileNavLink href="#contact" onClick={() => setIsOpen(false)}>
-                  Contact
-                </MobileNavLink>
+              <div className="px-4 py-3 divide-y divide-border/50">
+                <div className="grid grid-cols-2 gap-2 pb-2">
+                  {primaryNavItems.map((item) => (
+                    <MobileNavLink 
+                      key={item.href} 
+                      href={item.href} 
+                      onClick={() => setIsOpen(false)}
+                      isActive={activeSection === item.href.slice(1)}
+                    >
+                      {item.name}
+                    </MobileNavLink>
+                  ))}
+                </div>
+                <div className="grid grid-cols-2 gap-2 pt-2">
+                  {secondaryNavItems.map((item) => (
+                    <MobileNavLink 
+                      key={item.href} 
+                      href={item.href} 
+                      onClick={() => setIsOpen(false)}
+                      isActive={activeSection === item.href.slice(1)}
+                    >
+                      {item.name}
+                    </MobileNavLink>
+                  ))}
+                </div>
               </div>
             </motion.div>
           )}
@@ -136,15 +228,24 @@ export default function Navbar() {
 interface NavLinkProps {
   href: string;
   children: React.ReactNode;
+  isActive?: boolean;
 }
 
-function NavLink({ href, children }: NavLinkProps) {
+function NavLink({ href, children, isActive = false }: NavLinkProps) {
   return (
     <a
       href={href}
-      className="hover:text-primary transition-colors duration-200 font-medium"
+      className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md hover:bg-accent/50
+                 ${isActive ? 'text-primary font-medium' : ''}`}
     >
       {children}
+      {isActive && (
+        <motion.span 
+          layoutId="navbar-indicator"
+          className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary mx-3"
+          transition={{ type: "spring", duration: 0.5 }}
+        />
+      )}
     </a>
   );
 }
@@ -153,14 +254,18 @@ interface MobileNavLinkProps {
   href: string;
   onClick: () => void;
   children: React.ReactNode;
+  isActive?: boolean;
 }
 
-function MobileNavLink({ href, onClick, children }: MobileNavLinkProps) {
+function MobileNavLink({ href, onClick, children, isActive = false }: MobileNavLinkProps) {
   return (
     <a
       href={href}
       onClick={onClick}
-      className="block px-3 py-2 rounded-md hover:bg-accent/10 transition-colors duration-200"
+      className={`flex items-center px-3 py-3 rounded-md transition-colors duration-200
+                ${isActive 
+                  ? 'bg-primary/10 text-primary font-medium' 
+                  : 'hover:bg-accent/30'}`}
     >
       {children}
     </a>
