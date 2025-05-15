@@ -178,34 +178,37 @@ export default function Blog() {
               {/* Pagination */}
               {data?.meta?.pagination && data.meta.pagination.pageCount > 1 && (
                 <div className="mt-12 flex justify-center">
-                  <Pagination>
-                    <Pagination.Content>
-                      <Pagination.Item>
-                        <Pagination.Previous
-                          onClick={() => setPage(Math.max(1, page - 1))}
-                          disabled={page === 1}
-                        />
-                      </Pagination.Item>
-                      
-                      {[...Array(data.meta.pagination.pageCount)].map((_, i) => (
-                        <Pagination.Item key={i}>
-                          <Pagination.Link
-                            isActive={page === i + 1}
-                            onClick={() => setPage(i + 1)}
-                          >
-                            {i + 1}
-                          </Pagination.Link>
-                        </Pagination.Item>
-                      ))}
-                      
-                      <Pagination.Item>
-                        <Pagination.Next
-                          onClick={() => setPage(Math.min(data.meta.pagination.pageCount, page + 1))}
-                          disabled={page === data.meta.pagination.pageCount}
-                        />
-                      </Pagination.Item>
-                    </Pagination.Content>
-                  </Pagination>
+                  <div className="flex items-center gap-2">
+                    <Button 
+                      variant="outline" 
+                      size="icon"
+                      onClick={() => setPage(Math.max(1, page - 1))}
+                      disabled={page === 1}
+                    >
+                      {isRTL ? <ArrowRight className="h-4 w-4" /> : <ArrowLeft className="h-4 w-4" />}
+                    </Button>
+                    
+                    {[...Array(data?.meta?.pagination?.pageCount || 0)].map((_, i) => (
+                      <Button
+                        key={i}
+                        variant={page === i + 1 ? "default" : "outline"}
+                        size="icon"
+                        onClick={() => setPage(i + 1)}
+                        className="w-9 h-9"
+                      >
+                        {i + 1}
+                      </Button>
+                    ))}
+                    
+                    <Button 
+                      variant="outline" 
+                      size="icon"
+                      onClick={() => setPage(Math.min(data?.meta?.pagination?.pageCount || 1, page + 1))}
+                      disabled={page === (data?.meta?.pagination?.pageCount || 1)}
+                    >
+                      {isRTL ? <ArrowLeft className="h-4 w-4" /> : <ArrowRight className="h-4 w-4" />}
+                    </Button>
+                  </div>
                 </div>
               )}
             </>

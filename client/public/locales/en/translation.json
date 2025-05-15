@@ -80,7 +80,19 @@
     "subtitle": "Thoughts, insights, and tutorials on web development, AI research, and technology trends.",
     "readTime": "min read",
     "readMore": "Read more",
-    "viewAllPosts": "View All Posts"
+    "viewAll": "View All Posts",
+    "searchPlaceholder": "Search blog posts...",
+    "noPosts": "No posts found",
+    "tryDifferentSearch": "Try a different search term or check back later for new content.",
+    "error": "Failed to load blog posts",
+    "backToBlog": "Back to Blog",
+    "relatedPosts": "Related Posts",
+    "postNotFound": "Blog post not found",
+    "postNotFoundDesc": "The blog post you're looking for doesn't exist or has been removed.",
+    "anonymousAuthor": "Anonymous"
+  },
+  "common": {
+    "retry": "Try Again"
   },
   "contact": {
     "title": "Contact Me",
