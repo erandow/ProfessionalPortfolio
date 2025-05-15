@@ -1,0 +1,111 @@
+{
+  "navbar": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "work": "Work",
+    "projects": "Projects",
+    "education": "Education",
+    "publications": "Publications",
+    "testimonials": "Testimonials",
+    "blog": "Blog",
+    "contact": "Contact",
+    "more": "More",
+    "language": "Language"
+  },
+  "hero": {
+    "developer": "Developer",
+    "developerDesc": "Crafting web & mobile applications with passion and precision.",
+    "viewProjects": "View Projects",
+    "academic": "Academic",
+    "academicDesc": "Pioneering research and publications in AI and computer science.",
+    "viewResearch": "View Research"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Get to know me better: my background, interests, and what drives me as a developer and academic.",
+    "hello": "Hello! I'm Erfan Asadi, a developer and researcher based in",
+    "location": "Toronto, Canada",
+    "bio1": "I'm a passionate web developer and AI researcher with expertise in creating robust, scalable applications and conducting cutting-edge research in artificial intelligence.",
+    "bio2": "With dual experience in both industry and academia, I bring a unique perspective to solving complex problems. I'm particularly interested in the intersection of web technologies and machine learning.",
+    "bio3": "When I'm not coding or researching, you can find me hiking, reading about new technologies, or contributing to open-source projects.",
+    "name": "Name:",
+    "email": "Email:",
+    "location2": "Location:",
+    "availability": "Availability:",
+    "availabilityValue": "Open to opportunities",
+    "downloadCV": "Download CV",
+    "yearsExp": "Years of Experience"
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "My technical expertise and professional competencies.",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "expert": "Expert"
+  },
+  "experience": {
+    "title": "Work Experience",
+    "subtitle": "My professional journey and key roles throughout my career.",
+    "viewProject": "View Project",
+    "workTab": "Work",
+    "academicTab": "Academic"
+  },
+  "education": {
+    "title": "Education",
+    "subtitle": "My academic journey and educational background that have shaped my expertise.",
+    "achievements": "Achievements"
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "A showcase of my technical projects, highlighting my problem-solving skills and technological expertise.",
+    "demo": "Demo",
+    "code": "Code"
+  },
+  "publications": {
+    "title": "Publications",
+    "subtitle": "My academic research papers published in peer-reviewed journals and conferences.",
+    "view": "View",
+    "pdf": "PDF",
+    "abstract": "Abstract",
+    "doi": "DOI"
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "subtitle": "What colleagues, clients, and collaborators have to say about working with me."
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Thoughts, insights, and tutorials on web development, AI research, and technology trends.",
+    "readTime": "min read",
+    "readMore": "Read more",
+    "viewAllPosts": "View All Posts"
+  },
+  "contact": {
+    "title": "Contact Me",
+    "subtitle": "Get in touch with me for collaborations, opportunities, or just to say hello.",
+    "getInTouch": "Get in Touch",
+    "fullName": "Full Name",
+    "email": "Email Address",
+    "message": "Your Message",
+    "send": "Send Message",
+    "connect": "Connect With Me",
+    "phone": "Phone",
+    "email2": "Email",
+    "address": "Address",
+    "follow": "Follow Me"
+  },
+  "footer": {
+    "description": "Building the future with code and research. Web developer and AI engineer focused on creating meaningful technology.",
+    "quickLinks": "Quick Links",
+    "resources": "Resources",
+    "stayUpdated": "Stay Updated",
+    "subscribe": "Subscribe",
+    "newsletterDesc": "Subscribe to my newsletter for the latest articles, tutorials, and updates.",
+    "emailPlaceholder": "Your email address",
+    "rights": "All rights reserved.",
+    "builtWith": "Built with modern web technologies"
+  },
+  "direction": "ltr"
+}
