@@ -149,7 +149,26 @@ export default function Navbar() {
                                     ? 'bg-primary/10 text-primary font-medium'
                                     : 'hover:bg-accent/40'
                                 }`}
-                                onClick={() => setMoreMenuOpen(false)}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  setMoreMenuOpen(false);
+                                  
+                                  // Smooth scroll to section
+                                  const targetId = item.href.replace('#', '');
+                                  const element = document.getElementById(targetId);
+                                  
+                                  if (element) {
+                                    setTimeout(() => {
+                                      element.scrollIntoView({
+                                        behavior: 'smooth',
+                                        block: 'start'
+                                      });
+                                      
+                                      // Update URL without reload
+                                      window.history.pushState(null, '', item.href);
+                                    }, 100);
+                                  }
+                                }}
                               >
                                 {item.name}
                               </a>
@@ -222,9 +241,27 @@ interface NavLinkProps {
 }
 
 function NavLink({ href, children, isActive = false }: NavLinkProps) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      // Smooth scroll to the element
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
+      
+      // Update URL without reload
+      window.history.pushState(null, '', href);
+    }
+  };
+  
   return (
     <a
       href={href}
+      onClick={handleClick}
       className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md hover:bg-accent/50
                  ${isActive ? 'text-primary font-medium' : ''}`}
     >
@@ -248,10 +285,34 @@ interface MobileNavLinkProps {
 }
 
 function MobileNavLink({ href, onClick, children, isActive = false }: MobileNavLinkProps) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    
+    // First close the mobile menu
+    onClick();
+    
+    // Then scroll to the section
+    const targetId = href.replace('#', '');
+    const element = document.getElementById(targetId);
+    
+    if (element) {
+      // Add a small delay to allow the menu to close first
+      setTimeout(() => {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        
+        // Update URL without reload
+        window.history.pushState(null, '', href);
+      }, 100);
+    }
+  };
+  
   return (
     <a
       href={href}
-      onClick={onClick}
+      onClick={handleClick}
       className={`flex items-center px-3 py-3 rounded-md transition-colors duration-200
                 ${isActive 
                   ? 'bg-primary/10 text-primary font-medium' 

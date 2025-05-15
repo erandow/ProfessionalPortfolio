@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Enable smooth scrolling for entire page */
+html {
+  scroll-behavior: smooth;
+}
+
 :root {
       --background: 0 0% 100%;
 --foreground: 20 14.3% 4.1%;

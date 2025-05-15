@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { useLanguageRoute } from "@/hooks/use-language-route";
@@ -20,7 +20,7 @@ export default function SplitHeroSection() {
   const rightSideImage = rightSideImagePath;
 
   return (
-    <section className="h-screen w-full relative overflow-hidden">
+    <section id="home" className="h-screen w-full relative overflow-hidden">
       {/* Main container for the split effect */}
       <div className="flex h-full w-full">
         {/* Left Side - Developer */}
@@ -142,6 +142,31 @@ export default function SplitHeroSection() {
           <span className="text-purple-500">.</span>
           <span className="text-primary px-2">dev</span>
         </span>
+      </motion.div>
+      
+      {/* Scroll Down Button */}
+      <motion.div 
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center cursor-pointer"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.8 }}
+        onClick={() => {
+          const aboutSection = document.getElementById('about');
+          if (aboutSection) {
+            aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }}
+      >
+        <span className="text-white text-sm mb-2 opacity-80">
+          {t('scroll down')}
+        </span>
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ repeat: Infinity, duration: 1.5 }}
+          className="bg-white/20 backdrop-blur-lg rounded-full p-2 border border-white/20"
+        >
+          <ChevronDown className="h-5 w-5 text-white" />
+        </motion.div>
       </motion.div>
     </section>
   );
