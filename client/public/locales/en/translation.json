@@ -24,6 +24,7 @@
   "about": {
     "title": "About Me",
     "subtitle": "Get to know me better: my background, interests, and what drives me as a developer and an AI Engineer.",
+    "yearsExp": "Years of Experience",
     "hello": "Hello! I'm Erfan Asadi, a developer and researcher based in",
     "location": "Tehran, Iran",
     "bio1": "I'm a passionate web developer and AI solutionist with expertise in creating robust, scalable applications and conducting cutting-edge research in artificial intelligence.",

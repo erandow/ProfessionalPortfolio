@@ -100,17 +100,20 @@ export const academicExperiences: AcademicExperience[] = [
     isPublication: true,
     publications: [
       {
-        title: "Advances in Transformer Architectures for Low-Resource Languages",
+        title:
+          "Advances in Transformer Architectures for Low-Resource Languages",
         venue: "NeurIPS 2022",
         url: "#",
       },
       {
-        title: "Efficient Neural Network Pruning Without Performance Degradation",
+        title:
+          "Efficient Neural Network Pruning Without Performance Degradation",
         venue: "ICML 2021",
         url: "#",
       },
       {
-        title: "A Novel Approach to Semi-Supervised Learning in Computer Vision",
+        title:
+          "A Novel Approach to Semi-Supervised Learning in Computer Vision",
         venue: "CVPR 2019",
         url: "#",
       },
@@ -136,14 +139,24 @@ export const skillsData: Skill[] = [
     iconType: "React",
   },
   {
-    name: "Python",
-    level: "Expert",
-    iconType: "Python",
-  },
-  {
     name: "JavaScript",
     level: "Expert",
     iconType: "JavaScript",
+  },
+  {
+    name: "Node.js",
+    level: "Advanced",
+    iconType: "NodeJs",
+  },
+  {
+    name: "Web Dev",
+    level: "Expert",
+    iconType: "WebDev",
+  },
+  {
+    name: "Python",
+    level: "Expert",
+    iconType: "Python",
   },
   {
     name: "TensorFlow",
@@ -156,38 +169,38 @@ export const skillsData: Skill[] = [
     iconType: "PyTorch",
   },
   {
-    name: "Node.js",
+    name: "Deep Learning",
     level: "Advanced",
-    iconType: "NodeJs",
+    iconType: "AI",
   },
   {
-    name: "SQL/NoSQL",
+    name: "NumPy",
     level: "Expert",
+    iconType: "Python",
+  },
+  {
+    name: "MongoDB",
+    level: "Advanced",
     iconType: "Database",
   },
   {
-    name: "AWS",
-    level: "Intermediate",
-    iconType: "AWS",
-  },
-  {
-    name: "Data Science",
+    name: "PostgreSQL",
     level: "Advanced",
-    iconType: "DataScience",
+    iconType: "Database",
   },
   {
-    name: "Web Dev",
-    level: "Expert",
-    iconType: "WebDev",
-  },
-  {
-    name: "Data Viz",
+    name: "Cursor IDE",
     level: "Advanced",
-    iconType: "DataViz",
+    iconType: "Dev",
   },
   {
-    name: "DevOps",
-    level: "Intermediate",
-    iconType: "DevOps",
+    name: "Computer Vision",
+    level: "Advanced",
+    iconType: "AI",
+  },
+  {
+    name: "NLP",
+    level: "Advanced",
+    iconType: "AI",
   },
 ];

@@ -13,6 +13,9 @@ import {
   Globe,
   AreaChart,
   Server,
+  Code,
+  Bot,
+  Terminal,
 } from "lucide-react";
 
 // Define skill icons with their colors
@@ -28,6 +31,8 @@ export const SkillIcons = {
   DataScience: () => <LineChart size={32} color="#6366F1" />,
   WebDev: () => <Globe size={32} color="#14B8A6" />,
   DataViz: () => <AreaChart size={32} color="#EF4444" />,
+  AI: () => <Bot size={32} color="#8B5CF6" />,
+  Dev: () => <Terminal size={32} color="#059669" />,
   DevOps: () => <Server size={32} color="#71717A" />,
 };
 

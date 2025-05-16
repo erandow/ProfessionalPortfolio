@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useLanguageRoute } from "@/hooks/use-language-route";
+import imagePath from "../images/photo.jpg";
 
 export default function AboutSection() {
   const { t } = useTranslation();
@@ -18,7 +19,9 @@ export default function AboutSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("about.title")}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            {t("about.title")}
+          </h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
           <p className="text-muted-foreground max-w-3xl mx-auto">
             {t("about.subtitle")}
@@ -36,15 +39,17 @@ export default function AboutSection() {
           >
             <div className="aspect-square rounded-2xl overflow-hidden">
               <img
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+                src={imagePath}
                 alt="Erfan Asadi"
                 className="w-full h-full object-cover"
               />
             </div>
             <div className="absolute -bottom-6 -right-6 bg-background p-4 rounded-lg shadow-lg border">
               <div className="flex flex-col items-center">
-                <p className="text-2xl font-bold text-primary">5+</p>
-                <p className="text-sm text-muted-foreground">Years of Experience</p>
+                <p className="text-2xl font-bold text-primary">4+</p>
+                <p className="text-sm text-muted-foreground">
+                  {t("about.yearsExp")}
+                </p>
               </div>
             </div>
           </motion.div>
@@ -57,20 +62,16 @@ export default function AboutSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h3 className="text-2xl font-bold mb-4">
-              {t("about.hello")} 
-              <Badge variant="outline" className="ml-2 font-normal">{t("about.location")}</Badge>
+              {t("about.hello")}
+              <Badge variant="outline" className="ml-2 font-normal">
+                {t("about.location")}
+              </Badge>
             </h3>
-            
+
             <div className="space-y-4 text-muted-foreground mb-6">
-              <p>
-                {t("about.bio1")}
-              </p>
-              <p>
-                {t("about.bio2")}
-              </p>
-              <p>
-                {t("about.bio3")}
-              </p>
+              <p>{t("about.bio1")}</p>
+              <p>{t("about.bio2")}</p>
+              <p>{t("about.bio3")}</p>
             </div>
 
             {/* Key facts */}
@@ -89,7 +90,9 @@ export default function AboutSection() {
               </div>
               <div>
                 <h4 className="font-semibold">{t("about.availability")}</h4>
-                <p className="text-muted-foreground">{t("about.availabilityValue")}</p>
+                <p className="text-muted-foreground">
+                  {t("about.availabilityValue")}
+                </p>
               </div>
             </div>
 
