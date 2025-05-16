@@ -55,9 +55,9 @@ export default function SplitHeroSection() {
             <div className="text-white p-10 md:p-16 max-w-md">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ 
-                  opacity: rightHovered ? 0.3 : 1, 
-                  y: 0 
+                animate={{
+                  opacity: rightHovered ? 0 : 1,
+                  y: 0,
                 }}
                 transition={{ duration: 0.5 }}
               >
@@ -72,7 +72,7 @@ export default function SplitHeroSection() {
                 </p>
                 <Button
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-black pointer-events-auto"
+                  className="border-white text-white hover:bg-white hover:text-black pointer-events-auto !border-white !text-white dark:!text-white dark:!border-white"
                   onClick={() => {
                     const element = document.getElementById("experience");
                     if (element) {
@@ -128,9 +128,9 @@ export default function SplitHeroSection() {
             >
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ 
-                  opacity: leftHovered ? 0.3 : 1, 
-                  y: 0 
+                animate={{
+                  opacity: leftHovered ? 0 : 1,
+                  y: 0,
                 }}
                 transition={{ duration: 0.5 }}
               >
@@ -145,7 +145,7 @@ export default function SplitHeroSection() {
                 </p>
                 <Button
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-black pointer-events-auto"
+                  className="border-white text-white hover:bg-white hover:text-black pointer-events-auto !border-white !text-white dark:!text-white dark:!border-white"
                   onClick={() => {
                     const element = document.getElementById("education");
                     if (element) {
