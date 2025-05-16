@@ -4,20 +4,23 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Code, GraduationCap, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { workExperiences, academicExperiences, WorkExperience, AcademicExperience } from "@/lib/constants";
+import { useTranslation } from "react-i18next";
+import { useLanguageRoute } from "@/hooks/use-language-route";
 
 type TabType = "work" | "academic";
 
 export default function ExperienceSection() {
   const [activeTab, setActiveTab] = useState<TabType>("work");
+  const { t } = useTranslation();
+  const { isRTL } = useLanguageRoute();
 
   return (
     <section id="experience" className="py-20 scroll-mt-16 relative">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">My Experience</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">{t("experience.title")}</h2>
           <p className="text-lg opacity-80">
-            My professional journey spans both development work and academic
-            research.
+            {t("experience.subtitle")}
           </p>
         </div>
 
@@ -34,7 +37,7 @@ export default function ExperienceSection() {
                   : "bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700"
               }
             >
-              <Code className="mr-2 h-4 w-4" /> Work Experience
+              <Code className="mr-2 h-4 w-4" /> {t("experience.workTab")}
             </Button>
             <Button
               size="lg"
@@ -46,7 +49,7 @@ export default function ExperienceSection() {
                   : "bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700"
               }
             >
-              <GraduationCap className="mr-2 h-4 w-4" /> Academic Background
+              <GraduationCap className="mr-2 h-4 w-4" /> {t("experience.academicTab")}
             </Button>
           </div>
         </div>
