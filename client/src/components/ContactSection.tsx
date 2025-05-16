@@ -43,11 +43,10 @@ export default function ContactSection() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-              Get In Touch
+              {t("contact.title")}
             </h2>
             <p className="text-lg opacity-80">
-              Interested in working together? Let's connect and discuss your
-              project.
+              {t("contact.subtitle")}
             </p>
           </div>
 
@@ -61,7 +60,7 @@ export default function ContactSection() {
             >
               <form className="space-y-4" onSubmit={handleSubmit}>
                 <div>
-                  <Label htmlFor="name">Your Name</Label>
+                  <Label htmlFor="name">{t("contact.fullName")}</Label>
                   <Input
                     id="name"
                     name="name"
@@ -72,7 +71,7 @@ export default function ContactSection() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="email">Your Email</Label>
+                  <Label htmlFor="email">{t("contact.email")}</Label>
                   <Input
                     id="email"
                     name="email"
@@ -84,7 +83,7 @@ export default function ContactSection() {
                   />
                 </div>
                 <div>
-                  <Label htmlFor="message">Your Message</Label>
+                  <Label htmlFor="message">{t("contact.message")}</Label>
                   <Textarea
                     id="message"
                     name="message"
@@ -96,7 +95,7 @@ export default function ContactSection() {
                   />
                 </div>
                 <Button type="submit" className="w-full">
-                  Send Message
+                  {t("contact.send")}
                 </Button>
               </form>
             </motion.div>
@@ -111,12 +110,12 @@ export default function ContactSection() {
               <Card className="h-full">
                 <CardContent className="p-6 h-full flex flex-col">
                   <h3 className="text-xl font-bold mb-4">
-                    Contact Information
+                    {t("contact.getInTouch")}
                   </h3>
                   <div className="space-y-4 mb-6">
                     <ContactItem
                       icon={<RectangleEllipsis className="h-5 w-5" />}
-                      title="Email"
+                      title={t("contact.email2")}
                     >
                       <a
                         href="mailto:erfan.asadi@example.com"
