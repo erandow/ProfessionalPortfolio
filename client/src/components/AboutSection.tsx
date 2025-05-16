@@ -18,10 +18,10 @@ export default function AboutSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("about.title")}</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
           <p className="text-muted-foreground max-w-3xl mx-auto">
-            Get to know me better: my background, interests, and what drives me as a developer and academic.
+            {t("about.subtitle")}
           </p>
         </motion.div>
 
@@ -57,48 +57,45 @@ export default function AboutSection() {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <h3 className="text-2xl font-bold mb-4">
-              Hello! I'm Erfan Asadi, a developer and researcher based in 
-              <Badge variant="outline" className="ml-2 font-normal">Toronto, Canada</Badge>
+              {t("about.hello")} 
+              <Badge variant="outline" className="ml-2 font-normal">{t("about.location")}</Badge>
             </h3>
             
             <div className="space-y-4 text-muted-foreground mb-6">
               <p>
-                I'm a passionate web developer and AI researcher with expertise in creating robust, scalable applications
-                and conducting cutting-edge research in artificial intelligence.
+                {t("about.bio1")}
               </p>
               <p>
-                With dual experience in both industry and academia, I bring a unique perspective to solving complex problems.
-                I'm particularly interested in the intersection of web technologies and machine learning.
+                {t("about.bio2")}
               </p>
               <p>
-                When I'm not coding or researching, you can find me hiking, reading about new technologies, or contributing
-                to open-source projects.
+                {t("about.bio3")}
               </p>
             </div>
 
             {/* Key facts */}
             <div className="grid grid-cols-2 gap-4 mb-8">
               <div>
-                <h4 className="font-semibold">Name:</h4>
+                <h4 className="font-semibold">{t("about.name")}</h4>
                 <p className="text-muted-foreground">Erfan Asadi</p>
               </div>
               <div>
-                <h4 className="font-semibold">Email:</h4>
+                <h4 className="font-semibold">{t("about.email")}</h4>
                 <p className="text-muted-foreground">erfanasadi.ce@gmail.com</p>
               </div>
               <div>
-                <h4 className="font-semibold">Location:</h4>
-                <p className="text-muted-foreground">Toronto, Canada</p>
+                <h4 className="font-semibold">{t("about.location2")}</h4>
+                <p className="text-muted-foreground">{t("about.location")}</p>
               </div>
               <div>
-                <h4 className="font-semibold">Availability:</h4>
-                <p className="text-muted-foreground">Open to opportunities</p>
+                <h4 className="font-semibold">{t("about.availability")}</h4>
+                <p className="text-muted-foreground">{t("about.availabilityValue")}</p>
               </div>
             </div>
 
             <Button className="flex items-center gap-2">
               <Download size={16} />
-              Download CV
+              {t("about.downloadCV")}
             </Button>
           </motion.div>
         </div>

@@ -1,8 +1,12 @@
 import { motion } from "framer-motion";
 import { skillsData } from "@/lib/constants";
 import { getSkillIcon } from "@/lib/skill-icons";
+import { useTranslation } from "react-i18next";
+import { useLanguageRoute } from "@/hooks/use-language-route";
 
 export default function SkillsSection() {
+  const { t } = useTranslation();
+  const { isRTL } = useLanguageRoute();
   const container = {
     hidden: { opacity: 0 },
     show: {
@@ -25,9 +29,9 @@ export default function SkillsSection() {
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">My Skills</h2>
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4">{t("skills.title")}</h2>
           <p className="text-lg opacity-80">
-            The technologies and skills I've mastered throughout my journey.
+            {t("skills.subtitle")}
           </p>
         </div>
 
@@ -61,6 +65,7 @@ interface SkillBadgeProps {
 }
 
 function SkillBadge({ iconType, name, level, index }: SkillBadgeProps) {
+  const { t } = useTranslation();
   return (
     <motion.div
       className="p-4 rounded-xl text-center shadow-md bg-card hover:-translate-y-2 transition-transform duration-300"
@@ -83,7 +88,7 @@ function SkillBadge({ iconType, name, level, index }: SkillBadgeProps) {
         {getSkillIcon(iconType)}
       </div>
       <h3 className="font-medium">{name}</h3>
-      <div className="text-xs text-muted-foreground">{level}</div>
+      <div className="text-xs text-muted-foreground">{t(`skills.${level.toLowerCase()}`)}</div>
     </motion.div>
   );
 }
