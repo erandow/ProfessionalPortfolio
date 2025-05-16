@@ -72,7 +72,7 @@ export default function SplitHeroSection() {
                 </p>
                 <Button
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-black pointer-events-auto !border-white !text-white dark:!text-white dark:!border-white"
+                  className="border-white text-black hover:bg-white hover:text-black pointer-events-auto !border-white !text-black dark:!text-white dark:!border-white"
                   onClick={() => {
                     const element = document.getElementById("experience");
                     if (element) {
@@ -145,7 +145,7 @@ export default function SplitHeroSection() {
                 </p>
                 <Button
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-black pointer-events-auto !border-white !text-white dark:!text-white dark:!border-white"
+                  className="border-white text-black hover:bg-white hover:text-black pointer-events-auto !border-white !text-black dark:!text-white dark:!border-white"
                   onClick={() => {
                     const element = document.getElementById("education");
                     if (element) {
