@@ -1,16 +1,12 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Code, GraduationCap, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
-import { workExperiences, academicExperiences, WorkExperience, AcademicExperience } from "@/lib/constants";
+import { Code, ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
+import { workExperiences, WorkExperience } from "@/lib/constants";
 import { useTranslation } from "react-i18next";
 import { useLanguageRoute } from "@/hooks/use-language-route";
 
-type TabType = "work" | "academic";
-
 export default function ExperienceSection() {
-  const [activeTab, setActiveTab] = useState<TabType>("work");
   const { t } = useTranslation();
   const { isRTL } = useLanguageRoute();
 
@@ -24,67 +20,17 @@ export default function ExperienceSection() {
           </p>
         </div>
 
-        {/* Experience Tabs */}
-        <div className="mb-8">
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button
-              size="lg"
-              onClick={() => setActiveTab("work")}
-              variant={activeTab === "work" ? "default" : "outline"}
-              className={
-                activeTab === "work"
-                  ? ""
-                  : "bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700"
-              }
-            >
-              <Code className="mr-2 h-4 w-4" /> {t("experience.workTab")}
-            </Button>
-            <Button
-              size="lg"
-              onClick={() => setActiveTab("academic")}
-              variant={activeTab === "academic" ? "default" : "outline"}
-              className={
-                activeTab === "academic"
-                  ? "bg-purple-500 hover:bg-purple-600"
-                  : "bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700"
-              }
-            >
-              <GraduationCap className="mr-2 h-4 w-4" /> {t("experience.academicTab")}
-            </Button>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {workExperiences.map((work, index) => (
+              <ProjectCard key={index} {...work} />
+            ))}
           </div>
-        </div>
-
-        <AnimatePresence mode="wait">
-          {activeTab === "work" ? (
-            <motion.div
-              key="work"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                {workExperiences.map((work, index) => (
-                  <ProjectCard key={index} {...work} />
-                ))}
-              </div>
-            </motion.div>
-          ) : (
-            <motion.div
-              key="academic"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-                {academicExperiences.map((academic, index) => (
-                  <AcademicCard key={index} {...academic} />
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );
