@@ -107,6 +107,8 @@ function ProjectCard({
   imageUrl,
   projectUrl,
 }: ProjectCardProps) {
+  const { t } = useTranslation();
+  const { isRTL } = useLanguageRoute();
   return (
     <motion.div
       whileHover={{ y: -5 }}
@@ -140,7 +142,7 @@ function ProjectCard({
           href={projectUrl}
           className="text-primary hover:text-primary/80 font-medium flex items-center"
         >
-          View Project <ArrowRight className="ml-2 h-4 w-4" />
+          {t("experience.viewProject")} <ArrowRight className={`${isRTL ? "mr-2 flip-in-rtl" : "ml-2"} h-4 w-4`} />
         </a>
       </div>
     </motion.div>

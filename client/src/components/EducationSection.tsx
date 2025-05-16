@@ -9,8 +9,12 @@ import {
   CardTitle 
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useTranslation } from "react-i18next";
+import { useLanguageRoute } from "@/hooks/use-language-route";
 
 export default function EducationSection() {
+  const { t } = useTranslation();
+  const { isRTL } = useLanguageRoute();
   const educationData = [
     {
       id: 1,
@@ -54,10 +58,10 @@ export default function EducationSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Education</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("education.title")}</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
           <p className="text-muted-foreground max-w-3xl mx-auto">
-            My academic journey and educational background that have shaped my expertise.
+            {t("education.subtitle")}
           </p>
         </motion.div>
 
