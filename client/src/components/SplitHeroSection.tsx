@@ -140,21 +140,7 @@ export default function SplitHeroSection() {
         </motion.div>
       </div>
 
-      {/* Center logo or divider */}
-      <motion.div
-        className="absolute top-[55%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-30 rounded-full bg-white/10 backdrop-blur-lg p-4 border border-white/30"
-        animate={{
-          scale: leftHovered || rightHovered ? 0.9 : 1,
-          opacity: leftHovered || rightHovered ? 0.8 : 1,
-        }}
-        transition={{ duration: 0.5 }}
-      >
-        <span className="text-white text-xl font-bold tracking-tight">
-          <span className="text-primary px-2">erandow</span>
-          <span className="text-purple-500">.</span>
-          <span className="text-primary px-2">com</span>
-        </span>
-      </motion.div>
+      {/* Center logo removed as requested */}
       
       {/* Scroll Down Button */}
       <motion.div 
