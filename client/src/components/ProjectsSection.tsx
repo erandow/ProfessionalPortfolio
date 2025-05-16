@@ -2,8 +2,12 @@ import { motion } from "framer-motion";
 import { ExternalLink, Github, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { useTranslation } from "react-i18next";
+import { useLanguageRoute } from "@/hooks/use-language-route";
 
 export default function ProjectsSection() {
+  const { t } = useTranslation();
+  const { isRTL } = useLanguageRoute();
   const projects = [
     {
       id: 1,
@@ -57,10 +61,10 @@ export default function ProjectsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Projects</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("projects.title")}</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
           <p className="text-muted-foreground max-w-3xl mx-auto">
-            A showcase of my technical projects, highlighting my problem-solving skills and technological expertise.
+            {t("projects.subtitle")}
           </p>
         </motion.div>
 
@@ -85,12 +89,12 @@ export default function ProjectsSection() {
                     <div className="flex space-x-2">
                       <Button size="sm" variant="secondary" asChild>
                         <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                          <ExternalLink className="h-4 w-4 mr-1" /> Demo
+                          <ExternalLink className={`h-4 w-4 ${isRTL ? "ml-1" : "mr-1"}`} /> {t("projects.demo")}
                         </a>
                       </Button>
                       <Button size="sm" variant="outline" className="bg-background/20 hover:bg-background/40 backdrop-blur-sm" asChild>
                         <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                          <Github className="h-4 w-4 mr-1" /> Code
+                          <Github className={`h-4 w-4 ${isRTL ? "ml-1" : "mr-1"}`} /> {t("projects.code")}
                         </a>
                       </Button>
                     </div>

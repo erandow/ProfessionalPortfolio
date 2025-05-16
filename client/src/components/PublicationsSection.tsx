@@ -15,8 +15,12 @@ import {
 } from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
+import { useLanguageRoute } from "@/hooks/use-language-route";
 
 export default function PublicationsSection() {
+  const { t } = useTranslation();
+  const { isRTL } = useLanguageRoute();
   const publications = [
     {
       id: 1,
