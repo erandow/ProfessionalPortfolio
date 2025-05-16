@@ -86,10 +86,10 @@ export default function PublicationsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Publications</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("publications.title")}</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
           <p className="text-muted-foreground max-w-3xl mx-auto">
-            My academic research papers published in peer-reviewed journals and conferences.
+            {t("publications.subtitle")}
           </p>
         </motion.div>
 

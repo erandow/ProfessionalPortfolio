@@ -12,8 +12,12 @@ import {
   FaTwitter,
   FaMedium,
 } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
+import { useLanguageRoute } from "@/hooks/use-language-route";
 
 export default function ContactSection() {
+  const { t } = useTranslation();
+  const { isRTL } = useLanguageRoute();
   const [formData, setFormData] = useState({
     name: "",
     email: "",

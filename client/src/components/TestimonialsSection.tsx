@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
+import { useLanguageRoute } from "@/hooks/use-language-route";
 
 interface Testimonial {
   id: number;
@@ -14,6 +16,8 @@ interface Testimonial {
 }
 
 export default function TestimonialsSection() {
+  const { t } = useTranslation();
+  const { isRTL } = useLanguageRoute();
   const [activeIndex, setActiveIndex] = useState(0);
   const [autoplay, setAutoplay] = useState(true);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -97,10 +101,10 @@ export default function TestimonialsSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Testimonials</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("testimonials.title")}</h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
           <p className="text-muted-foreground max-w-3xl mx-auto">
-            What colleagues, clients, and collaborators have to say about working with me.
+            {t("testimonials.subtitle")}
           </p>
         </motion.div>
 
