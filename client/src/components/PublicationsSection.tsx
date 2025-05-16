@@ -122,12 +122,12 @@ export default function PublicationsSection() {
                     <div className="flex gap-2 flex-shrink-0">
                       <Button size="sm" variant="outline" asChild>
                         <a href={pub.link} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                          <ExternalLink className="h-4 w-4 mr-1" /> View
+                          <ExternalLink className={`h-4 w-4 ${isRTL ? "ml-1" : "mr-1"}`} /> {t("publications.view")}
                         </a>
                       </Button>
                       <Button size="sm" variant="secondary" asChild>
                         <a href={pub.pdfLink} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                          <Download className="h-4 w-4 mr-1" /> PDF
+                          <Download className={`h-4 w-4 ${isRTL ? "ml-1" : "mr-1"}`} /> {t("publications.pdf")}
                         </a>
                       </Button>
                     </div>
@@ -150,14 +150,14 @@ export default function PublicationsSection() {
                   <Accordion type="single" collapsible className="w-full">
                     <AccordionItem value="abstract" className="border-b-0">
                       <AccordionTrigger className="py-2 text-sm">
-                        Abstract
+                        {t("publications.abstract")}
                       </AccordionTrigger>
                       <AccordionContent>
                         <p className="text-muted-foreground">
                           {pub.abstract}
                         </p>
                         <div className="mt-2 text-sm">
-                          <span className="font-medium">DOI:</span> {pub.doi}
+                          <span className="font-medium">{t("publications.doi")}:</span> {pub.doi}
                         </div>
                       </AccordionContent>
                     </AccordionItem>
