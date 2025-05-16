@@ -55,9 +55,9 @@ export default function SplitHeroSection() {
             <div className="text-white p-10 md:p-16 max-w-md">
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
-                animate={{ 
-                  opacity: rightHovered ? 0.3 : 1, 
-                  y: 0 
+                animate={{
+                  opacity: rightHovered ? 0.3 : 1,
+                  y: 0,
                 }}
                 transition={{ duration: 0.5 }}
               >
@@ -130,18 +130,18 @@ export default function SplitHeroSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{
                   opacity: leftHovered ? 0.3 : 1,
-                  y: 0
+                  y: 0,
                 }}
                 transition={{ duration: 0.5 }}
               >
                 <h2 className="text-4xl md:text-5xl font-bold mb-3">
-                  {t("hero.academic")}
+                  {t("hero.aiEngineer")}
                 </h2>
                 <div
                   className={`w-16 h-1 bg-white mb-6 ${isRTL ? "" : "ml-auto"}`}
                 />
                 <p className="text-lg md:text-xl mb-8 opacity-90">
-                  {t("hero.academicDesc")}
+                  {t("hero.aiEngineerDesc")}
                 </p>
                 <Button
                   variant="outline"
@@ -169,31 +169,6 @@ export default function SplitHeroSection() {
       </div>
 
       {/* Center logo removed as requested */}
-      
-      {/* Scroll Down Button */}
-      <motion.div 
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30 flex flex-col items-center cursor-pointer"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1, duration: 0.8 }}
-        onClick={() => {
-          const aboutSection = document.getElementById('about');
-          if (aboutSection) {
-            aboutSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }}
-      >
-        <span className="text-white text-sm mb-2 opacity-80">
-          {isRTL ? 'اسکرول کنید' : 'Scroll Down'}
-        </span>
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 1.5 }}
-          className="bg-white/20 backdrop-blur-lg rounded-full p-2 border border-white/20"
-        >
-          <ChevronDown className="h-5 w-5 text-white" />
-        </motion.div>
-      </motion.div>
     </section>
   );
 }

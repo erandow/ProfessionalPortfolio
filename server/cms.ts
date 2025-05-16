@@ -1,9 +1,9 @@
-import express, { Request, Response } from 'express';
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { v4 as uuidv4 } from 'uuid';
-import { getBlogPostsFromNotion, findDatabaseByTitle } from './notion';
+import express, { Request, Response } from "express";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import { v4 as uuidv4 } from "uuid";
+import { getBlogPostsFromNotion, findDatabaseByTitle } from "./notion";
 
 // Define current directory equivalent to __dirname in CommonJS
 const __filename = fileURLToPath(import.meta.url);
@@ -52,9 +52,9 @@ interface BlogPostsResponse {
               thumbnail: { url: string };
               small: { url: string };
               medium: { url: string };
-            }
-          }
-        }
+            };
+          };
+        };
       };
       author: {
         data: {
@@ -62,18 +62,18 @@ interface BlogPostsResponse {
           attributes: {
             name: string;
             email: string;
-          }
-        }
+          };
+        };
       };
       localizations?: {
         data: Array<{
           id: string;
           attributes: {
             locale: string;
-          }
-        }>
+          };
+        }>;
       };
-    }
+    };
   }[];
   meta: {
     pagination: {
@@ -81,13 +81,13 @@ interface BlogPostsResponse {
       pageSize: number;
       pageCount: number;
       total: number;
-    }
+    };
   };
 }
 
 // Data directory
-const DATA_DIR = path.join(__dirname, 'data');
-const BLOG_POSTS_FILE = path.join(DATA_DIR, 'blog-posts.json');
+const DATA_DIR = path.join(__dirname, "data");
+const BLOG_POSTS_FILE = path.join(DATA_DIR, "blog-posts.json");
 
 // Ensure data directory exists
 if (!fs.existsSync(DATA_DIR)) {
@@ -101,85 +101,104 @@ if (!fs.existsSync(BLOG_POSTS_FILE)) {
       id: uuidv4(),
       title: "The Future of AI in Web Development",
       slug: "future-ai-web-development",
-      content: "<p>Artificial intelligence is rapidly transforming the web development landscape. From automated coding assistants to intelligent design systems, AI is revolutionizing how we build and interact with web applications.</p><p>This article explores the current state of AI in web development and makes predictions about where the technology is headed in the near future.</p>",
-      excerpt: "Exploring how artificial intelligence is revolutionizing the way we build and interact with web applications.",
+      content:
+        "<p>Artificial intelligence is rapidly transforming the web development landscape. From automated coding assistants to intelligent design systems, AI is revolutionizing how we build and interact with web applications.</p><p>This article explores the current state of AI in web development and makes predictions about where the technology is headed in the near future.</p>",
+      excerpt:
+        "Exploring how artificial intelligence is revolutionizing the way we build and interact with web applications.",
       publishedAt: new Date().toISOString(),
       category: "Technology",
       readTime: "8 min read",
       locale: "en",
-      featuredImage: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      featuredImage:
+        "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
       author: {
         name: "Erfan Asadi",
-        email: "contact@erfanasadi.dev"
-      }
+        email: "erfanasadi.ce@gmail.com",
+      },
     },
     {
       id: uuidv4(),
       title: "Optimizing Performance in React Applications",
       slug: "optimizing-react-performance",
-      content: "<p>Performance optimization is crucial for delivering a smooth user experience in React applications. This comprehensive guide covers key strategies including component memoization, lazy loading, and code splitting.</p><p>Learn how to identify and resolve common performance bottlenecks in your React applications.</p>",
-      excerpt: "Learn key strategies and best practices to significantly improve the performance of your React applications.",
-      publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 15).toISOString(), // 15 days ago
+      content:
+        "<p>Performance optimization is crucial for delivering a smooth user experience in React applications. This comprehensive guide covers key strategies including component memoization, lazy loading, and code splitting.</p><p>Learn how to identify and resolve common performance bottlenecks in your React applications.</p>",
+      excerpt:
+        "Learn key strategies and best practices to significantly improve the performance of your React applications.",
+      publishedAt: new Date(
+        Date.now() - 1000 * 60 * 60 * 24 * 15,
+      ).toISOString(), // 15 days ago
       category: "Development",
       readTime: "12 min read",
       locale: "en",
-      featuredImage: "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      featuredImage:
+        "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
       author: {
         name: "Erfan Asadi",
-        email: "contact@erfanasadi.dev"
-      }
+        email: "erfanasadi.ce@gmail.com",
+      },
     },
     {
       id: uuidv4(),
       title: "Ethics in Machine Learning Research",
       slug: "ethics-machine-learning-research",
-      content: "<p>As machine learning becomes increasingly integrated into critical systems and decision-making processes, ethical considerations have never been more important.</p><p>This article examines the ethical principles that should guide machine learning research and deployment, including fairness, accountability, transparency, and responsibility.</p>",
-      excerpt: "Discussing the important ethical considerations that should guide research and deployment of machine learning systems.",
-      publishedAt: new Date(Date.now() - 1000 * 60 * 60 * 24 * 30).toISOString(), // 30 days ago
+      content:
+        "<p>As machine learning becomes increasingly integrated into critical systems and decision-making processes, ethical considerations have never been more important.</p><p>This article examines the ethical principles that should guide machine learning research and deployment, including fairness, accountability, transparency, and responsibility.</p>",
+      excerpt:
+        "Discussing the important ethical considerations that should guide research and deployment of machine learning systems.",
+      publishedAt: new Date(
+        Date.now() - 1000 * 60 * 60 * 24 * 30,
+      ).toISOString(), // 30 days ago
       category: "AI Ethics",
       readTime: "10 min read",
       locale: "en",
-      featuredImage: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
+      featuredImage:
+        "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
       author: {
         name: "Erfan Asadi",
-        email: "contact@erfanasadi.dev"
-      }
-    }
+        email: "erfanasadi.ce@gmail.com",
+      },
+    },
   ];
 
   // Create Persian versions with relationships
   const persianPosts: BlogPost[] = englishPosts.map((post, index) => {
     const id = uuidv4();
-    
+
     // Add localization to English post
     englishPosts[index].localizations = [
       {
         locale: "fa",
-        id
-      }
+        id,
+      },
     ];
-    
+
     let title, content, excerpt, category, readTime;
-    
-    switch(post.slug) {
+
+    switch (post.slug) {
       case "future-ai-web-development":
         title = "آینده هوش مصنوعی در توسعه وب";
-        content = "<p>هوش مصنوعی به سرعت در حال تغییر چشم‌انداز توسعه وب است. از دستیاران کدنویسی خودکار گرفته تا سیستم‌های طراحی هوشمند، هوش مصنوعی در حال انقلاب در نحوه ساخت و تعامل ما با برنامه‌های وب است.</p><p>این مقاله وضعیت فعلی هوش مصنوعی در توسعه وب را بررسی می‌کند و پیش‌بینی‌هایی درباره مسیر این فناوری در آینده نزدیک ارائه می‌دهد.</p>";
-        excerpt = "بررسی چگونگی انقلاب هوش مصنوعی در نحوه ساخت و تعامل ما با برنامه‌های وب.";
+        content =
+          "<p>هوش مصنوعی به سرعت در حال تغییر چشم‌انداز توسعه وب است. از دستیاران کدنویسی خودکار گرفته تا سیستم‌های طراحی هوشمند، هوش مصنوعی در حال انقلاب در نحوه ساخت و تعامل ما با برنامه‌های وب است.</p><p>این مقاله وضعیت فعلی هوش مصنوعی در توسعه وب را بررسی می‌کند و پیش‌بینی‌هایی درباره مسیر این فناوری در آینده نزدیک ارائه می‌دهد.</p>";
+        excerpt =
+          "بررسی چگونگی انقلاب هوش مصنوعی در نحوه ساخت و تعامل ما با برنامه‌های وب.";
         category = "فناوری";
         readTime = "۸ دقیقه مطالعه";
         break;
       case "optimizing-react-performance":
         title = "بهینه‌سازی عملکرد در برنامه‌های ری‌اکت";
-        content = "<p>بهینه‌سازی عملکرد برای ارائه تجربه کاربری روان در برنامه‌های ری‌اکت بسیار مهم است. این راهنمای جامع استراتژی‌های کلیدی شامل مموایزیشن کامپوننت، بارگذاری تنبل، و تقسیم کد را پوشش می‌دهد.</p><p>نحوه شناسایی و رفع گلوگاه‌های متداول عملکرد در برنامه‌های ری‌اکت خود را بیاموزید.</p>";
-        excerpt = "استراتژی‌های کلیدی و بهترین شیوه‌ها را برای بهبود قابل توجه عملکرد برنامه‌های ری‌اکت خود بیاموزید.";
+        content =
+          "<p>بهینه‌سازی عملکرد برای ارائه تجربه کاربری روان در برنامه‌های ری‌اکت بسیار مهم است. این راهنمای جامع استراتژی‌های کلیدی شامل مموایزیشن کامپوننت، بارگذاری تنبل، و تقسیم کد را پوشش می‌دهد.</p><p>نحوه شناسایی و رفع گلوگاه‌های متداول عملکرد در برنامه‌های ری‌اکت خود را بیاموزید.</p>";
+        excerpt =
+          "استراتژی‌های کلیدی و بهترین شیوه‌ها را برای بهبود قابل توجه عملکرد برنامه‌های ری‌اکت خود بیاموزید.";
         category = "توسعه";
         readTime = "۱۲ دقیقه مطالعه";
         break;
       case "ethics-machine-learning-research":
         title = "اخلاق در پژوهش یادگیری ماشین";
-        content = "<p>همچنان که یادگیری ماشین به طور فزاینده‌ای در سیستم‌های حیاتی و فرآیندهای تصمیم‌گیری ادغام می‌شود، ملاحظات اخلاقی هرگز مهم‌تر از این نبوده‌اند.</p><p>این مقاله اصول اخلاقی که باید تحقیقات و استقرار یادگیری ماشین را هدایت کنند، از جمله انصاف، پاسخگویی، شفافیت و مسئولیت‌پذیری، بررسی می‌کند.</p>";
-        excerpt = "بررسی ملاحظات اخلاقی مهمی که باید تحقیق و استقرار سیستم‌های یادگیری ماشین را هدایت کنند.";
+        content =
+          "<p>همچنان که یادگیری ماشین به طور فزاینده‌ای در سیستم‌های حیاتی و فرآیندهای تصمیم‌گیری ادغام می‌شود، ملاحظات اخلاقی هرگز مهم‌تر از این نبوده‌اند.</p><p>این مقاله اصول اخلاقی که باید تحقیقات و استقرار یادگیری ماشین را هدایت کنند، از جمله انصاف، پاسخگویی، شفافیت و مسئولیت‌پذیری، بررسی می‌کند.</p>";
+        excerpt =
+          "بررسی ملاحظات اخلاقی مهمی که باید تحقیق و استقرار سیستم‌های یادگیری ماشین را هدایت کنند.";
         category = "اخلاق هوش مصنوعی";
         readTime = "۱۰ دقیقه مطالعه";
         break;
@@ -190,7 +209,7 @@ if (!fs.existsSync(BLOG_POSTS_FILE)) {
         category = post.category;
         readTime = post.readTime;
     }
-    
+
     return {
       id,
       title,
@@ -204,20 +223,20 @@ if (!fs.existsSync(BLOG_POSTS_FILE)) {
       featuredImage: post.featuredImage,
       author: {
         name: "عرفان اسدی",
-        email: "contact@erfanasadi.dev"
+        email: "erfanasadi.ce@gmail.com",
       },
       localizations: [
         {
           locale: "en",
-          id: post.id
-        }
-      ]
+          id: post.id,
+        },
+      ],
     };
   });
-  
+
   // Combine both language posts
   const blogPosts = [...englishPosts, ...persianPosts];
-  
+
   // Save initial data
   fs.writeFileSync(BLOG_POSTS_FILE, JSON.stringify(blogPosts, null, 2));
 }
@@ -237,109 +256,126 @@ function formatBlogPost(post: BlogPost) {
       locale: post.locale,
       featuredImage: {
         data: {
-          id: '1',
+          id: "1",
           attributes: {
             url: post.featuredImage,
             formats: {
               thumbnail: { url: post.featuredImage },
               small: { url: post.featuredImage },
               medium: { url: post.featuredImage },
-            }
-          }
-        }
+            },
+          },
+        },
       },
       author: {
         data: {
-          id: '1',
+          id: "1",
           attributes: {
             name: post.author.name,
-            email: post.author.email
-          }
-        }
+            email: post.author.email,
+          },
+        },
       },
-      localizations: post.localizations ? {
-        data: post.localizations.map(loc => ({
-          id: loc.id,
-          attributes: {
-            locale: loc.locale
+      localizations: post.localizations
+        ? {
+            data: post.localizations.map((loc) => ({
+              id: loc.id,
+              attributes: {
+                locale: loc.locale,
+              },
+            })),
           }
-        }))
-      } : undefined
-    }
+        : undefined,
+    },
   };
 }
 
 // Register CMS routes
 export function registerCmsRoutes(app: express.Express) {
   // Notion status endpoint
-  app.get('/api/notion-status', async (req: Request, res: Response) => {
+  app.get("/api/notion-status", async (req: Request, res: Response) => {
     try {
-      if (!process.env.NOTION_INTEGRATION_SECRET || !process.env.NOTION_PAGE_URL) {
-        return res.status(400).json({ 
-          status: 'not_configured',
-          message: 'Notion integration is not configured. Please set NOTION_INTEGRATION_SECRET and NOTION_PAGE_URL environment variables.'
+      if (
+        !process.env.NOTION_INTEGRATION_SECRET ||
+        !process.env.NOTION_PAGE_URL
+      ) {
+        return res.status(400).json({
+          status: "not_configured",
+          message:
+            "Notion integration is not configured. Please set NOTION_INTEGRATION_SECRET and NOTION_PAGE_URL environment variables.",
         });
       }
-      
+
       // Try to find the blog posts database
-      const blogDb = await findDatabaseByTitle('Blog Posts');
-      
+      const blogDb = await findDatabaseByTitle("Blog Posts");
+
       if (blogDb) {
         // Get a sample of posts from Notion
         try {
-          const posts = await getBlogPostsFromNotion(blogDb.id, 'en');
+          const posts = await getBlogPostsFromNotion(blogDb.id, "en");
           return res.json({
-            status: 'connected',
-            message: 'Successfully connected to Notion and found the Blog Posts database',
+            status: "connected",
+            message:
+              "Successfully connected to Notion and found the Blog Posts database",
             databaseId: blogDb.id,
             postCount: posts.length,
-            samplePosts: posts.slice(0, 2).map(p => ({ title: p.title, slug: p.slug }))
+            samplePosts: posts
+              .slice(0, 2)
+              .map((p) => ({ title: p.title, slug: p.slug })),
           });
         } catch (dbError) {
           return res.status(500).json({
-            status: 'database_error',
-            message: 'Found the Blog Posts database but failed to fetch posts',
-            error: String(dbError)
+            status: "database_error",
+            message: "Found the Blog Posts database but failed to fetch posts",
+            error: String(dbError),
           });
         }
       } else {
         return res.status(404).json({
-          status: 'database_not_found',
-          message: 'Connected to Notion but Blog Posts database not found. Run the setup script.'
+          status: "database_not_found",
+          message:
+            "Connected to Notion but Blog Posts database not found. Run the setup script.",
         });
       }
     } catch (error) {
-      return res.status(500).json({ 
-        status: 'connection_failed',
-        message: 'Failed to connect to Notion API',
-        error: String(error)
+      return res.status(500).json({
+        status: "connection_failed",
+        message: "Failed to connect to Notion API",
+        error: String(error),
       });
     }
   });
 
   // Blog post API routes (similar to Strapi)
-  app.get('/api/blog-posts', (req: Request, res: Response) => {
+  app.get("/api/blog-posts", (req: Request, res: Response) => {
     try {
-      const locale = req.query.locale as string || 'en';
-      const pageStr = req.query['pagination[page]'] as string || '1';
-      const pageSizeStr = req.query['pagination[pageSize]'] as string || '10';
+      const locale = (req.query.locale as string) || "en";
+      const pageStr = (req.query["pagination[page]"] as string) || "1";
+      const pageSizeStr = (req.query["pagination[pageSize]"] as string) || "10";
       const page = parseInt(pageStr, 10);
       const pageSize = parseInt(pageSizeStr, 10);
-      
+
       // Load blog posts
-      const blogPostsData = JSON.parse(fs.readFileSync(BLOG_POSTS_FILE, 'utf8')) as BlogPost[];
-      
+      const blogPostsData = JSON.parse(
+        fs.readFileSync(BLOG_POSTS_FILE, "utf8"),
+      ) as BlogPost[];
+
       // Filter by locale
-      const filteredPosts = blogPostsData.filter(post => post.locale === locale);
-      
+      const filteredPosts = blogPostsData.filter(
+        (post) => post.locale === locale,
+      );
+
       // Sort by publishedAt (newest first)
-      filteredPosts.sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime());
-      
+      filteredPosts.sort(
+        (a, b) =>
+          new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime(),
+      );
+
       // Paginate
       const startIdx = (page - 1) * pageSize;
       const endIdx = startIdx + pageSize;
       const paginatedPosts = filteredPosts.slice(startIdx, endIdx);
-      
+
       // Format response
       const response: BlogPostsResponse = {
         data: paginatedPosts.map(formatBlogPost),
@@ -348,34 +384,38 @@ export function registerCmsRoutes(app: express.Express) {
             page,
             pageSize,
             pageCount: Math.ceil(filteredPosts.length / pageSize),
-            total: filteredPosts.length
-          }
-        }
+            total: filteredPosts.length,
+          },
+        },
       };
-      
+
       res.json(response);
     } catch (error) {
-      console.error('Error fetching blog posts:', error);
-      res.status(500).json({ error: 'Failed to fetch blog posts' });
+      console.error("Error fetching blog posts:", error);
+      res.status(500).json({ error: "Failed to fetch blog posts" });
     }
   });
-  
+
   // Get single blog post by slug
-  app.get('/api/blog-posts/:slug', (req: Request, res: Response) => {
+  app.get("/api/blog-posts/:slug", (req: Request, res: Response) => {
     try {
       const { slug } = req.params;
-      const locale = req.query.locale as string || 'en';
-      
+      const locale = (req.query.locale as string) || "en";
+
       // Load blog posts
-      const blogPostsData = JSON.parse(fs.readFileSync(BLOG_POSTS_FILE, 'utf8')) as BlogPost[];
-      
+      const blogPostsData = JSON.parse(
+        fs.readFileSync(BLOG_POSTS_FILE, "utf8"),
+      ) as BlogPost[];
+
       // Find post by slug and locale
-      const post = blogPostsData.find(p => p.slug === slug && p.locale === locale);
-      
+      const post = blogPostsData.find(
+        (p) => p.slug === slug && p.locale === locale,
+      );
+
       if (!post) {
-        return res.status(404).json({ error: 'Blog post not found' });
+        return res.status(404).json({ error: "Blog post not found" });
       }
-      
+
       // Format response
       const response: BlogPostsResponse = {
         data: [formatBlogPost(post)],
@@ -384,20 +424,20 @@ export function registerCmsRoutes(app: express.Express) {
             page: 1,
             pageSize: 1,
             pageCount: 1,
-            total: 1
-          }
-        }
+            total: 1,
+          },
+        },
       };
-      
+
       res.json(response);
     } catch (error) {
-      console.error('Error fetching blog post:', error);
-      res.status(500).json({ error: 'Failed to fetch blog post' });
+      console.error("Error fetching blog post:", error);
+      res.status(500).json({ error: "Failed to fetch blog post" });
     }
   });
-  
+
   // Admin routes for the CMS
-  app.get('/cms', (req: Request, res: Response) => {
+  app.get("/cms", (req: Request, res: Response) => {
     res.send(`
       <!DOCTYPE html>
       <html lang="en">
@@ -530,7 +570,7 @@ export function registerCmsRoutes(app: express.Express) {
       </html>
     `);
   });
-  
-  console.log('✅ CMS routes registered');
+
+  console.log("✅ CMS routes registered");
   return app;
 }

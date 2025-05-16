@@ -35,7 +35,7 @@ export const fallbackBlogPostsEn: StrapiResponse<BlogPost[]> = {
             id: 1,
             attributes: {
               name: "Erfan Asadi",
-              email: "contact@erfanasadi.dev"
+              email: "erfanasadi.ce@gmail.com"
             }
           }
         },
@@ -80,7 +80,7 @@ export const fallbackBlogPostsEn: StrapiResponse<BlogPost[]> = {
             id: 1,
             attributes: {
               name: "Erfan Asadi",
-              email: "contact@erfanasadi.dev"
+              email: "erfanasadi.ce@gmail.com"
             }
           }
         },
@@ -125,7 +125,7 @@ export const fallbackBlogPostsEn: StrapiResponse<BlogPost[]> = {
             id: 1,
             attributes: {
               name: "Erfan Asadi",
-              email: "contact@erfanasadi.dev"
+              email: "erfanasadi.ce@gmail.com"
             }
           }
         },
@@ -184,7 +184,7 @@ export const fallbackBlogPostsFa: StrapiResponse<BlogPost[]> = {
             id: 1,
             attributes: {
               name: "عرفان اسدی",
-              email: "contact@erfanasadi.dev"
+              email: "erfanasadi.ce@gmail.com"
             }
           }
         },
@@ -229,7 +229,7 @@ export const fallbackBlogPostsFa: StrapiResponse<BlogPost[]> = {
             id: 1,
             attributes: {
               name: "عرفان اسدی",
-              email: "contact@erfanasadi.dev"
+              email: "erfanasadi.ce@gmail.com"
             }
           }
         },
@@ -274,7 +274,7 @@ export const fallbackBlogPostsFa: StrapiResponse<BlogPost[]> = {
             id: 1,
             attributes: {
               name: "عرفان اسدی",
-              email: "contact@erfanasadi.dev"
+              email: "erfanasadi.ce@gmail.com"
             }
           }
         },

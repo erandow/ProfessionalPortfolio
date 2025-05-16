@@ -98,7 +98,7 @@ async function createSampleData() {
                 locale: "en",
                 featuredImage: "https://images.unsplash.com/photo-1677442135302-c4c7dd918517",
                 authorName: "Erfan Asadi",
-                authorEmail: "erfan@example.com"
+                authorEmail: "erfanasadi.ce@gmail.com"
             },
             {
                 title: "Optimizing Performance in React Applications",
@@ -111,7 +111,7 @@ async function createSampleData() {
                 locale: "en",
                 featuredImage: "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2",
                 authorName: "Erfan Asadi",
-                authorEmail: "erfan@example.com"
+                authorEmail: "erfanasadi.ce@gmail.com"
             },
             {
                 title: "Ethics in Machine Learning Research",
@@ -124,7 +124,7 @@ async function createSampleData() {
                 locale: "en",
                 featuredImage: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485",
                 authorName: "Erfan Asadi",
-                authorEmail: "erfan@example.com"
+                authorEmail: "erfanasadi.ce@gmail.com"
             }
         ];
 
@@ -226,7 +226,7 @@ async function createSampleData() {
                 locale: "fa",
                 featuredImage: "https://images.unsplash.com/photo-1677442135302-c4c7dd918517",
                 authorName: "عرفان اسدی",
-                authorEmail: "erfan@example.com"
+                authorEmail: "erfanasadi.ce@gmail.com"
             },
             {
                 title: "بهینه‌سازی عملکرد در برنامه‌های ری‌اکت",
@@ -239,7 +239,7 @@ async function createSampleData() {
                 locale: "fa",
                 featuredImage: "https://images.unsplash.com/photo-1633356122102-3fe601e05bd2",
                 authorName: "عرفان اسدی",
-                authorEmail: "erfan@example.com"
+                authorEmail: "erfanasadi.ce@gmail.com"
             },
             {
                 title: "اخلاق در پژوهش یادگیری ماشین",
@@ -252,7 +252,7 @@ async function createSampleData() {
                 locale: "fa",
                 featuredImage: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485",
                 authorName: "عرفان اسدی",
-                authorEmail: "erfan@example.com"
+                authorEmail: "erfanasadi.ce@gmail.com"
             }
         ];
 

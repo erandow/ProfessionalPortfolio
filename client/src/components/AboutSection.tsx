@@ -2,8 +2,12 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import { useLanguageRoute } from "@/hooks/use-language-route";
 
 export default function AboutSection() {
+  const { t } = useTranslation();
+  const { isRTL } = useLanguageRoute();
   return (
     <section id="about" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,7 +84,7 @@ export default function AboutSection() {
               </div>
               <div>
                 <h4 className="font-semibold">Email:</h4>
-                <p className="text-muted-foreground">erfan@example.com</p>
+                <p className="text-muted-foreground">erfanasadi.ce@gmail.com</p>
               </div>
               <div>
                 <h4 className="font-semibold">Location:</h4>

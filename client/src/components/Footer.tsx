@@ -9,7 +9,7 @@ export default function Footer() {
     { icon: <Github className="h-5 w-5" />, href: "https://github.com/", label: "GitHub" },
     { icon: <Twitter className="h-5 w-5" />, href: "https://twitter.com/", label: "Twitter" },
     { icon: <Linkedin className="h-5 w-5" />, href: "https://linkedin.com/in/", label: "LinkedIn" },
-    { icon: <Mail className="h-5 w-5" />, href: "mailto:erfan@example.com", label: "Email" },
+    { icon: <Mail className="h-5 w-5" />, href: "mailto:erfanasadi.ce@gmail.com", label: "Email" },
   ];
 
   const quickLinks = [
