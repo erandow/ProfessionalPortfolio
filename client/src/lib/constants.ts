@@ -72,16 +72,6 @@ export const workExperiences: WorkExperience[] = [
 // Academic Experiences
 export const academicExperiences: AcademicExperience[] = [
   {
-    title: "PhD in Computer Science",
-    period: "2016 - 2020",
-    description:
-      "Research focused on novel deep learning architectures for natural language understanding at Stanford University.",
-    skills: ["Deep Learning", "NLP", "Stanford"],
-    imageUrl:
-      "https://images.unsplash.com/photo-1606761568499-6d2451b23c66?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
-    detailUrl: "#",
-  },
-  {
     title: "MSc in Artificial Intelligence",
     period: "2014 - 2016",
     description:
@@ -134,26 +124,6 @@ export const academicExperiences: AcademicExperience[] = [
 // Skills Data without JSX
 export const skillsData: Skill[] = [
   {
-    name: "React",
-    level: "Advanced",
-    iconType: "React",
-  },
-  {
-    name: "JavaScript",
-    level: "Expert",
-    iconType: "JavaScript",
-  },
-  {
-    name: "Node.js",
-    level: "Advanced",
-    iconType: "NodeJs",
-  },
-  {
-    name: "Web Dev",
-    level: "Expert",
-    iconType: "WebDev",
-  },
-  {
     name: "Python",
     level: "Expert",
     iconType: "Python",
@@ -169,9 +139,44 @@ export const skillsData: Skill[] = [
     iconType: "PyTorch",
   },
   {
-    name: "Deep Learning",
+    name: "LangChain",
     level: "Advanced",
-    iconType: "AI",
+    iconType: "LangChain",
+  },
+  {
+    name: "LangGraph",
+    level: "Advanced",
+    iconType: "LangGraph",
+  },
+  {
+    name: "Ollama",
+    level: "Advanced",
+    iconType: "Ollama",
+  },
+  {
+    name: "VLLM",
+    level: "Intermediate",
+    iconType: "VLLM",
+  },
+  {
+    name: "Machine Learning",
+    level: "Expert",
+    iconType: "MachineLearning",
+  },
+  {
+    name: "Sickit-Learn",
+    level: "Expert",
+    iconType: "SickitLearn",
+  },
+  {
+    name: "Pandas",
+    level: "Expert",
+    iconType: "Pandas",
+  },
+  {
+    name: "Matplotlib",
+    level: "Expert",
+    iconType: "Matplotlib",
   },
   {
     name: "NumPy",
@@ -179,19 +184,34 @@ export const skillsData: Skill[] = [
     iconType: "Python",
   },
   {
+    name: "Flask",
+    level: "intermediate",
+    iconType: "Flask",
+  },
+  {
+    name: "React Router",
+    level: "Advanced",
+    iconType: "ReactRouter",
+  },
+  {
+    name: "React",
+    level: "Advanced",
+    iconType: "React",
+  },
+  {
+    name: "JavaScript",
+    level: "Expert",
+    iconType: "JavaScript",
+  },
+  {
+    name: "Node.js",
+    level: "Advanced",
+    iconType: "NodeJs",
+  },
+  {
     name: "MongoDB",
     level: "Advanced",
     iconType: "Database",
-  },
-  {
-    name: "PostgreSQL",
-    level: "Advanced",
-    iconType: "Database",
-  },
-  {
-    name: "Cursor IDE",
-    level: "Advanced",
-    iconType: "Dev",
   },
   {
     name: "Computer Vision",

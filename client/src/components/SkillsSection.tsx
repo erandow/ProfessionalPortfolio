@@ -2,11 +2,9 @@ import { motion } from "framer-motion";
 import { skillsData } from "@/lib/constants";
 import { getSkillIcon } from "@/lib/skill-icons";
 import { useTranslation } from "react-i18next";
-import { useLanguageRoute } from "@/hooks/use-language-route";
 
 export default function SkillsSection() {
   const { t } = useTranslation();
-  const { isRTL } = useLanguageRoute();
   const container = {
     hidden: { opacity: 0 },
     show: {
