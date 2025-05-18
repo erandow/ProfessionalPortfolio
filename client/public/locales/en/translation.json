@@ -56,7 +56,23 @@
   "education": {
     "title": "Education",
     "subtitle": "My academic journey and educational background that have shaped my expertise.",
-    "achievements": "Achievements"
+    "achievements": "Achievements",
+    "masters": {
+      "degree": "Master of Science in Artificial Intelligence",
+      "institution": "University of Kharazmi",
+      "location": "Tehran, Iran",
+      "period": "2020 - 2023",
+      "description": "Focused on designing deep AI models as well as learning classical and traditional machine learning models.",
+      "achievement": "Entry through Exceptional Talent Scholarship"
+    },
+    "bachelors": {
+      "degree": "Bachelor of Science in Computer Engineering",
+      "institution": "University of Guilan",
+      "location": "Guilan, Iran",
+      "period": "2016 - 2020",
+      "description": "Comprehensive education in computer hardware, software development, and mathematics.",
+      "achievement": "Graduated with Distinction"
+    }
   },
   "projects": {
     "title": "Projects",

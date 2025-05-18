@@ -1,16 +1,18 @@
 import { motion } from "framer-motion";
 import { GraduationCap, Calendar, MapPin, Award } from "lucide-react";
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardFooter, 
-  CardHeader, 
-  CardTitle 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "react-i18next";
 import { useLanguageRoute } from "@/hooks/use-language-route";
+import kharazmiLogoImagePath from "../images/kharazmi-logo.png";
+import guilanLogoImagePath from "../images/guilan-logo.png";
 
 export default function EducationSection() {
   const { t } = useTranslation();
@@ -18,34 +20,24 @@ export default function EducationSection() {
   const educationData = [
     {
       id: 1,
-      degree: "PhD in Computer Science",
-      institution: "University of Toronto",
-      location: "Toronto, Canada",
-      period: "2018 - 2022",
-      description: "Specialized in Artificial Intelligence and Machine Learning with a focus on natural language processing and computer vision applications.",
-      achievements: ["Best Paper Award at AI Conference 2021", "University Research Excellence Award"],
-      logo: "https://upload.wikimedia.org/wikipedia/en/thumb/9/9a/University_of_Toronto_seal.svg/1200px-University_of_Toronto_seal.svg.png"
+      degree: t("education.masters.degree"),
+      institution: t("education.masters.institution"),
+      location: t("education.masters.location"),
+      period: t("education.masters.period"),
+      description: t("education.masters.description"),
+      achievements: [t("education.masters.achievement")],
+      logo: kharazmiLogoImagePath,
     },
     {
       id: 2,
-      degree: "Master of Science in Software Engineering",
-      institution: "University of British Columbia",
-      location: "Vancouver, Canada",
-      period: "2016 - 2018",
-      description: "Focused on advanced software architecture, distributed systems, and database management.",
-      achievements: ["Graduate Student Research Award", "Dean's List"],
-      logo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/62/University_of_British_Columbia_coat_of_arms.svg/1200px-University_of_British_Columbia_coat_of_arms.svg.png"
+      degree: t("education.bachelors.degree"),
+      institution: t("education.bachelors.institution"),
+      location: t("education.bachelors.location"),
+      period: t("education.bachelors.period"),
+      description: t("education.bachelors.description"),
+      achievements: [t("education.bachelors.achievement")],
+      logo: guilanLogoImagePath,
     },
-    {
-      id: 3,
-      degree: "Bachelor of Science in Computer Engineering",
-      institution: "University of Waterloo",
-      location: "Waterloo, Canada",
-      period: "2012 - 2016",
-      description: "Comprehensive education in computer hardware, software development, and mathematics with cooperative education placements at leading tech companies.",
-      achievements: ["Graduated with Distinction", "President's Scholarship"],
-      logo: "https://upload.wikimedia.org/wikipedia/en/thumb/6/6e/University_of_Waterloo_seal.svg/1200px-University_of_Waterloo_seal.svg.png"
-    }
   ];
 
   return (
@@ -58,14 +50,16 @@ export default function EducationSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("education.title")}</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+            {t("education.title")}
+          </h2>
           <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
           <p className="text-muted-foreground max-w-3xl mx-auto">
             {t("education.subtitle")}
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {educationData.map((item, index) => (
             <motion.div
               key={item.id}
@@ -77,16 +71,19 @@ export default function EducationSection() {
               <Card className="h-full flex flex-col overflow-hidden group hover:shadow-lg transition-shadow">
                 <CardHeader className="pb-4 flex items-start space-x-4">
                   <div className="w-12 h-12 flex-shrink-0 overflow-hidden rounded-md bg-primary/10 p-2">
-                    <img 
-                      src={item.logo} 
-                      alt={item.institution} 
-                      className="w-full h-full object-contain" 
+                    <img
+                      src={item.logo}
+                      alt={item.institution}
+                      className="w-full h-full object-contain"
                     />
                   </div>
                   <div className="flex-1">
-                    <CardTitle className="text-xl mb-1">{item.degree}</CardTitle>
+                    <CardTitle className="text-xl mb-1">
+                      {item.degree}
+                    </CardTitle>
                     <CardDescription className="flex items-center">
-                      <GraduationCap className="w-4 h-4 mr-1" /> {item.institution}
+                      <GraduationCap className="w-4 h-4 mr-1" />{" "}
+                      {item.institution}
                     </CardDescription>
                   </div>
                 </CardHeader>
@@ -108,7 +105,11 @@ export default function EducationSection() {
                     </h4>
                     <div className="flex flex-wrap gap-2">
                       {item.achievements.map((achievement, i) => (
-                        <Badge key={i} variant="secondary" className="font-normal text-xs">
+                        <Badge
+                          key={i}
+                          variant="secondary"
+                          className="font-normal text-xs"
+                        >
                           {achievement}
                         </Badge>
                       ))}
