@@ -23,13 +23,13 @@ export default function SplitHeroSection() {
     const checkMobile = () => {
       setIsMobileView(window.innerWidth < 768);
     };
-    
+
     // Check on mount
     checkMobile();
-    
+
     // Add resize listener
     window.addEventListener('resize', checkMobile);
-    
+
     // Clean up
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
@@ -47,14 +47,14 @@ export default function SplitHeroSection() {
           {/* Left Side (Top on mobile) - Developer */}
           <div className="relative w-full h-[50vh] overflow-hidden">
             {/* Background */}
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center"
               style={{
                 backgroundImage: `url(${leftSideImage})`,
                 filter: "hue-rotate(340deg) contrast(1.05) brightness(0.7)",
               }}
             />
-            
+
             {/* Overlay for text */}
             <div className="absolute inset-0 bg-gradient-to-b from-black/60 to-black/40 opacity-90 z-10" />
 
@@ -71,7 +71,7 @@ export default function SplitHeroSection() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="border-white text-black hover:bg-white hover:text-black !border-white !text-black dark:!text-white dark:!border-white"
+                  className="border-white bg-black/30 text-white hover:bg-white hover:text-black !border-white"
                   onClick={() => {
                     const element = document.getElementById("experience");
                     if (element) {
@@ -92,14 +92,14 @@ export default function SplitHeroSection() {
           {/* Right Side (Bottom on mobile) - AI Engineer */}
           <div className="relative w-full h-[50vh] overflow-hidden">
             {/* Background */}
-            <div 
+            <div
               className="absolute inset-0 bg-cover bg-center"
               style={{
                 backgroundImage: `url(${rightSideImage})`,
                 filter: "hue-rotate(180deg) contrast(1.05) brightness(0.7)",
               }}
             />
-            
+
             {/* Overlay for text */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/40 opacity-90 z-10" />
 
@@ -116,7 +116,7 @@ export default function SplitHeroSection() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="border-white text-black hover:bg-white hover:text-black !border-white !text-black dark:!text-white dark:!border-white"
+                  className="border-white bg-black/30 text-white hover:bg-white hover:text-black !border-white"
                   onClick={() => {
                     const element = document.getElementById("education");
                     if (element) {
@@ -134,7 +134,7 @@ export default function SplitHeroSection() {
             </div>
           </div>
         </div>
-        
+
         {/* Scroll indicator */}
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 animate-bounce">
           <ChevronDown className="h-6 w-6 text-white" />
@@ -197,7 +197,7 @@ export default function SplitHeroSection() {
                 </p>
                 <Button
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-black pointer-events-auto !border-white !text-white hover:!text-black dark:!text-white dark:!border-white"
+                  className="border-white bg-black/30 text-white hover:bg-white hover:text-black pointer-events-auto !border-white"
                   onClick={() => {
                     const element = document.getElementById("experience");
                     if (element) {
@@ -270,7 +270,7 @@ export default function SplitHeroSection() {
                 </p>
                 <Button
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-black pointer-events-auto !border-white !text-white hover:!text-black dark:!text-white dark:!border-white"
+                  className="border-white bg-black/30 text-white hover:bg-white hover:text-black pointer-events-auto !border-white"
                   onClick={() => {
                     const element = document.getElementById("education");
                     if (element) {
