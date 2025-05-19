@@ -1,14 +1,14 @@
 import { motion } from "framer-motion";
+import { t } from "i18next";
 import { Github, Twitter, Linkedin, Mail, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const socialLinks = [
-    { icon: <Github className="h-5 w-5" />, href: "https://github.com/", label: "GitHub" },
-    { icon: <Twitter className="h-5 w-5" />, href: "https://twitter.com/", label: "Twitter" },
-    { icon: <Linkedin className="h-5 w-5" />, href: "https://linkedin.com/in/", label: "LinkedIn" },
+    { icon: <Github className="h-5 w-5" />, href: "https://github.com/erandow/", label: "GitHub" },
+    { icon: <Twitter className="h-5 w-5" />, href: "https://x.com/_erandow_", label: "Twitter" },
+    { icon: <Linkedin className="h-5 w-5" />, href: "https://www.linkedin.com/in/erandow/", label: "LinkedIn" },
     { icon: <Mail className="h-5 w-5" />, href: "mailto:erfanasadi.ce@gmail.com", label: "Email" },
   ];
 
@@ -21,10 +21,10 @@ export default function Footer() {
   ];
 
   const resources = [
-    { name: "Blog", href: "/blog" },
+    // { name: "Blog", href: "/blog" },
     { name: "Publications", href: "#publications" },
     { name: "Resume", href: "#" },
-    { name: "GitHub Repositories", href: "https://github.com/" },
+    { name: "GitHub Repositories", href: "https://github.com/erandow/" },
   ];
 
   return (
@@ -35,13 +35,13 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-1">
             <div className="mb-4">
               <span className="text-xl font-bold tracking-tight">
-                <span className="text-primary">EA</span>
+                <span className="text-primary">erandow</span>
                 <span className="text-purple-500">.</span>
-                <span className="text-primary">dev</span>
+                <span className="text-primary">com</span>
               </span>
             </div>
             <p className="text-muted-foreground mb-6">
-              Building the future with code and research. Web developer and AI engineer focused on creating meaningful technology.
+              {t("footer.description")}
             </p>
             <div className="flex space-x-3">
               {socialLinks.map((link, i) => (
@@ -80,37 +80,20 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter */}
-          <div className="col-span-1">
-            <h3 className="font-semibold text-lg mb-4">Stay Updated</h3>
-            <p className="text-muted-foreground mb-4">
-              Subscribe to my newsletter for the latest articles, tutorials, and updates.
-            </p>
-            <div className="flex flex-col space-y-2">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="px-4 py-2 rounded-md border bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
-              />
-              <Button className="w-full">
-                Subscribe
-              </Button>
-            </div>
-          </div>
-        </div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="border-t mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground"
-        >
-          <p>© {currentYear} Erfan Asadi. All rights reserved.</p>
-          <div className="mt-4 md:mt-0 flex items-center">
-            <p>Built with modern web technologies</p>
-          </div>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="border-t mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground"
+          >
+            <p>© {currentYear} {t("footer.copyright", { year: currentYear })}</p>
+            <div className="mt-4 md:mt-0 flex items-center">
+              <p>{t("footer.builtBy")}</p>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </footer>
   );
@@ -142,7 +125,7 @@ interface FooterLinkProps {
 
 function FooterLink({ href, children }: FooterLinkProps) {
   const isExternal = href.startsWith('http');
-  
+
   return (
     <a
       href={href}

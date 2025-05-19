@@ -46,7 +46,7 @@ export default function AboutSection() {
             </div>
             <div className="absolute -bottom-6 -right-6 bg-background p-4 rounded-lg shadow-lg border">
               <div className="flex flex-col items-center">
-                <p className="text-2xl font-bold text-primary">4+</p>
+                <p className="text-2xl font-bold text-primary">5+</p>
                 <p className="text-sm text-muted-foreground">
                   {t("about.yearsExp")}
                 </p>

@@ -23,13 +23,13 @@ export default function Navbar() {
     const handleScroll = () => {
       // Show navbar after scrolling down 40% of the viewport height
       setScrolled(window.scrollY > window.innerHeight * 0.4);
-      
+
       // Determine which section is currently visible
       const sections = [
         "home", "about", "skills", "experience", "education",
         "projects", "publications", "testimonials", "contact"
       ];
-      
+
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
@@ -91,7 +91,7 @@ export default function Navbar() {
   return (
     <AnimatePresence>
       {(scrolled || isOpen) && (
-        <motion.nav 
+        <motion.nav
           className="fixed top-0 w-full z-50 backdrop-blur-lg border-b bg-background/90 border-border"
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -103,17 +103,17 @@ export default function Navbar() {
               <div className="flex items-center">
                 <RouterLink to="/" className="flex items-center">
                   <span className="text-xl font-bold tracking-tight">
-                    <span className="text-primary">EA</span>
+                    <span className="text-primary">erandow</span>
                     <span className="text-purple-500">.</span>
-                    <span className="text-primary">dev</span>
+                    <span className="text-primary">com</span>
                   </span>
                 </RouterLink>
-                
+
                 {/* Desktop menu */}
                 <div className="hidden md:block ml-10">
                   <div className="flex items-center space-x-4">
                     {primaryNavItems.map(item => (
-                      <NavLink 
+                      <NavLink
                         key={item.href}
                         href={item.href}
                         isActive={activeSection === item.href.replace('#', '')}
@@ -121,7 +121,7 @@ export default function Navbar() {
                         {item.name}
                       </NavLink>
                     ))}
-                    
+
                     {/* More dropdown */}
                     <div ref={moreMenuRef} className="relative">
                       <button
@@ -129,11 +129,11 @@ export default function Navbar() {
                         className="flex items-center px-3 py-2 text-sm transition-colors duration-200 rounded-md hover:bg-accent/50"
                       >
                         <span>{t('navbar.more')}</span>
-                        <ChevronDown 
+                        <ChevronDown
                           className={`ml-1 h-4 w-4 transition-transform duration-200 ${moreMenuOpen ? 'transform rotate-180' : ''}`}
                         />
                       </button>
-                      
+
                       {/* More menu dropdown */}
                       {moreMenuOpen && (
                         <div
@@ -144,26 +144,25 @@ export default function Navbar() {
                               <a
                                 key={item.href}
                                 href={item.href}
-                                className={`block px-4 py-2 text-sm transition-colors ${
-                                  activeSection === item.href.replace('#', '')
+                                className={`block px-4 py-2 text-sm transition-colors ${activeSection === item.href.replace('#', '')
                                     ? 'bg-primary/10 text-primary font-medium'
                                     : 'hover:bg-accent/40'
-                                }`}
+                                  }`}
                                 onClick={(e) => {
                                   e.preventDefault();
                                   setMoreMenuOpen(false);
-                                  
+
                                   // Smooth scroll to section
                                   const targetId = item.href.replace('#', '');
                                   const element = document.getElementById(targetId);
-                                  
+
                                   if (element) {
                                     setTimeout(() => {
                                       element.scrollIntoView({
                                         behavior: 'smooth',
                                         block: 'start'
                                       });
-                                      
+
                                       // Update URL without reload
                                       window.history.pushState(null, '', item.href);
                                     }, 100);
@@ -180,12 +179,12 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Right side items */}
               <div className="flex items-center space-x-2">
                 <LanguageSwitcher />
                 <ThemeToggle />
-                
+
                 {/* Mobile menu button */}
                 <div className="flex md:hidden">
                   <Button
@@ -203,7 +202,7 @@ export default function Navbar() {
                 </div>
               </div>
             </div>
-            
+
             {/* Mobile menu dropdown */}
             {isOpen && (
               <motion.div
@@ -245,19 +244,19 @@ function NavLink({ href, children, isActive = false }: NavLinkProps) {
     e.preventDefault();
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
-    
+
     if (element) {
       // Smooth scroll to the element
       element.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
-      
+
       // Update URL without reload
       window.history.pushState(null, '', href);
     }
   };
-  
+
   return (
     <a
       href={href}
@@ -267,7 +266,7 @@ function NavLink({ href, children, isActive = false }: NavLinkProps) {
     >
       {children}
       {isActive && (
-        <motion.span 
+        <motion.span
           layoutId="navbar-indicator"
           className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary mx-3"
           transition={{ type: "spring", duration: 0.5 }}
@@ -287,14 +286,14 @@ interface MobileNavLinkProps {
 function MobileNavLink({ href, onClick, children, isActive = false }: MobileNavLinkProps) {
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-    
+
     // First close the mobile menu
     onClick();
-    
+
     // Then scroll to the section
     const targetId = href.replace('#', '');
     const element = document.getElementById(targetId);
-    
+
     if (element) {
       // Add a small delay to allow the menu to close first
       setTimeout(() => {
@@ -302,21 +301,21 @@ function MobileNavLink({ href, onClick, children, isActive = false }: MobileNavL
           behavior: 'smooth',
           block: 'start'
         });
-        
+
         // Update URL without reload
         window.history.pushState(null, '', href);
       }, 100);
     }
   };
-  
+
   return (
     <a
       href={href}
       onClick={handleClick}
       className={`flex items-center px-3 py-3 rounded-md transition-colors duration-200
-                ${isActive 
-                  ? 'bg-primary/10 text-primary font-medium' 
-                  : 'hover:bg-accent/30'}`}
+                ${isActive
+          ? 'bg-primary/10 text-primary font-medium'
+          : 'hover:bg-accent/30'}`}
     >
       {children}
     </a>

@@ -4,38 +4,36 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "react-i18next";
-import { useLanguageRoute } from "@/hooks/use-language-route";
 import kharazmiLogoImagePath from "../images/kharazmi-logo.png";
 import guilanLogoImagePath from "../images/guilan-logo.png";
 
 export default function EducationSection() {
   const { t } = useTranslation();
-  const { isRTL } = useLanguageRoute();
+
   const educationData = [
     {
       id: 1,
-      degree: t("education.masters.degree"),
-      institution: t("education.masters.institution"),
-      location: t("education.masters.location"),
-      period: t("education.masters.period"),
-      description: t("education.masters.description"),
-      achievements: [t("education.masters.achievement")],
+      degree: t("education.masterDegree"),
+      institution: t("education.masterUniversity"),
+      location: t("education.masterLocation"),
+      period: t("education.masterDuration"),
+      description: t("education.masterDescription"),
+      achievements: [t("education.masterAchievements")],
       logo: kharazmiLogoImagePath,
     },
     {
       id: 2,
-      degree: t("education.bachelors.degree"),
-      institution: t("education.bachelors.institution"),
-      location: t("education.bachelors.location"),
-      period: t("education.bachelors.period"),
-      description: t("education.bachelors.description"),
-      achievements: [t("education.bachelors.achievement")],
+      degree: t("education.bachelorDegree"),
+      institution: t("education.bachelorUniversity"),
+      location: t("education.bachelorLocation"),
+      period: t("education.bachelorDuration"),
+      description: t("education.bachelorDescription"),
+      achievements: [t("education.bachelorAchievements")],
       logo: guilanLogoImagePath,
     },
   ];

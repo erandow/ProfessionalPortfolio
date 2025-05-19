@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import { 
-  BookOpen, 
-  Calendar, 
-  Users, 
-  ExternalLink, 
-  Award, 
+import {
+  BookOpen,
+  Calendar,
+  Users,
+  ExternalLink,
+  Award,
   Download
 } from "lucide-react";
 import {
@@ -24,55 +24,41 @@ export default function PublicationsSection() {
   const publications = [
     {
       id: 1,
-      title: "Advanced Neural Networks for Natural Language Processing: A Comparative Study",
-      journal: "Journal of Artificial Intelligence Research",
-      date: "June 2022",
-      authors: ["Erfan Asadi", "Jane Smith", "John Doe"],
-      abstract: "This paper presents a comprehensive analysis of advanced neural network architectures for natural language processing tasks. We compare transformer-based models, recurrent neural networks, and hybrid approaches across various benchmarks and provide insights into their strengths and limitations.",
-      doi: "10.1234/jair.2022.123",
-      link: "#",
-      pdfLink: "#",
-      award: "Best Paper Award at AI Conference 2022",
-      categories: ["Natural Language Processing", "Neural Networks", "Deep Learning"]
+      title: "The Role of Fine-Tuned Feature Map Correlation in Video Quality Assessment",
+      journal: "ّIPRIA 2025",
+      date: "2025",
+      authors: ["Erfan Asadi", "Parmida Pourmatin", "Azadeh Mansouri"],
+      abstract: `Natural videos and user-generated content (UGC)
+                  illustrate complex distortions that are difficult to model. As a
+                  result, existing Video Quality Assessment (VQA) methods mostly
+                  have problem to achieve high performance on these videos. In
+                  this paper, we propose a method that utilizes correlation-based
+                  features fine-tuned on an image quality assessment dataset to en-
+                  hance VQA performance. These low-level features are combined
+                  with high-level features extracted from the final layers of the
+                  network, providing a rich representation of spatial degradations.
+                  For temporal pooling, a simple max-pooling operation is applied.
+                  Experimental results on two widely used UGC datasets, LIVE-
+                  VQA and KoNViD-1k, demonstrate strong performance while
+                  maintaining low computational complexity.`,
+      doi: "",
+      link: "",
+      pdfLink: "",
+      award: "Best Paper Award at IPRIA 2025",
+      categories: ["fine-tuned feature maps", "gram matrix", "no-reference video quality assessment", "deep convolutional neuralnetworks", "SVR"]
     },
     {
       id: 2,
-      title: "Ethical Considerations in Automated Decision-Making Systems",
-      journal: "IEEE Transactions on Technology and Society",
-      date: "March 2021",
-      authors: ["Erfan Asadi", "Sarah Johnson", "Michael Brown"],
-      abstract: "This research explores the ethical implications of automated decision-making systems in critical domains such as healthcare, criminal justice, and finance. We propose a framework for evaluating algorithmic fairness and accountability, and discuss approaches to mitigate potential biases in AI systems.",
-      doi: "10.1109/tts.2021.456789",
-      link: "#",
-      pdfLink: "#",
+      title: "NTIRE 2024 quality assessment of AI-generated content challenge",
+      journal: "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+      date: "2024",
+      authors: ["Xiaohong Liu", "Xiongkuo Min", "Erfan Asadi", "Azadeh Mansouri"],
+      abstract: "This paper reports on the NTIRE 2024 Quality Assessment of AI-Generated Content Challenge which will be held in conjunction with the New Trends in Image Restoration and Enhancement Workshop (NTIRE) at CVPR 2024. This challenge is to address a major challenge in the field of image and video processing namely Image Quality Assessment (IQA) and Video Quality Assessment (VQA) for AI-Generated Content (AIGC). ",
+      doi: "",
+      link: "https://openaccess.thecvf.com/content/CVPR2024W/NTIRE/html/Liu_NTIRE_2024_Quality_Assessment_of_AI-Generated_Content_Challenge_CVPRW_2024_paper.html",
+      pdfLink: "https://openaccess.thecvf.com/content/CVPR2024W/NTIRE/papers/Liu_NTIRE_2024_Quality_Assessment_of_AI-Generated_Content_Challenge_CVPRW_2024_paper.pdf",
       award: null,
-      categories: ["Ethics in AI", "Algorithmic Fairness", "Decision Systems"]
-    },
-    {
-      id: 3,
-      title: "Distributed Computing Approaches for Large-Scale Machine Learning",
-      journal: "ACM Transactions on Computing Systems",
-      date: "November 2020",
-      authors: ["Erfan Asadi", "Robert Williams", "Emily Chen"],
-      abstract: "We investigate efficient distributed computing strategies for training large-scale machine learning models. Our work addresses challenges in data partitioning, communication overhead, and synchronization, proposing novel techniques that significantly improve training efficiency while maintaining model accuracy.",
-      doi: "10.1145/tocs.2020.789012",
-      link: "#",
-      pdfLink: "#",
-      award: null,
-      categories: ["Distributed Computing", "Large-Scale ML", "Systems for AI"]
-    },
-    {
-      id: 4,
-      title: "Vision-Language Models for Cross-Modal Understanding",
-      journal: "Conference on Computer Vision and Pattern Recognition (CVPR)",
-      date: "July 2019",
-      authors: ["Erfan Asadi", "David Wilson", "Lisa Taylor"],
-      abstract: "This paper introduces a novel architecture for integrating visual and linguistic information in deep learning models. We demonstrate state-of-the-art performance on tasks requiring cross-modal understanding, including image captioning, visual question answering, and multi-modal classification.",
-      doi: "10.1109/cvpr.2019.345678",
-      link: "#",
-      pdfLink: "#",
-      award: "Distinguished Paper Honorable Mention",
-      categories: ["Computer Vision", "Multi-modal Learning", "Vision-Language Models"]
+      categories: ["NTIRE-2024", "Video Quality Assessment", "Image Quality Assessment"]
     }
   ];
 
@@ -120,16 +106,16 @@ export default function PublicationsSection() {
                       </div>
                     </div>
                     <div className="flex gap-2 flex-shrink-0">
-                      <Button size="sm" variant="outline" asChild>
+                      {pub.link && <Button size="sm" variant="outline" asChild>
                         <a href={pub.link} target="_blank" rel="noopener noreferrer" className="flex items-center">
                           <ExternalLink className={`h-4 w-4 ${isRTL ? "ml-1" : "mr-1"}`} /> {t("publications.view")}
                         </a>
-                      </Button>
-                      <Button size="sm" variant="secondary" asChild>
+                      </Button>}
+                      {pub.pdfLink && <Button size="sm" variant="secondary" asChild>
                         <a href={pub.pdfLink} target="_blank" rel="noopener noreferrer" className="flex items-center">
                           <Download className={`h-4 w-4 ${isRTL ? "ml-1" : "mr-1"}`} /> {t("publications.pdf")}
                         </a>
-                      </Button>
+                      </Button>}
                     </div>
                   </div>
 
@@ -156,9 +142,11 @@ export default function PublicationsSection() {
                         <p className="text-muted-foreground">
                           {pub.abstract}
                         </p>
-                        <div className="mt-2 text-sm">
-                          <span className="font-medium">{t("publications.doi")}:</span> {pub.doi}
-                        </div>
+                        {pub.doi && (
+                          <div className="mt-2 text-sm">
+                            <span className="font-medium">{t("publications.doi")}:</span> {pub.doi}
+                          </div>
+                        )}
                       </AccordionContent>
                     </AccordionItem>
                   </Accordion>

@@ -4,6 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useTranslation } from "react-i18next";
 import { useLanguageRoute } from "@/hooks/use-language-route";
+import blindVideoQualityAssessmentImage from "../images/LCVQA.png";
+import reactTypeWriteImage from "../images/TypeWriter.jpg";
+import giteaSecureLaunchImage from "../images/gitea.webp";
+import artificialNeuralNetworkSeriesImage from "../images/ANN-Workshop.jpg";
 
 export default function ProjectsSection() {
   const { t } = useTranslation();
@@ -11,43 +15,43 @@ export default function ProjectsSection() {
   const projects = [
     {
       id: 1,
-      title: "AI-Powered E-commerce Recommendation Engine",
-      description: "Built a sophisticated recommendation engine for an e-commerce platform using collaborative filtering and deep learning techniques to increase customer engagement and sales.",
-      image: "https://images.unsplash.com/photo-1556742502-ec7c0e9f34b1?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      technologies: ["Python", "TensorFlow", "AWS", "MongoDB", "Flask"],
+      title: "Low Complexity Blind Video Quality Assessment",
+      description: t("projects.LCBVQA"),
+      image: blindVideoQualityAssessmentImage,
+      technologies: ["Python", "PyTorch", "CUDA", "Sickit-learn", "OpenCV", "Seaborn"],
       demoUrl: "#",
-      githubUrl: "#",
-      period: "Jan 2022 - Apr 2022"
+      githubUrl: "https://github.com/erandow/LC-BVQA",
+      period: "Jan 2023 - Apr 2024"
     },
     {
       id: 2,
-      title: "Blockchain-based Supply Chain Tracking System",
-      description: "Developed a blockchain solution for transparent supply chain management, enabling real-time tracking and verification of products from manufacturer to consumer.",
-      image: "https://images.unsplash.com/photo-1561414927-6d86591d0c4f?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      technologies: ["Solidity", "Ethereum", "React", "Node.js", "Web3.js"],
-      demoUrl: "#",
-      githubUrl: "#",
+      title: "React Type Writer",
+      description: t("projects.reactTypeWriteDescription"),
+      image: reactTypeWriteImage,
+      technologies: ["React", "TypeScript"],
+      demoUrl: "https://www.npmjs.com/package/@vegadev/react-type-writer",
+      githubUrl: "https://github.com/erandow/react-type-writer",
       period: "Jun 2021 - Dec 2021"
     },
     {
       id: 3,
-      title: "Real-time Collaboration Platform",
-      description: "Created a collaborative workspace application with real-time document editing, video conferencing, and project management tools for remote teams.",
-      image: "https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      technologies: ["React", "Socket.io", "WebRTC", "Express", "MongoDB"],
-      demoUrl: "#",
-      githubUrl: "#",
+      title: "Artificial Neural Network Series",
+      description: t("projects.artificialNeuralNetworkSeriesDescription"),
+      image: artificialNeuralNetworkSeriesImage,
+      technologies: ["Python", "NumPy", "Pandas", "PyTorch", "Keras", "TensorFlow"],
+      demoUrl: "",
+      githubUrl: "https://github.com/erandow/ANN-Workshop/tree/master",
       period: "Aug 2020 - Feb 2021"
     },
     {
       id: 4,
-      title: "Sustainable Energy Monitoring Dashboard",
-      description: "Designed and implemented a comprehensive dashboard for monitoring and optimizing energy consumption in commercial buildings using IoT sensors and predictive analytics.",
-      image: "https://images.unsplash.com/photo-1566788270538-35f22eb5fb3d?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3",
-      technologies: ["Vue.js", "D3.js", "Python", "IoT", "TensorFlow"],
-      demoUrl: "#",
-      githubUrl: "#",
-      period: "Mar 2020 - Jul 2020"
+      title: "Gitea Secure Launch",
+      description: t("projects.giteaSecureLaunchDescription"),
+      image: giteaSecureLaunchImage,
+      technologies: ["Docker", "Gitea", "Nginx"],
+      demoUrl: "",
+      githubUrl: "https://github.com/erandow/gitea-secure-launch",
+      period: "2025"
     }
   ];
 
@@ -80,7 +84,7 @@ export default function ProjectsSection() {
             >
               <div className="bg-background rounded-lg overflow-hidden border shadow-sm h-full flex flex-col">
                 <div className="aspect-video relative overflow-hidden">
-                  <img 
+                  <img
                     src={project.image}
                     alt={project.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"

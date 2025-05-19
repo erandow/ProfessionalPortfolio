@@ -35,8 +35,7 @@
     "location2": "Location:",
     "availability": "Availability:",
     "availabilityValue": "Open to opportunities",
-    "downloadCV": "Download CV",
-    "yearsExp": "Years of Experience"
+    "downloadCV": "Download CV"
   },
   "skills": {
     "title": "Skills",
@@ -51,34 +50,55 @@
     "subtitle": "My professional journey and key roles throughout my career.",
     "viewProject": "View Project",
     "workTab": "Work",
-    "academicTab": "Academic"
+    "academicTab": "Academic",
+    "experience1": {
+      "title": "Design and development of the Lernito web application",
+      "period": "1 year",
+      "description": "Developed an online class system, question bank, and online testing platform for K12 students; released the application version on Google Play"
+    },
+    "experience2": {
+      "title": "Customer Club of Eghtesad Bidar Brokerage",
+      "period": "2 Monthes",
+      "description": "Developed the customer club of Eghtesad Bidar Brokerage, a platform for the customers of Eghtesad Bidar connected to their main application."
+    },
+    "experience3": {
+      "title": "DoExam: AI-powered online testing platform",
+      "period": "1.5 years",
+      "description": "Developed an online large-scale testing platform for K12 students with the help of AI agents."
+    },
+    "experience4": {
+      "title": "Development of the Troweb web application powered by AI",
+      "period": "2 years",
+      "description": "Developed a multi-agent application powered by AI for the users to have a personal workspace to work with their data with the help of AI agents."
+    }
   },
   "education": {
     "title": "Education",
     "subtitle": "My academic journey and educational background that have shaped my expertise.",
     "achievements": "Achievements",
-    "masters": {
-      "degree": "Master of Science in Artificial Intelligence",
-      "institution": "University of Kharazmi",
-      "location": "Tehran, Iran",
-      "period": "2020 - 2023",
-      "description": "Focused on designing deep AI models as well as learning classical and traditional machine learning models.",
-      "achievement": "Entry through Exceptional Talent Scholarship"
-    },
-    "bachelors": {
-      "degree": "Bachelor of Science in Computer Engineering",
-      "institution": "University of Guilan",
-      "location": "Guilan, Iran",
-      "period": "2016 - 2020",
-      "description": "Comprehensive education in computer hardware, software development, and mathematics.",
-      "achievement": "Graduated with Distinction"
-    }
+    "masterDegree": "Master of Science in Artificial Intelligence",
+    "masterUniversity": "University of Kharazmi",
+    "masterLocation": "Tehran, Iran",
+    "masterDuration": "2020 - 2023",
+    "masterDescription": "Focused on designing deep AI models as well as learning classical and traditional machine learning models. Thesis: \"Blind Video Quality Assessment\"",
+    "masterAchievements": "Entry through Exceptional Talent Scholarship",
+    "bachelorDegree": "Bachelor of Science in Computer Engineering",
+    "bachelorUniversity": "University of Guilan",
+    "bachelorLocation": "Guilan, Iran",
+    "bachelorDuration": "2016 - 2020",
+    "bachelorDescription": "Acquired comprehensive knowledge in computer concepts, programming both hardware and software, and advanced mathematics to enhance understanding of algorithm development.",
+    "bachelorAchievements": "Graduated as an Outstanding Student"
   },
   "projects": {
     "title": "Projects",
     "subtitle": "A showcase of my technical projects, highlighting my problem-solving skills and technological expertise.",
     "demo": "Demo",
-    "code": "Code"
+    "code": "Code",
+    "giteaSecureLaunchDescription": "A streamlined solution for deploying Gitea with automated HTTPS configuration.",
+    "artificialNeuralNetworkSeriesDescription": "A comprehensive tutorial series on artificial neural networks with practical implementations, covering fundamentals, backpropagation algorithms, optimization techniques, and advanced architectures.",
+    "reactTypeWriteDescription": "A simple, lightweight, and elegant type write effect for React applications.",
+    "LCBVQA": "Low Complexity Blind Video Quality Assessment",
+    "reactTypeWrite": "React Type Writer"
   },
   "publications": {
     "title": "Publications",
@@ -123,7 +143,9 @@
     "phone": "Phone",
     "email2": "Email",
     "address": "Address",
-    "follow": "Follow Me"
+    "follow": "Follow Me",
+    "workAvailability": "Available for opportunities",
+    "location": "Tehran, Iran"
   },
   "footer": {
     "description": "Building the future with code and research. Web developer and AI engineer focused on creating meaningful technology.",
@@ -134,7 +156,9 @@
     "newsletterDesc": "Subscribe to my newsletter for the latest articles, tutorials, and updates.",
     "emailPlaceholder": "Your email address",
     "rights": "All rights reserved.",
-    "builtWith": "Built with modern web technologies"
+    "builtWith": "Built with modern web technologies",
+    "builtBy": "Built with ❤️ by Erfan Asadi.",
+    "copyright": "© {year} Erfan Asadi. All rights reserved."
   },
   "direction": "ltr"
 }

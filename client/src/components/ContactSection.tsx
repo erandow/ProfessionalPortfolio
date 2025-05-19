@@ -118,10 +118,10 @@ export default function ContactSection() {
                       title={t("contact.email2")}
                     >
                       <a
-                        href="mailto:erfan.asadi@example.com"
+                        href="mailto:erfanasadi.ce@gmail.com"
                         className="hover:text-primary transition-colors"
                       >
-                        erfan.asadi@example.com
+                        erfanasadi.ce@gmail.com
                       </a>
                     </ContactItem>
 
@@ -129,7 +129,7 @@ export default function ContactSection() {
                       icon={<MapPinIcon className="h-5 w-5" />}
                       title="Location"
                     >
-                      <span>San Francisco, California</span>
+                      <span>{t("contact.location")}</span>
                     </ContactItem>
 
                     <ContactItem
@@ -137,7 +137,7 @@ export default function ContactSection() {
                       title="Work Availability"
                     >
                       <span>
-                        Available for freelance and full-time opportunities
+                        {t("contact.workAvailability")}
                       </span>
                     </ContactItem>
                   </div>
@@ -145,17 +145,14 @@ export default function ContactSection() {
                   <div className="mt-auto">
                     <h4 className="font-medium mb-3">Connect with me</h4>
                     <div className="flex space-x-3">
-                      <SocialButton href="https://github.com">
+                      <SocialButton href="https://github.com/erandow/">
                         <FaGithub className="h-5 w-5" />
                       </SocialButton>
-                      <SocialButton href="https://linkedin.com">
+                      <SocialButton href="https://www.linkedin.com/in/erandow/">
                         <FaLinkedin className="h-5 w-5" />
                       </SocialButton>
-                      <SocialButton href="https://twitter.com">
+                      <SocialButton href="https://x.com/_erandow_">
                         <FaTwitter className="h-5 w-5" />
-                      </SocialButton>
-                      <SocialButton href="https://medium.com">
-                        <FaMedium className="h-5 w-5" />
                       </SocialButton>
                     </div>
                   </div>
