@@ -29,6 +29,12 @@ const languages: Language[] = [
     name: 'Persian',
     nativeName: 'فارسی',
     flag: '🇮🇷'
+  },
+  {
+    code: 'ar',
+    name: 'Arabic',
+    nativeName: 'العربية',
+    flag: '🇦🇪'
   }
 ];
 

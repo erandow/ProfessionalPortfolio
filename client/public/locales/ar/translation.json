@@ -1,0 +1,164 @@
+{
+  "navbar": {
+    "home": "الرئيسية",
+    "about": "من أنا",
+    "skills": "المهارات",
+    "work": "الخبرات",
+    "projects": "المشاريع",
+    "education": "التعليم",
+    "publications": "المنشورات",
+    "testimonials": "الشهادات",
+    "blog": "المدونة",
+    "contact": "التواصل",
+    "more": "المزيد",
+    "language": "اللغة"
+  },
+  "hero": {
+    "developer": "<مبرمج />",
+    "developerDesc": "إنشاء تجارب ويب مبتكرة بتقنيات حديثة ولمسة إبداعية.",
+    "viewProjects": "عرض المشاريع",
+    "aiEngineer": "مهندس ذكاء اصطناعي ",
+    "aiEngineerDesc": "تمكين الأعمال بحلول ذكاء اصطناعي متطورة، مدعومة بالخبرة والابتكار",
+    "viewResearch": "عرض الأبحاث"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Get to know me better: my background, interests, and what drives me as an AI Engineer and a web developer.",
+    "yearsExp": "Years of Experience",
+    "hello": "Hello! I'm Erfan Asadi, an AI engineer and web developer based in",
+    "location": "Tehran, Iran",
+    "bio1": "I'm a passionate AI engineer and web developer with expertise in creating robust, scalable applications and conducting cutting-edge research in artificial intelligence.",
+    "bio2": "With dual experience in both industry and academia, I bring a unique perspective to solving complex problems. I'm particularly interested in the intersection of web technologies and machine learning.",
+    "bio3": "When I'm not coding or researching, you can find me biking, cooking, reading about new technologies, or contributing to open-source projects.",
+    "name": "Name:",
+    "email": "Email:",
+    "location2": "Location:",
+    "availability": "Availability:",
+    "availabilityValue": "Open to opportunities",
+    "downloadCV": "Download CV"
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "My technical expertise and professional competencies.",
+    "beginner": "Beginner",
+    "intermediate": "Intermediate",
+    "advanced": "Advanced",
+    "expert": "Expert"
+  },
+  "experience": {
+    "title": "Work Experience",
+    "subtitle": "My professional journey and key roles throughout my career.",
+    "viewProject": "View Project",
+    "workTab": "Work",
+    "academicTab": "Academic",
+    "experience1": {
+      "title": "Design and development of the Lernito web application",
+      "period": "1 year",
+      "description": "Developed an online class system, question bank, and online testing platform for K12 students; released the application version on Google Play"
+    },
+    "experience2": {
+      "title": "Customer Club of Eghtesad Bidar Brokerage",
+      "period": "2 Monthes",
+      "description": "Developed the customer club of Eghtesad Bidar Brokerage, a platform for the customers of Eghtesad Bidar connected to their main application."
+    },
+    "experience3": {
+      "title": "DoExam: AI-powered online testing platform",
+      "period": "1.5 years",
+      "description": "Developed an online large-scale testing platform for K12 students with the help of AI agents."
+    },
+    "experience4": {
+      "title": "Development of the Troweb web application powered by AI",
+      "period": "2 years",
+      "description": "Developed a multi-agent application powered by AI for the users to have a personal workspace to work with their data with the help of AI agents."
+    }
+  },
+  "education": {
+    "title": "Education",
+    "subtitle": "My academic journey and educational background that have shaped my expertise.",
+    "achievements": "Achievements",
+    "masterDegree": "Master of Science in Artificial Intelligence",
+    "masterUniversity": "University of Kharazmi",
+    "masterLocation": "Tehran, Iran",
+    "masterDuration": "2020 - 2023",
+    "masterDescription": "Focused on designing deep AI models as well as learning classical and traditional machine learning models. Thesis: \"Blind Video Quality Assessment\"",
+    "masterAchievements": "Entry through Exceptional Talent Scholarship",
+    "bachelorDegree": "Bachelor of Science in Computer Engineering",
+    "bachelorUniversity": "University of Guilan",
+    "bachelorLocation": "Guilan, Iran",
+    "bachelorDuration": "2016 - 2020",
+    "bachelorDescription": "Acquired comprehensive knowledge in computer concepts, programming both hardware and software, and advanced mathematics to enhance understanding of algorithm development.",
+    "bachelorAchievements": "Graduated as an Outstanding Student"
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "A showcase of my technical projects, highlighting my problem-solving skills and technological expertise.",
+    "demo": "Demo",
+    "code": "Code",
+    "giteaSecureLaunchDescription": "A streamlined solution for deploying Gitea with automated HTTPS configuration.",
+    "artificialNeuralNetworkSeriesDescription": "A comprehensive tutorial series on artificial neural networks with practical implementations, covering fundamentals, backpropagation algorithms, optimization techniques, and advanced architectures.",
+    "reactTypeWriteDescription": "A simple, lightweight, and elegant type write effect for React applications.",
+    "LCBVQA": "Low Complexity Blind Video Quality Assessment",
+    "reactTypeWrite": "React Type Writer"
+  },
+  "publications": {
+    "title": "Publications",
+    "subtitle": "My academic research papers published in peer-reviewed journals and conferences.",
+    "view": "View",
+    "pdf": "PDF",
+    "abstract": "Abstract",
+    "doi": "DOI"
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "subtitle": "What colleagues, clients, and collaborators have to say about working with me."
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Thoughts, insights, and tutorials on web development, AI research, and technology trends.",
+    "readTime": "min read",
+    "readMore": "Read more",
+    "viewAll": "View All Posts",
+    "searchPlaceholder": "Search blog posts...",
+    "noPosts": "No posts found",
+    "tryDifferentSearch": "Try a different search term or check back later for new content.",
+    "error": "Failed to load blog posts",
+    "backToBlog": "Back to Blog",
+    "relatedPosts": "Related Posts",
+    "postNotFound": "Blog post not found",
+    "postNotFoundDesc": "The blog post you're looking for doesn't exist or has been removed.",
+    "anonymousAuthor": "Anonymous"
+  },
+  "common": {
+    "retry": "Try Again"
+  },
+  "contact": {
+    "title": "Contact Me",
+    "subtitle": "Get in touch with me for collaborations, opportunities, or just to say hello.",
+    "getInTouch": "Get in Touch",
+    "fullName": "Full Name",
+    "email": "Email Address",
+    "message": "Your Message",
+    "send": "Send Message",
+    "connect": "Connect With Me",
+    "phone": "Phone",
+    "email2": "Email",
+    "address": "Address",
+    "follow": "Follow Me",
+    "workAvailability": "Available for opportunities",
+    "location": "Tehran, Iran"
+  },
+  "footer": {
+    "description": "Building the future with code and research. Web developer and AI engineer focused on creating meaningful technology.",
+    "quickLinks": "Quick Links",
+    "resources": "Resources",
+    "stayUpdated": "Stay Updated",
+    "subscribe": "Subscribe",
+    "newsletterDesc": "Subscribe to my newsletter for the latest articles, tutorials, and updates.",
+    "emailPlaceholder": "Your email address",
+    "rights": "All rights reserved.",
+    "builtWith": "Built with modern web technologies",
+    "builtBy": "Built with ❤️ by Erfan Asadi.",
+    "copyright": "© {year} Erfan Asadi. All rights reserved."
+  },
+  "direction": "ltr"
+}
