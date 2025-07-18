@@ -19,7 +19,7 @@ export default function Blog() {
   const [, setLocation] = useLocation();
   const { currentLanguage } = useLanguageRoute();
   const isRTL = i18n.dir() === 'rtl';
-  const baseUrl = currentLanguage === 'en' ? '/en' : '/fa';
+  const baseUrl = `/${currentLanguage}`;
   
   // State for pagination and filtering
   const [page, setPage] = useState(1);

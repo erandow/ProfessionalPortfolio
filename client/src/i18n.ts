@@ -15,6 +15,9 @@ i18n
     fallbackLng: 'en',
     debug: process.env.NODE_ENV === 'development',
     
+    // Supported languages
+    supportedLngs: ['en', 'de', 'fa', 'ar'],
+    
     interpolation: {
       escapeValue: false, // not needed for React
     },
@@ -31,10 +34,7 @@ i18n
       caches: ['localStorage'],
       
       // Optional cookie settings
-      lookupCookie: 'i18next',
-      
-      // Path format options
-      checkWhitelist: true
+      lookupCookie: 'i18next'
     }
   });
 

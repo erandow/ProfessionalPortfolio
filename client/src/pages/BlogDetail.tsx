@@ -18,7 +18,7 @@ export default function BlogDetail() {
   const [location, setLocation] = useLocation();
   const { currentLanguage } = useLanguageRoute();
   const isRTL = i18n.dir() === 'rtl';
-  const baseUrl = currentLanguage === 'en' ? '/en' : '/fa';
+  const baseUrl = `/${currentLanguage}`;
   
   // Get the slug from the URL
   const slug = location.split('/').pop() || '';

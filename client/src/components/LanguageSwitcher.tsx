@@ -25,6 +25,12 @@ const languages: Language[] = [
     flag: '🇺🇸'
   },
   {
+    code: 'de',
+    name: 'German',
+    nativeName: 'Deutsch',
+    flag: '🇩🇪'
+  },
+  {
     code: 'fa',
     name: 'Persian',
     nativeName: 'فارسی',
@@ -49,20 +55,25 @@ export default function LanguageSwitcher() {
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
     
-    // Update URL with language prefix
-    const path = location.pathname;
+    // Get path segments and clean them up
+    const pathSegments = location.pathname.split('/').filter(Boolean);
     
-    // Handle current language paths
-    const pathSegments = path.split('/').filter(Boolean);
-    const isLangPath = languages.some(lang => lang.code === pathSegments[0]);
+    // Check if the first segment is a language code
+    const firstSegmentIsLang = languages.some(lang => lang.code === pathSegments[0]);
     
-    // Remove current language prefix if it exists
-    const newPath = isLangPath
-      ? '/' + lng + '/' + pathSegments.slice(1).join('/')
-      : '/' + lng + path;
-      
-    navigate(newPath);
+    // Create a new path with the new language
+    let newPath;
     
+    if (firstSegmentIsLang) {
+      // Replace the language segment with the new language
+      pathSegments[0] = lng;
+      newPath = '/' + pathSegments.join('/');
+    } else {
+      // Add the language as the first segment
+      newPath = '/' + lng + (location.pathname === '/' ? '' : location.pathname);
+    }
+    
+    navigate(newPath, { replace: true });
     setOpen(false);
   };
 

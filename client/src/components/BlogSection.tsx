@@ -16,7 +16,7 @@ export default function BlogSection() {
   const { data, isLoading, error } = useBlogPosts(1, 3); // Fetch first 3 posts for the homepage
   
   // Base URL for the current language
-  const baseUrl = currentLanguage === 'en' ? '/en' : '/fa';
+  const baseUrl = `/${currentLanguage}`;
   
   // Format date based on current language
   const formatDate = (dateString: string) => {

@@ -1,0 +1,164 @@
+{
+  "navbar": {
+    "home": "Startseite",
+    "about": "Über mich",
+    "skills": "Fähigkeiten",
+    "work": "Arbeit",
+    "projects": "Projekte",
+    "education": "Bildung",
+    "publications": "Publikationen",
+    "testimonials": "Referenzen",
+    "blog": "Blog",
+    "contact": "Kontakt",
+    "more": "Mehr",
+    "language": "Sprache"
+  },
+  "hero": {
+    "developer": "<Entwickler />",
+    "developerDesc": "Innovative Web-Erlebnisse mit moderner Technologie und kreativer Gestaltung schaffen.",
+    "viewProjects": "Projekte ansehen",
+    "aiEngineer": "KI-Ingenieur ",
+    "aiEngineerDesc": "Unternehmen mit intelligenten KI-Lösungen stärken, angetrieben von Fachwissen und Innovation",
+    "viewResearch": "Forschung ansehen"
+  },
+  "about": {
+    "title": "Über mich",
+    "subtitle": "Lernen Sie mich besser kennen: mein Hintergrund, meine Interessen und was mich als KI-Ingenieur und Webentwickler antreibt.",
+    "yearsExp": "Jahre Erfahrung",
+    "hello": "Hallo! Ich bin Erfan Asadi, ein KI-Ingenieur und Webentwickler aus",
+    "location": "Teheran, Iran",
+    "bio1": "Ich bin ein leidenschaftlicher KI-Ingenieur und Webentwickler mit Expertise in der Erstellung robuster, skalierbarer Anwendungen und der Durchführung wegweisender Forschung in der künstlichen Intelligenz.",
+    "bio2": "Mit doppelter Erfahrung sowohl in der Industrie als auch in der Wissenschaft bringe ich eine einzigartige Perspektive für die Lösung komplexer Probleme mit. Ich interessiere mich besonders für die Schnittstelle zwischen Webtechnologien und maschinellem Lernen.",
+    "bio3": "Wenn ich nicht programmiere oder forsche, finden Sie mich beim Radfahren, Kochen, Lesen über neue Technologien oder beim Beitragen zu Open-Source-Projekten.",
+    "name": "Name:",
+    "email": "E-Mail:",
+    "location2": "Standort:",
+    "availability": "Verfügbarkeit:",
+    "availabilityValue": "Offen für Gelegenheiten",
+    "downloadCV": "Lebenslauf herunterladen"
+  },
+  "skills": {
+    "title": "Fähigkeiten",
+    "subtitle": "Meine technische Expertise und beruflichen Kompetenzen.",
+    "beginner": "Anfänger",
+    "intermediate": "Fortgeschritten",
+    "advanced": "Erfahren",
+    "expert": "Experte"
+  },
+  "experience": {
+    "title": "Berufserfahrung",
+    "subtitle": "Mein beruflicher Werdegang und wichtige Rollen in meiner Laufbahn.",
+    "viewProject": "Projekt ansehen",
+    "workTab": "Arbeit",
+    "academicTab": "Wissenschaft",
+    "experience1": {
+      "title": "Design und Entwicklung der Lernito-Webanwendung",
+      "period": "1 Jahr",
+      "description": "Entwicklung eines Online-Klassensystems, einer Fragenbank und einer Online-Testplattform für K12-Schüler; Veröffentlichung der Anwendungsversion auf Google Play"
+    },
+    "experience2": {
+      "title": "Kundenclub der Eghtesad Bidar Brokerage",
+      "period": "2 Monate",
+      "description": "Entwicklung des Kundenclubs der Eghtesad Bidar Brokerage, einer Plattform für die Kunden von Eghtesad Bidar, die mit ihrer Hauptanwendung verbunden ist."
+    },
+    "experience3": {
+      "title": "DoExam: KI-gestützte Online-Testplattform",
+      "period": "1,5 Jahre",
+      "description": "Entwicklung einer großangelegten Online-Testplattform für K12-Schüler mit Hilfe von KI-Agenten."
+    },
+    "experience4": {
+      "title": "Entwicklung der KI-gestützten Troweb-Webanwendung",
+      "period": "2 Jahre",
+      "description": "Entwicklung einer Multi-Agent-Anwendung mit KI-Unterstützung für Benutzer, um einen persönlichen Arbeitsbereich zu haben, in dem sie mit Hilfe von KI-Agenten mit ihren Daten arbeiten können."
+    }
+  },
+  "education": {
+    "title": "Bildung",
+    "subtitle": "Mein akademischer Werdegang und Bildungshintergrund, die meine Expertise geformt haben.",
+    "achievements": "Erfolge",
+    "masterDegree": "Master of Science in Künstlicher Intelligenz",
+    "masterUniversity": "Universität Kharazmi",
+    "masterLocation": "Teheran, Iran",
+    "masterDuration": "2020 - 2023",
+    "masterDescription": "Fokus auf die Entwicklung tiefer KI-Modelle sowie das Erlernen klassischer und traditioneller Modelle des maschinellen Lernens. Masterarbeit: \"Blind Video Quality Assessment\"",
+    "masterAchievements": "Aufnahme durch Exceptional Talent Scholarship",
+    "bachelorDegree": "Bachelor of Science in Informatik",
+    "bachelorUniversity": "Universität Guilan",
+    "bachelorLocation": "Guilan, Iran",
+    "bachelorDuration": "2016 - 2020",
+    "bachelorDescription": "Umfassendes Wissen in Computerkonzepten, Programmierung sowohl von Hardware als auch Software und fortgeschrittener Mathematik erworben, um das Verständnis für die Algorithmusentwicklung zu verbessern.",
+    "bachelorAchievements": "Abschluss als Outstanding Student"
+  },
+  "projects": {
+    "title": "Projekte",
+    "subtitle": "Eine Präsentation meiner technischen Projekte, die meine Problemlösungsfähigkeiten und technologische Expertise hervorheben.",
+    "demo": "Demo",
+    "code": "Code",
+    "giteaSecureLaunchDescription": "Eine optimierte Lösung für die Bereitstellung von Gitea mit automatisierter HTTPS-Konfiguration.",
+    "artificialNeuralNetworkSeriesDescription": "Eine umfassende Tutorial-Serie über künstliche neuronale Netzwerke mit praktischen Implementierungen, die Grundlagen, Backpropagation-Algorithmen, Optimierungstechniken und fortgeschrittene Architekturen abdeckt.",
+    "reactTypeWriteDescription": "Ein einfacher, leichtgewichtiger und eleganter Schreibmaschineneffekt für React-Anwendungen.",
+    "LCBVQA": "Low Complexity Blind Video Quality Assessment",
+    "reactTypeWrite": "React Type Writer"
+  },
+  "publications": {
+    "title": "Publikationen",
+    "subtitle": "Meine akademischen Forschungsarbeiten, die in peer-reviewten Zeitschriften und Konferenzen veröffentlicht wurden.",
+    "view": "Ansehen",
+    "pdf": "PDF",
+    "abstract": "Zusammenfassung",
+    "doi": "DOI"
+  },
+  "testimonials": {
+    "title": "Referenzen",
+    "subtitle": "Was Kollegen, Kunden und Mitarbeiter über die Zusammenarbeit mit mir zu sagen haben."
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Gedanken, Einblicke und Tutorials zu Webentwicklung, KI-Forschung und Technologietrends.",
+    "readTime": "Min. Lesezeit",
+    "readMore": "Weiterlesen",
+    "viewAll": "Alle Beiträge ansehen",
+    "searchPlaceholder": "Blog-Beiträge suchen...",
+    "noPosts": "Keine Beiträge gefunden",
+    "tryDifferentSearch": "Versuchen Sie einen anderen Suchbegriff oder schauen Sie später für neue Inhalte vorbei.",
+    "error": "Fehler beim Laden der Blog-Beiträge",
+    "backToBlog": "Zurück zum Blog",
+    "relatedPosts": "Verwandte Beiträge",
+    "postNotFound": "Blog-Beitrag nicht gefunden",
+    "postNotFoundDesc": "Der gesuchte Blog-Beitrag existiert nicht oder wurde entfernt.",
+    "anonymousAuthor": "Anonym"
+  },
+  "common": {
+    "retry": "Erneut versuchen"
+  },
+  "contact": {
+    "title": "Kontaktieren Sie mich",
+    "subtitle": "Nehmen Sie Kontakt mit mir auf für Zusammenarbeiten, Gelegenheiten oder einfach um Hallo zu sagen.",
+    "getInTouch": "Kontakt aufnehmen",
+    "fullName": "Vollständiger Name",
+    "email": "E-Mail-Adresse",
+    "message": "Ihre Nachricht",
+    "send": "Nachricht senden",
+    "connect": "Verbinden Sie sich mit mir",
+    "phone": "Telefon",
+    "email2": "E-Mail",
+    "address": "Adresse",
+    "follow": "Folgen Sie mir",
+    "workAvailability": "Verfügbar für Gelegenheiten",
+    "location": "Teheran, Iran"
+  },
+  "footer": {
+    "description": "Die Zukunft mit Code und Forschung gestalten. Webentwickler und KI-Ingenieur, der sich auf die Schaffung sinnvoller Technologie konzentriert.",
+    "quickLinks": "Schnelllinks",
+    "resources": "Ressourcen",
+    "stayUpdated": "Bleiben Sie auf dem Laufenden",
+    "subscribe": "Abonnieren",
+    "newsletterDesc": "Abonnieren Sie meinen Newsletter für die neuesten Artikel, Tutorials und Updates.",
+    "emailPlaceholder": "Ihre E-Mail-Adresse",
+    "rights": "Alle Rechte vorbehalten.",
+    "builtWith": "Erstellt mit modernen Webtechnologien",
+    "builtBy": "Mit ❤️ von Erfan Asadi erstellt.",
+    "copyright": "Erfan Asadi. Alle Rechte vorbehalten."
+  },
+  "direction": "ltr"
+} 
