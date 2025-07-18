@@ -1,11 +1,12 @@
 {
-  "navbar": {
+      "navbar": {
     "home": "Home",
     "about": "About",
     "skills": "Skills",
     "work": "Work",
     "projects": "Projects",
     "education": "Education",
+    "certifications": "Certifications",
     "publications": "Publications",
     "testimonials": "Testimonials",
     "blog": "Blog",
@@ -88,6 +89,28 @@
     "bachelorDuration": "2016 - 2020",
     "bachelorDescription": "Acquired comprehensive knowledge in computer concepts, programming both hardware and software, and advanced mathematics to enhance understanding of algorithm development.",
     "bachelorAchievements": "Graduated as an Outstanding Student"
+  },
+  "certifications": {
+    "title": "Certifications",
+    "subtitle": "Professional certifications and course completions that demonstrate my commitment to continuous learning and skill development.",
+    "viewCredential": "View Credential",
+    "viewCertificate": "View Certificate",
+    "skillsLearned": "Skills Learned",
+    "cert1Title": "Professional Certificate in Deep Learning",
+    "cert1Issuer": "IBM - edX",
+    "cert1Date": "2021",
+    "cert1Description": "Completed the Deep Learning Specialization, a professional certification demonstrating my commitment to continuous learning and expertise in advanced AI and machine learning techniques.",
+    "cert1Skills": ["Deep Learning", "Machine Learning", "Artificial Intelligence"],
+    "cert2Title": "Deep Learning with TensorFlow",
+    "cert2Issuer": "IBM - edX",
+    "cert2Date": "2021",
+    "cert2Description": "Earned a professional certificate in Advanced Deep Learning with TensorFlow and Keras, showcasing my commitment to continuous learning and hands-on expertise in building custom AI models.",
+    "cert2Skills": ["Deep Learning", "TensorFlow", "Keras"],
+    "cert3Title": "Deep Learning with PyTorch and Python",
+    "cert3Issuer": "IBM - edX",
+    "cert3Date": "2021",
+    "cert3Description": "Earned a professional certificate in Deep Learning with PyTorch and Python.",
+    "cert3Skills": ["PyTorch", "Python"]
   },
   "projects": {
     "title": "Projects",

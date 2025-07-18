@@ -26,7 +26,7 @@ export default function Navbar() {
 
       // Determine which section is currently visible
       const sections = [
-        "home", "about", "skills", "experience", "education",
+        "home", "about", "skills", "experience", "education", "certifications",
         "projects", "publications", "testimonials", "contact"
       ];
 
@@ -83,6 +83,7 @@ export default function Navbar() {
   // Secondary navigation items (in more dropdown)
   const secondaryNavItems = [
     { name: t('navbar.education'), href: "#education" },
+    { name: t('navbar.certifications'), href: "#certifications" },
     { name: t('navbar.publications'), href: "#publications" },
     { name: t('navbar.testimonials'), href: "#testimonials" },
     { name: t('navbar.contact'), href: "#contact" },
