@@ -26,30 +26,36 @@ html {
 --accent-foreground: 24 9.8% 10%;
 --destructive: 0 84.2% 60.2%;
 --destructive-foreground: 60 9.1% 97.8%;
---ring: 20 14.3% 4.1%;
---radius: 0.5rem;
+--ring: 220 90% 56%;
+--radius: 0.75rem;
+--glow-primary: 217 91% 60%;
+--glow-secondary: 286 72% 55%;
+--glow-tertiary: 164 75% 52%;
   }
   .dark {
-      --background: 240 10% 3.9%;
+      --background: 240 14% 6%;
 --foreground: 0 0% 98%;
---muted: 240 3.7% 15.9%;
+--muted: 240 7% 13%;
 --muted-foreground: 240 5% 64.9%;
---popover: 240 10% 3.9%;
+--popover: 240 14% 8%;
 --popover-foreground: 0 0% 98%;
---card: 240 10% 3.9%;
+--card: 240 12% 10%;
 --card-foreground: 0 0% 98%;
---border: 240 3.7% 15.9%;
---input: 240 3.7% 15.9%;
---primary: 207 90% 54%;
+--border: 240 7% 20%;
+--input: 240 7% 20%;
+--primary: 214 95% 68%;
 --primary-foreground: 211 100% 99%;
---secondary: 240 3.7% 15.9%;
+--secondary: 240 7% 16%;
 --secondary-foreground: 0 0% 98%;
---accent: 240 3.7% 15.9%;
+--accent: 267 70% 64%;
 --accent-foreground: 0 0% 98%;
 --destructive: 0 62.8% 30.6%;
 --destructive-foreground: 0 0% 98%;
 --ring: 240 4.9% 83.9%;
---radius: 0.5rem;
+--radius: 0.75rem;
+--glow-primary: 214 95% 68%;
+--glow-secondary: 292 76% 67%;
+--glow-tertiary: 180 70% 55%;
   }
 
 @layer base {
@@ -58,7 +64,23 @@ html {
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased text-foreground;
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(circle at 20% 20%, hsl(var(--glow-primary) / 0.18), transparent 55%),
+      radial-gradient(circle at 80% 0%, hsl(var(--glow-secondary) / 0.16), transparent 60%),
+      radial-gradient(circle at 0% 100%, hsl(var(--glow-tertiary) / 0.18), transparent 55%);
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 100vh;
+  }
+
+  .dark body {
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(circle at 15% 25%, hsl(var(--glow-primary) / 0.24), transparent 55%),
+      radial-gradient(circle at 85% 10%, hsl(var(--glow-secondary) / 0.24), transparent 60%),
+      radial-gradient(circle at 50% 100%, hsl(var(--glow-tertiary) / 0.2), transparent 55%);
   }
   
   /* RTL Support */
@@ -163,5 +185,119 @@ html {
   /* Flip icons for RTL if needed */
   html.rtl .flip-in-rtl {
     transform: scaleX(-1);
+  }
+}
+
+@layer components {
+  .section-shell {
+    position: relative;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+    overflow: hidden;
+  }
+
+  .section-shell::before,
+  .section-shell::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.6;
+    transition: opacity 0.5s ease;
+  }
+
+  .section-shell::before {
+    background:
+      radial-gradient(600px circle at 20% 20%, hsl(var(--glow-primary) / 0.22), transparent 60%),
+      radial-gradient(480px circle at 80% 15%, hsl(var(--glow-secondary) / 0.18), transparent 65%);
+    filter: blur(0px);
+  }
+
+  .section-shell::after {
+    background-image:
+      linear-gradient(90deg, hsl(var(--border) / 0.25) 1px, transparent 1px),
+      linear-gradient(0deg, hsl(var(--border) / 0.2) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.35), transparent);
+  }
+
+  .dark .section-shell::after {
+    background-image:
+      linear-gradient(90deg, hsl(var(--border) / 0.15) 1px, transparent 1px),
+      linear-gradient(0deg, hsl(var(--border) / 0.15) 1px, transparent 1px);
+  }
+
+  .section-shell > * {
+    position: relative;
+    z-index: 10;
+  }
+
+  .card-glow {
+    position: relative;
+    background: linear-gradient(135deg, hsl(var(--card) / 0.9), hsl(var(--card) / 0.65));
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border) / 0.6);
+    box-shadow:
+      0 10px 40px -25px hsl(var(--glow-primary) / 0.8),
+      0 20px 60px -30px hsl(var(--glow-secondary) / 0.65);
+    backdrop-filter: blur(16px);
+  }
+
+  .dark .card-glow {
+    background: linear-gradient(135deg, hsl(var(--card) / 0.75), hsl(var(--card) / 0.55));
+    border-color: hsl(var(--border) / 0.45);
+  }
+
+  .card-glow::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(120deg, hsl(var(--glow-primary) / 0.55), transparent, hsl(var(--glow-secondary) / 0.45));
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+  }
+
+  .card-glow:hover::before {
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  @keyframes float-slow {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+    50% {
+      transform: translate3d(0, -12px, 0);
+    }
+  }
+
+  @keyframes float-rotate {
+    0% {
+      transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    50% {
+      transform: translate3d(10px, -15px, 0) rotate(4deg);
+    }
+    100% {
+      transform: translate3d(0, 0, 0) rotate(-2deg);
+    }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 10s ease-in-out infinite;
+  }
+
+  .animate-float-rotate {
+    animation: float-rotate 14s ease-in-out infinite;
+  }
+
+  .bg-aurora {
+    background: radial-gradient(circle at 20% 20%, hsl(var(--glow-primary) / 0.35), transparent 55%),
+      radial-gradient(circle at 80% 10%, hsl(var(--glow-secondary) / 0.3), transparent 60%),
+      radial-gradient(circle at 50% 80%, hsl(var(--glow-tertiary) / 0.25), transparent 65%);
   }
 }
