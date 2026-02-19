@@ -4,11 +4,21 @@ import { Button } from "@/components/ui/button";
 import { Download } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useLanguageRoute } from "@/hooks/use-language-route";
-import imagePath from "../images/photo.jpg";
+import imagePath from "../images/Erfan.jpg";
 
 export default function AboutSection() {
   const { t } = useTranslation();
   const { isRTL } = useLanguageRoute();
+
+  const handleDownloadResume = () => {
+    const link = document.createElement("a");
+    link.href = "/Erfan-Asadi-Resume.pdf";
+    link.download = "Erfan-Asadi-Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <section id="about" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -96,7 +106,10 @@ export default function AboutSection() {
               </div>
             </div>
 
-            <Button className="flex items-center gap-2">
+            <Button 
+              className="flex items-center gap-2"
+              onClick={handleDownloadResume}
+            >
               <Download size={16} />
               {t("about.downloadCV")}
             </Button>
