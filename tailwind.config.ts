@@ -44,6 +44,16 @@ export default {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
+        academic: {
+          bg: "var(--academic-bg)",
+          card: "var(--academic-card)",
+          text: "var(--academic-text)",
+          muted: "var(--academic-muted)",
+          accent: "var(--academic-accent)",
+          "accent-hover": "var(--academic-accent-hover)",
+          border: "var(--academic-border)",
+          soft: "var(--academic-soft)",
+        },
         chart: {
           "1": "hsl(var(--chart-1))",
           "2": "hsl(var(--chart-2))",

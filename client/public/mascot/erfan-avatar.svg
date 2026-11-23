@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 772" width="330" height="772" role="img" aria-labelledby="title">
+  <title id="title">Erfan wearing aviator glasses and a navy suit</title>
+  <defs>
+    <linearGradient id="wool" x2=".88" y2="1">
+      <stop stop-color="#444759"/><stop offset=".52" stop-color="#2c3042"/><stop offset="1" stop-color="#202331"/>
+    </linearGradient>
+    <linearGradient id="slacks" x2="1" y2=".23">
+      <stop stop-color="#212330"/><stop offset=".46" stop-color="#36384a"/><stop offset="1" stop-color="#242635"/>
+    </linearGradient>
+    <linearGradient id="skin" x2=".88" y2="1">
+      <stop stop-color="#efbb91"/><stop offset=".63" stop-color="#dea47e"/><stop offset="1" stop-color="#bc8165"/>
+    </linearGradient>
+    <linearGradient id="leather" x2=".32" y2="1">
+      <stop stop-color="#66483d"/><stop offset="1" stop-color="#352a29"/>
+    </linearGradient>
+    <linearGradient id="silk" x2="1" y2=".3">
+      <stop stop-color="#5f2639"/><stop offset=".54" stop-color="#914557"/><stop offset="1" stop-color="#542738"/>
+    </linearGradient>
+  </defs>
+  <style>
+    .edge { stroke:#25232a; stroke-width:1.8; stroke-linejoin:round; stroke-linecap:round }
+    .seam { fill:none; stroke:#161b29; stroke-width:1.15; stroke-linecap:round }
+    #raised-arm { display:none }
+    #welcome:target ~ #figure #raised-arm, #greeting:target ~ #figure #raised-arm { display:inline }
+    #welcome:target ~ #figure #resting-arm, #greeting:target ~ #figure #resting-arm { display:none }
+    @media (prefers-reduced-motion:no-preference) {
+      #welcome:target ~ #figure #waving-forearm { transform-origin:41px 234px; animation:wave 1.65s ease-in-out 2 }
+      @keyframes wave { 0%,100% { transform:rotate(0) } 24%,70% { transform:rotate(-5deg) } 48%,87% { transform:rotate(4deg) } }
+    }
+  </style>
+  <g id="welcome"/><g id="greeting"/>
+  <g id="figure">
+    <g id="shoes" class="edge" fill="url(#leather)">
+      <path d="M100 707 Q121 701 142 710 L141 737 L125 744 Q107 747 86 753 Q65 757 57 751 Q54 744 65 738 L90 724Z"/>
+      <path d="M194 708 Q213 702 233 711 L240 725 Q245 731 261 737 Q276 743 274 751 Q263 758 246 754 L213 745 L194 741Z"/>
+      <g fill="none" stroke="#211c20"><path d="M57 749 Q66 757 88 750 L125 740 L141 736 M194 736 L217 742 Q260 756 273 748"/></g>
+      <g fill="none" stroke="#917065" stroke-width="1.2"><path d="M79 734 Q87 733 93 736 M87 730 L99 732 M93 726 L104 729 M229 728 L240 726 M233 732 L245 730 M239 735 L251 733"/></g>
+    </g>
+    <g id="trousers">
+      <path class="edge" fill="url(#slacks)" d="M102 351 Q164 340 225 353 Q233 397 231 449 L226 543 Q226 563 230 575 L234 711 Q218 720 195 714 L180 566 L167 421 Q163 416 160 444 L148 564 L143 714 Q119 722 95 714 L104 562 Q100 554 104 530 L100 446 Q96 391 102 351Z"/>
+      <path fill="#191c29" opacity=".54" d="M167 408 Q176 421 179 477 L189 568 L199 697 L184 569Z M147 399 Q156 423 157 443 L148 552 L143 571 L139 704 L138 560 L148 445Z"/>
+      <g class="seam" opacity=".72"><path d="M128 393 Q120 482 119 532 M118 551 Q132 555 137 561 M122 567 L108 572 M207 391 Q205 492 211 544 M199 557 Q209 552 218 553 M205 566 L219 562 M97 708 Q112 700 126 703 M204 707 Q219 703 232 707"/></g>
+    </g>
+    <g id="right-arm" class="edge">
+      <path fill="url(#skin)" d="M250 363 Q260 360 275 366 L279 386 Q282 395 279 409 L275 420 Q272 424 270 420 Q265 427 262 423 Q257 425 256 418 Q253 414 254 406 L255 395 Q250 404 246 401 Q244 399 246 391 L249 378Z"/>
+      <path fill="#a6b2c6" d="M248 355 L277 353 L276 370 Q264 373 250 370Z"/>
+      <path fill="url(#wool)" d="M224 146 Q245 144 253 170 Q261 195 266 241 L270 270 Q279 304 279 363 Q264 367 249 363 Q248 323 243 283 L228 235 L217 177Z"/>
+      <path class="seam" d="M263 265 L253 274 L265 272 M248 356 Q263 359 277 355"/>
+      <path fill="none" stroke="#9a6956" stroke-width="1" d="M271 420 L274 404 M262 421 L267 403 M257 416 L260 401"/>
+    </g>
+    <g id="resting-arm" class="edge">
+      <path fill="url(#skin)" d="M54 360 Q67 357 82 364 L80 379 Q84 388 83 397 Q82 405 79 404 Q76 403 75 395 L73 392 Q74 408 68 417 Q64 424 61 419 Q56 422 54 417 Q50 418 49 412 Q46 407 47 393Z"/>
+      <path fill="#a6b2c6" d="M53 353 L83 354 L82 368 Q65 370 51 363Z"/>
+      <path fill="url(#wool)" d="M104 147 Q86 143 78 164 Q70 185 64 231 L58 264 Q49 305 49 357 Q63 364 82 361 Q83 322 89 285 L105 230 L115 168Z"/>
+      <path class="seam" d="M63 261 L76 270 L63 268 M51 351 Q65 358 80 355"/>
+      <path fill="none" stroke="#9a6956" stroke-width="1" d="M54 416 L54 400 M61 417 L63 400 M68 413 L70 399"/>
+    </g>
+    <g id="raised-arm" class="edge">
+      <path fill="url(#wool)" d="M103 146 Q86 142 78 159 L48 214 Q37 207 29 218 Q18 233 30 247 Q43 263 59 251 Q83 230 105 191 L113 161Z"/>
+      <g id="waving-forearm">
+        <path fill="url(#skin)" d="M30 161 Q25 153 21 143 L16 127 Q15 123 18 122 Q21 122 23 127 L27 134 L23 113 Q22 109 25 108 Q28 108 29 113 L33 130 L32 108 Q32 104 35 104 Q38 104 38 110 L40 130 L42 111 Q42 107 45 108 Q48 109 47 114 L46 140 L52 133 Q56 128 59 131 Q60 133 57 138 L48 154 Q45 159 43 164Z"/>
+        <path fill="none" stroke="#ac765f" stroke-width="1" d="M29 141 Q34 138 39 141 M48 143 Q42 143 39 151"/>
+        <path fill="#a6b2c6" d="M27 157 L46 155 L49 168 L29 171Z"/>
+        <path fill="url(#wool)" d="M24 165 Q36 162 49 162 L56 216 Q60 237 49 245 Q40 252 30 244 Q21 239 22 221Z"/>
+        <path class="seam" d="M24 172 L48 169 M29 232 Q34 240 44 239"/>
+      </g>
+    </g>
+    <g id="jacket">
+      <path class="edge" fill="url(#wool)" d="M139 118 Q132 124 115 131 L90 143 Q84 147 84 162 Q86 194 93 223 L99 269 Q98 309 89 367 Q122 382 153 369 Q161 366 165 354 Q176 373 187 375 Q210 379 241 368 Q232 308 231 271 L236 223 Q245 178 244 156 Q243 146 235 142 L196 126 L188 118Z"/>
+      <path fill="#212636" d="M89 179 Q96 201 99 226 L108 266 Q102 316 99 364 L91 368 Q99 309 99 269 L93 219Z"/>
+      <path fill="#262a39" d="M226 207 Q219 240 217 263 Q227 319 231 366 L240 368 Q231 311 231 270 L236 221Z"/>
+      <path class="edge" fill="#8192ad" d="M140 119 Q160 130 190 117 L201 142 L168 265 L127 143Z"/>
+      <path class="edge" fill="url(#silk)" d="M156 147 L170 143 L176 151 L171 161 L176 238 L166 258 L156 232 L162 161Z"/>
+      <path class="edge" fill="#35394a" d="M138 120 L115 137 L108 156 L123 164 L113 173 Q136 206 166 264 Q149 182 138 120Z"/>
+      <path class="edge" fill="#35394a" d="M191 119 L213 136 L220 152 L207 162 L216 169 Q192 220 165 265 Q184 187 191 119Z"/>
+      <path class="seam" d="M168 266 Q161 305 165 354 M99 302 L130 298 L131 304 L100 309Z M201 298 L231 301 L231 307 L201 304Z M209 184 L233 180 L232 184 L209 188Z"/>
+      <g fill="#24252c" stroke="#53505b" stroke-width="1"><circle cx="165" cy="270" r="3.1"/><circle cx="163" cy="308" r="3.1"/></g>
+    </g>
+    <g id="neck-and-collar" class="edge">
+      <path fill="#c68c6d" d="M145 91 Q165 98 185 91 L185 116 L191 123 L167 146 L139 124 Q146 115 145 91Z"/>
+      <path fill="#ae765e" stroke="none" d="M146 99 Q165 115 184 102 L184 110 Q167 124 146 113Z"/>
+      <path fill="#a8b3c6" d="M144 114 Q149 126 166 137 L156 152 L137 127Z"/>
+      <path fill="#95a4bc" d="M185 113 L193 124 L177 151 L166 137 Q179 126 185 113Z"/>
+    </g>
+    <!-- Facial features share one coordinate system so the expression and glasses can be posed together. -->
+    <g id="head" transform="translate(114 16) scale(.082)" stroke-linecap="round" stroke-linejoin="round">
+      <g fill="url(#skin)" stroke="#4a342e" stroke-width="12">
+        <path d="M305 548 Q272 513 253 554 Q234 598 259 695 Q274 775 319 785 L338 721Z"/>
+        <path d="M951 541 Q993 492 1009 542 Q1027 602 997 716 Q982 768 947 771 L926 703Z"/>
+        <path d="M303 459 Q271 282 384 160 Q489 54 682 88 Q873 95 934 251 Q966 329 955 482 L946 696 Q938 853 900 956 Q861 1040 764 1100 Q687 1147 622 1144 Q542 1143 451 1081 Q354 1012 330 930 Q304 850 303 733Z"/>
+      </g>
+      <path fill="#ca8b70" d="M310 471 Q334 308 392 224 Q342 364 348 467 L330 609 L346 785 Q358 886 396 958 Q334 903 318 798Z"/>
+      <path fill="#d09172" d="M934 462 Q945 650 909 782 Q885 861 833 914 Q887 889 928 826 Q948 696 946 541Z"/>
+      <g fill="none" stroke="#a66e59" stroke-width="10"><path d="M263 589 Q278 548 303 616 M992 567 Q974 543 955 621"/></g>
+      <g id="hair">
+        <path fill="#30231f" stroke="#362722" stroke-width="10" d="M301 591 Q279 515 277 449 Q259 370 278 285 Q289 220 351 164 L331 166 Q367 122 435 97 Q495 38 571 25 L556 41 Q639 6 707 26 Q783 39 846 86 L832 86 Q926 117 963 211 Q1002 304 968 446 L951 566 L928 549 Q940 424 901 311 Q867 331 821 309 Q777 290 733 230 Q689 181 636 181 Q568 170 496 203 Q445 204 389 258 Q323 319 316 438 L322 563Z"/>
+        <path fill="#523b30" d="M321 298 Q349 179 473 127 Q524 78 607 66 Q534 96 496 143 Q401 169 355 252 Q389 199 465 175 Q357 244 321 336Z M616 71 Q753 37 853 143 Q756 83 662 97 Q749 104 812 150 Q692 96 589 116Z M770 187 Q852 201 906 282 Q861 277 833 251 Q855 287 889 301 Q845 305 806 251Z"/>
+      </g>
+      <g id="eyes">
+        <g fill="#47322a"><path d="M365 499 Q422 447 518 466 Q542 471 561 485 Q493 477 440 483 Q403 490 365 506Z"/><path d="M688 485 Q746 446 824 465 Q864 476 880 494 Q829 478 791 479 Q735 478 688 493Z"/></g>
+        <g fill="#f4d8bc" stroke="#533a2e" stroke-width="9"><path d="M388 565 Q448 508 500 529 Q523 537 541 557 Q464 586 388 565Z"/><path d="M707 555 Q742 516 798 521 Q839 524 858 548 Q803 574 707 555Z"/></g>
+        <g fill="#493226"><ellipse cx="477" cy="549" rx="25" ry="21"/><ellipse cx="772" cy="542" rx="25" ry="21"/></g>
+        <g fill="#271f1d"><circle cx="477" cy="548" r="12"/><circle cx="772" cy="541" r="12"/></g>
+        <g fill="#f8e1c6"><circle cx="470" cy="540" r="5"/><circle cx="765" cy="534" r="5"/></g>
+        <path d="M410 590 Q454 600 496 582 M742 579 Q789 587 826 568" fill="none" stroke="#b47c62" stroke-width="7"/>
+      </g>
+      <path fill="#cd8e6d" d="M601 548 Q598 610 561 671 Q537 702 562 720 Q591 732 639 721 Q688 722 710 703 Q698 745 644 747 Q582 750 544 729 Q511 711 543 666Z"/>
+      <path fill="none" stroke="#7e5241" stroke-width="9" d="M550 682 Q533 695 543 711 M555 716 Q572 701 591 715 M659 714 Q674 698 692 704"/>
+      <g id="glasses" fill="none">
+        <path stroke="#45352f" stroke-width="14" d="M314 549 L337 546 M904 531 L946 525 M350 520 Q382 486 465 485 L541 484 Q577 484 575 519 Q572 589 517 640 Q467 688 419 679 Q367 671 348 605 Q329 546 350 520Z M667 499 Q684 476 745 472 L823 467 Q882 464 896 500 Q917 558 872 622 Q836 669 788 673 Q731 677 695 617 Q654 552 657 524 Q658 510 667 499Z M576 527 Q613 499 657 522 M516 483 L745 472"/>
+        <path stroke="#d3b79b" stroke-width="4.5" d="M343 540 Q347 497 426 488 L541 485 M678 489 Q724 473 825 470 Q874 467 890 496 M524 482 L738 472 M580 524 Q615 503 652 522"/>
+      </g>
+      <g id="trimmed-facial-hair">
+        <path fill="#765345" opacity=".38" d="M312 734 Q328 806 368 832 Q405 853 436 830 Q421 909 475 946 Q508 966 549 950 Q578 937 616 940 Q674 931 709 943 Q777 957 820 909 Q845 878 844 824 Q874 841 898 821 Q928 799 945 743 Q939 918 871 1004 Q755 1139 637 1141 Q480 1138 377 997 Q321 920 312 734Z"/>
+        <path fill="none" stroke="#866150" opacity=".55" stroke-width="5" d="M359 864 l5 12 M374 883 l6 12 M405 927 l7 10 M432 943 l6 8 M477 973 l7 8 M532 988 l5 7 M564 977 l5 8 M598 1004 l4 8 M631 983 l3 7 M667 992 l2 7 M713 978 l3 8 M773 962 l5 -8 M819 931 l6 -8 M857 907 l5 -10 M883 866 l5 -11"/>
+        <path fill="#725247" d="M310 716 Q322 800 353 848 Q368 870 398 884 Q406 954 473 1003 Q540 1052 613 1063 Q698 1076 784 1018 Q857 974 881 893 Q932 864 946 753 Q944 879 902 960 Q865 1041 763 1101 Q695 1143 627 1143 Q542 1142 453 1080 Q355 1013 331 931 Q310 861 310 716Z"/>
+        <path fill="#4d3933" opacity=".7" d="M352 931 Q397 1010 481 1062 Q553 1108 627 1110 Q750 1109 858 1005 Q814 1083 725 1120 Q635 1165 545 1125 Q413 1080 352 964Z"/>
+        <path fill="#554037" d="M469 806 Q507 767 562 765 Q592 764 615 775 L599 786 Q554 779 518 791Z M626 774 Q664 755 704 764 Q749 772 774 801 Q711 783 675 783 Q650 782 633 788Z"/>
+        <path fill="#624a3e" d="M580 882 Q613 890 648 879 Q637 899 607 902Z"/>
+      </g>
+      <path fill="#ba7b69" d="M489 823 Q550 799 612 806 Q678 794 746 813 Q688 850 615 851 Q551 853 489 823Z"/>
+      <path fill="none" stroke="#755046" stroke-width="8" d="M487 824 Q533 811 587 819 Q612 822 634 815 Q688 806 745 814"/>
+      <path fill="none" stroke="#dea18b" stroke-width="6" d="M558 840 Q614 850 674 835"/>
+    </g>
+  </g>
+</svg>

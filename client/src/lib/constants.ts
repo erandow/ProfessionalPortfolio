@@ -1,109 +1,174 @@
 export interface Skill {
   name: string;
-  level: string;
+  level: "Expert" | "Advanced" | "Intermediate";
   iconType: string;
+  category: "vision-ai" | "llm-agents" | "software-engineering" | "systems-tools";
 }
 
-// Skills Data without JSX
+export const skillsCategories = [
+  { id: "all", label: "All Skills" },
+  { id: "vision-ai", label: "Computer Vision & Deep Learning" },
+  { id: "llm-agents", label: "LLM Agents & Multi-Agent Systems" },
+  { id: "software-engineering", label: "Software Architecture & Web" },
+  { id: "systems-tools", label: "Data, MLOps & DevOps" },
+] as const;
+
 export const skillsData: Skill[] = [
+  // Computer Vision & Deep Learning
   {
-    name: "Python",
-    level: "Expert",
-    iconType: "Python",
+    name: "PyTorch",
+    level: "Advanced",
+    iconType: "PyTorch",
+    category: "vision-ai",
   },
   {
     name: "TensorFlow",
     level: "Advanced",
     iconType: "TensorFlow",
+    category: "vision-ai",
   },
   {
-    name: "PyTorch",
-    level: "Advanced",
-    iconType: "PyTorch",
-  },
-  {
-    name: "LangChain",
-    level: "Advanced",
-    iconType: "LangChain",
-  },
-  {
-    name: "LangGraph",
-    level: "Advanced",
-    iconType: "LangGraph",
-  },
-  {
-    name: "Ollama",
-    level: "Advanced",
-    iconType: "Ollama",
-  },
-  {
-    name: "VLLM",
-    level: "Intermediate",
-    iconType: "VLLM",
-  },
-  {
-    name: "Machine Learning",
+    name: "Computer Vision (VQA / IQA)",
     level: "Expert",
-    iconType: "MachineLearning",
+    iconType: "ComputerVision",
+    category: "vision-ai",
   },
   {
-    name: "Sickit-Learn",
+    name: "Scikit-Learn",
     level: "Expert",
     iconType: "SickitLearn",
+    category: "vision-ai",
+  },
+  {
+    name: "OpenCV & Video Processing",
+    level: "Advanced",
+    iconType: "ComputerVision",
+    category: "vision-ai",
+  },
+  {
+    name: "NumPy & Scientific Computing",
+    level: "Expert",
+    iconType: "NumPy",
+    category: "vision-ai",
   },
   {
     name: "Pandas",
     level: "Expert",
     iconType: "Pandas",
+    category: "vision-ai",
   },
   {
-    name: "Matplotlib",
+    name: "Matplotlib & Seaborn",
     level: "Expert",
     iconType: "Matplotlib",
+    category: "vision-ai",
+  },
+
+  // LLM Agents & Multi-Agent Systems
+  {
+    name: "LangGraph",
+    level: "Advanced",
+    iconType: "LangGraph",
+    category: "llm-agents",
   },
   {
-    name: "NumPy",
+    name: "LangChain",
+    level: "Advanced",
+    iconType: "LangChain",
+    category: "llm-agents",
+  },
+  {
+    name: "vLLM Inference Engine",
+    level: "Intermediate",
+    iconType: "VLLM",
+    category: "llm-agents",
+  },
+  {
+    name: "Ollama (Local LLM Serving)",
+    level: "Advanced",
+    iconType: "Ollama",
+    category: "llm-agents",
+  },
+  {
+    name: "Autonomous Agent Architectures",
+    level: "Advanced",
+    iconType: "AI",
+    category: "llm-agents",
+  },
+  {
+    name: "Natural Language Processing (NLP)",
+    level: "Advanced",
+    iconType: "NLP",
+    category: "llm-agents",
+  },
+
+  // Software Architecture & Web
+  {
+    name: "Python",
     level: "Expert",
     iconType: "Python",
+    category: "software-engineering",
   },
   {
-    name: "Flask",
-    level: "intermediate",
-    iconType: "Flask",
+    name: "TypeScript",
+    level: "Expert",
+    iconType: "JavaScript",
+    category: "software-engineering",
+  },
+  {
+    name: "React & Next.js",
+    level: "Advanced",
+    iconType: "React",
+    category: "software-engineering",
   },
   {
     name: "React Router",
     level: "Advanced",
     iconType: "ReactRouter",
-  },
-  {
-    name: "React",
-    level: "Advanced",
-    iconType: "React",
-  },
-  {
-    name: "JavaScript",
-    level: "Expert",
-    iconType: "JavaScript",
+    category: "software-engineering",
   },
   {
     name: "Node.js",
     level: "Advanced",
     iconType: "NodeJs",
+    category: "software-engineering",
   },
+  {
+    name: "Flask",
+    level: "Intermediate",
+    iconType: "Flask",
+    category: "software-engineering",
+  },
+
+  // Data, MLOps & DevOps
   {
     name: "MongoDB",
     level: "Advanced",
-    iconType: "Database",
+    iconType: "MongoDB",
+    category: "systems-tools",
   },
   {
-    name: "Computer Vision",
+    name: "PostgreSQL",
     level: "Advanced",
-    iconType: "AI",
+    iconType: "PostgreSQL",
+    category: "systems-tools",
   },
   {
-    name: "NLP",
+    name: "Docker & Containerization",
     level: "Advanced",
-    iconType: "AI",
+    iconType: "DevOps",
+    category: "systems-tools",
+  },
+  {
+    name: "Git & Version Control",
+    level: "Expert",
+    iconType: "Dev",
+    category: "systems-tools",
+  },
+  {
+    name: "Linux & High-Performance Computing",
+    level: "Advanced",
+    iconType: "DevOps",
+    category: "systems-tools",
   },
 ];

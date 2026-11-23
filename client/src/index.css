@@ -1,3 +1,4 @@
+@import "katex/dist/katex.min.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -28,6 +29,14 @@ html {
 --destructive-foreground: 60 9.1% 97.8%;
 --ring: 20 14.3% 4.1%;
 --radius: 0.5rem;
+--academic-bg: #FAFBFC;
+--academic-card: #FFFFFF;
+--academic-text: #14243A;
+--academic-muted: #526277;
+--academic-accent: #315FAD;
+--academic-accent-hover: #244C90;
+--academic-border: #E4E9F0;
+--academic-soft: #EDF3FC;
   }
   .dark {
       --background: 240 10% 3.9%;
@@ -50,6 +59,14 @@ html {
 --destructive-foreground: 0 0% 98%;
 --ring: 240 4.9% 83.9%;
 --radius: 0.5rem;
+--academic-bg: #0B1120;
+--academic-card: #131E33;
+--academic-text: #F1F5F9;
+--academic-muted: #94A3B8;
+--academic-accent: #4880ED;
+--academic-accent-hover: #6CA0F8;
+--academic-border: #233554;
+--academic-soft: #182642;
   }
 
 @layer base {
@@ -163,5 +180,25 @@ html {
   /* Flip icons for RTL if needed */
   html.rtl .flip-in-rtl {
     transform: scaleX(-1);
+  }
+}
+
+/* Print styles for CV & academic pages */
+@media print {
+  header, footer, nav, button, .no-print {
+    display: none !important;
+  }
+  
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+    font-size: 11pt !important;
+  }
+  
+  #printable-cv {
+    display: block !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 }

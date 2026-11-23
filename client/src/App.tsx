@@ -6,8 +6,16 @@ import { useEffect } from "react";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
 import Navbar from "@/components/Navbar";
-import Home from "@/pages/Home";
+import CareerPage from "@/pages/CareerPage";
+import AcademicPage from "@/pages/AcademicPage";
 import NotFound from "@/pages/not-found";
+import React from "react";
+
+const ResearchPage = React.lazy(() => import("@/pages/academic/ResearchPage"));
+const PublicationsPage = React.lazy(() => import("@/pages/academic/PublicationsPage"));
+const AboutPage = React.lazy(() => import("@/pages/academic/AboutPage"));
+const CVPage = React.lazy(() => import("@/pages/academic/CVPage"));
+const LcbvqaProjectPage = React.lazy(() => import("@/pages/academic/projects/LcbvqaProjectPage"));
 
 function App() {
   const { i18n } = useTranslation();
@@ -30,7 +38,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
         <TooltipProvider>
-          <div className="min-h-screen flex flex-col">
+          <div className="min-h-screen flex flex-col bg-background text-foreground selection:bg-primary/20 selection:text-primary">
             <Navbar />
             <main className="flex-grow">
               <Routes>
@@ -39,7 +47,17 @@ function App() {
                 
                 {/* Language-specific routes */}
                 <Route path="/:lang">
-                  <Route index element={<Home />} />
+                  {/* Default page is Job Positions as requested */}
+                  <Route index element={<CareerPage />} />
+                  <Route path="career" element={<CareerPage />} />
+                  <Route path="academic">
+                    <Route index element={<AcademicPage />} />
+                    <Route path="research" element={<React.Suspense fallback={<div className="min-h-screen bg-academic-bg" />}><ResearchPage /></React.Suspense>} />
+                    <Route path="publications" element={<React.Suspense fallback={<div className="min-h-screen bg-academic-bg" />}><PublicationsPage /></React.Suspense>} />
+                    <Route path="about" element={<React.Suspense fallback={<div className="min-h-screen bg-academic-bg" />}><AboutPage /></React.Suspense>} />
+                    <Route path="cv" element={<React.Suspense fallback={<div className="min-h-screen bg-academic-bg" />}><CVPage /></React.Suspense>} />
+                    <Route path="projects/lcbvqa" element={<React.Suspense fallback={<div className="min-h-screen bg-academic-bg" />}><LcbvqaProjectPage /></React.Suspense>} />
+                  </Route>
                   <Route path="*" element={<NotFound />} />
                 </Route>
               </Routes>

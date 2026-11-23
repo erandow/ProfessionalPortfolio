@@ -47,7 +47,7 @@ import {
 } from "lucide-react";
 
 // Define skill icons with their colors
-export const SkillIcons = {
+export const SkillIcons: Record<string, () => JSX.Element> = {
   // Frontend technologies
   React: () => <FaReact size={32} color="#61DBFB" />,
   JavaScript: () => <FaJsSquare size={32} color="#F7DF1E" />,

@@ -1,324 +1,316 @@
-import { useState, useEffect, useRef } from "react";
-import { Link as RouterLink, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X, FileText, Download, Briefcase, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
-import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useLanguageRoute } from "@/hooks/use-language-route";
+import IndustryResumeModal from "@/components/IndustryResumeModal";
+import AcademicCVModal from "@/components/AcademicCVModal";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
-  const [moreMenuOpen, setMoreMenuOpen] = useState(false);
-  const moreMenuRef = useRef<HTMLDivElement>(null);
-  const { t } = useTranslation();
-  const { isRTL } = useLanguageRoute();
+  const [resumeModalOpen, setResumeModalOpen] = useState(false);
+  const [cvModalOpen, setCvModalOpen] = useState(false);
+  const { currentLanguage } = useLanguageRoute();
   const location = useLocation();
 
-  // Track scroll position and active section
+  const isAcademic = location.pathname.includes("/academic");
+
   useEffect(() => {
     const handleScroll = () => {
-      // Show navbar after scrolling down 40% of the viewport height
-      setScrolled(window.scrollY > window.innerHeight * 0.4);
-
-      // Determine which section is currently visible
-      const sections = [
-        "home", "about", "skills", "experience", "education", "certifications",
-        "projects", "publications", "testimonials", "contact"
-      ];
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          // If the section is in view (with some buffer)
-          if (rect.top <= 200 && rect.bottom >= 200) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle click outside of more menu
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (moreMenuRef.current && !moreMenuRef.current.contains(event.target as Node)) {
-        setMoreMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const toggleMoreMenu = () => {
-    setMoreMenuOpen(!moreMenuOpen);
-  };
-
-  // Primary navigation items (always visible)
-  const primaryNavItems = [
-    { name: t('navbar.home'), href: "#home" },
-    { name: t('navbar.about'), href: "#about" },
-    { name: t('navbar.skills'), href: "#skills" },
-    { name: t('navbar.work'), href: "#experience" },
-    { name: t('navbar.projects'), href: "#projects" },
+  // Career/Industry navigation links
+  const careerNavLinks = [
+    { name: "Overview", href: "#hero" },
+    { name: "Agent Sandbox", href: "#agent-sandbox" },
+    { name: "500k Scale", href: "#scale-simulator" },
+    { name: "Case Studies", href: "#case-studies" },
+    { name: "Tech Stack", href: "#skills" },
+    { name: "Projects", href: "#projects" },
+    { name: "Hire / Contact", href: "#contact" },
   ];
 
-  // Secondary navigation items (in more dropdown)
-  const secondaryNavItems = [
-    { name: t('navbar.education'), href: "#education" },
-    { name: t('navbar.certifications'), href: "#certifications" },
-    { name: t('navbar.publications'), href: "#publications" },
-    { name: t('navbar.testimonials'), href: "#testimonials" },
-    { name: t('navbar.contact'), href: "#contact" },
+  // Academic navigation links (page-level routes)
+  const academicNavLinks = [
+    { name: "Home", href: `/${currentLanguage}/academic` },
+    { name: "Research", href: `/${currentLanguage}/academic/research` },
+    { name: "Publications", href: `/${currentLanguage}/academic/publications` },
+    { name: "About", href: `/${currentLanguage}/academic/about` },
+    { name: "CV", href: `/${currentLanguage}/academic/cv`, isCV: true },
   ];
+
+  const currentNavLinks = isAcademic ? academicNavLinks : careerNavLinks;
 
   return (
-    <AnimatePresence>
-      {(scrolled || isOpen) && (
-        <motion.nav
-          className="fixed top-0 w-full z-50 backdrop-blur-lg border-b bg-background/90 border-border"
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -100, opacity: 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-        >
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between h-16 items-center">
-              <div className="flex items-center">
-                <RouterLink to="/" className="flex items-center">
-                  <span className="text-xl font-bold tracking-tight">
-                    <span className="text-primary">erandow</span>
-                    <span className="text-purple-500">.</span>
-                    <span className="text-primary">com</span>
-                  </span>
-                </RouterLink>
-
-                {/* Desktop menu */}
-                <div className="hidden md:block ml-10">
-                  <div className="flex items-center space-x-4">
-                    {primaryNavItems.map(item => (
-                      <NavLink
-                        key={item.href}
-                        href={item.href}
-                        isActive={activeSection === item.href.replace('#', '')}
-                      >
-                        {item.name}
-                      </NavLink>
-                    ))}
-
-                    {/* More dropdown */}
-                    <div ref={moreMenuRef} className="relative">
-                      <button
-                        onClick={toggleMoreMenu}
-                        className="flex items-center px-3 py-2 text-sm transition-colors duration-200 rounded-md hover:bg-accent/50"
-                      >
-                        <span>{t('navbar.more')}</span>
-                        <ChevronDown
-                          className={`ml-1 h-4 w-4 transition-transform duration-200 ${moreMenuOpen ? 'transform rotate-180' : ''}`}
-                        />
-                      </button>
-
-                      {/* More menu dropdown */}
-                      {moreMenuOpen && (
-                        <div
-                          className={`absolute ${isRTL ? 'right-0' : 'left-0'} z-10 mt-2 w-40 rounded-md bg-popover shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
-                        >
-                          <div className="py-1">
-                            {secondaryNavItems.map(item => (
-                              <a
-                                key={item.href}
-                                href={item.href}
-                                className={`block px-4 py-2 text-sm transition-colors ${activeSection === item.href.replace('#', '')
-                                    ? 'bg-primary/10 text-primary font-medium'
-                                    : 'hover:bg-accent/40'
-                                  }`}
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  setMoreMenuOpen(false);
-
-                                  // Smooth scroll to section
-                                  const targetId = item.href.replace('#', '');
-                                  const element = document.getElementById(targetId);
-
-                                  if (element) {
-                                    setTimeout(() => {
-                                      element.scrollIntoView({
-                                        behavior: 'smooth',
-                                        block: 'start'
-                                      });
-
-                                      // Update URL without reload
-                                      window.history.pushState(null, '', item.href);
-                                    }, 100);
-                                  }
-                                }}
-                              >
-                                {item.name}
-                              </a>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                </div>
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm py-2.5"
+            : "bg-background/80 backdrop-blur-sm border-b border-border/40 py-3"
+        }`}
+      >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between gap-3">
+            
+            {/* Left: Brand Identity */}
+            <Link
+              to={isAcademic ? `/${currentLanguage}/academic` : `/${currentLanguage}`}
+              className="flex items-center gap-2 text-foreground hover:text-primary transition-colors group flex-shrink-0"
+            >
+              <div className="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold text-sm border border-primary/20 group-hover:scale-105 transition-transform">
+                EA
               </div>
-
-              {/* Right side items */}
-              <div className="flex items-center space-x-2">
-                <LanguageSwitcher />
-                <ThemeToggle />
-
-                {/* Mobile menu button */}
-                <div className="flex md:hidden">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={toggleMenu}
-                    aria-label="Toggle menu"
-                  >
-                    {isOpen ? (
-                      <X className="h-5 w-5" />
-                    ) : (
-                      <Menu className="h-5 w-5" />
-                    )}
-                  </Button>
-                </div>
+              <div className="flex flex-col">
+                <span className="font-bold text-sm sm:text-base tracking-tight leading-none">
+                  Erfan Asadi
+                </span>
+                <span className="text-[10px] text-muted-foreground font-mono leading-none mt-0.5">
+                  {isAcademic ? "AI Researcher" : "Senior AI Engineer"}
+                </span>
               </div>
+            </Link>
+
+            {/* Middle Left: Mode Switcher (Industry vs Academic) */}
+            <div className="hidden md:flex items-center p-1 rounded-full bg-muted/80 border border-border text-xs font-medium">
+              <Link
+                to={`/${currentLanguage}`}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all ${
+                  !isAcademic
+                    ? "bg-background text-foreground font-semibold shadow-xs"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <Briefcase className="w-3.5 h-3.5 text-primary" />
+                <span>Job Positions</span>
+              </Link>
+              <Link
+                to={`/${currentLanguage}/academic`}
+                className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all ${
+                  isAcademic
+                    ? "bg-background text-foreground font-semibold shadow-xs"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
+              >
+                <GraduationCap className="w-3.5 h-3.5 text-primary" />
+                <span>Academic Goals</span>
+              </Link>
             </div>
 
-            {/* Mobile menu dropdown */}
-            {isOpen && (
-              <motion.div
-                className="md:hidden"
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t">
-                  {primaryNavItems.concat(secondaryNavItems).map(item => (
-                    <MobileNavLink
-                      key={item.href}
-                      href={item.href}
-                      onClick={toggleMenu}
-                      isActive={activeSection === item.href.replace('#', '')}
+            {/* Center/Desktop Navigation Links */}
+            <nav className="hidden xl:flex items-center space-x-1">
+              {currentNavLinks.map((link, idx) => {
+                const isActive = isAcademic
+                  ? location.pathname === link.href || location.pathname.startsWith(link.href + "/")
+                  : false;
+                const isCV = "isCV" in link && link.isCV;
+                if (isAcademic) {
+                  return (
+                    <Link
+                      key={idx}
+                      to={link.href}
+                      className={`text-xs font-medium px-2.5 py-1.5 rounded-md transition-colors ${
+                        isCV
+                          ? "border border-academic-border text-academic-accent hover:bg-academic-soft"
+                          : isActive
+                          ? "text-foreground bg-muted/70"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                      }`}
                     >
-                      {item.name}
-                    </MobileNavLink>
-                  ))}
-                </div>
-              </motion.div>
-            )}
+                      {link.name}
+                    </Link>
+                  );
+                }
+                return (
+                  <a
+                    key={idx}
+                    href={link.href}
+                    className="text-xs font-medium px-2.5 py-1.5 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                );
+              })}
+            </nav>
+
+            {/* Right Tools (Resume/CV Modal, Theme, Language, Mobile Menu) */}
+            <div className="flex items-center gap-1.5 sm:gap-2 flex-shrink-0">
+              {isAcademic ? (
+                <Button
+                  size="sm"
+                  variant="outline"
+                  onClick={() => setCvModalOpen(true)}
+                  className="hidden sm:inline-flex text-xs h-8 px-2.5 gap-1 border-primary/30 text-primary hover:bg-primary/10"
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Academic CV</span>
+                </Button>
+              ) : (
+                <Button
+                  size="sm"
+                  variant="default"
+                  onClick={() => setResumeModalOpen(true)}
+                  className="hidden sm:inline-flex text-xs h-8 px-2.5 gap-1 shadow-xs font-medium"
+                >
+                  <FileText className="w-3.5 h-3.5" />
+                  <span>Resume</span>
+                </Button>
+              )}
+
+              <ThemeToggle />
+              <LanguageSwitcher />
+
+              {/* Mobile hamburger button */}
+              <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="xl:hidden p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted focus:outline-none"
+                aria-label="Toggle Menu"
+              >
+                {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
+            </div>
           </div>
-        </motion.nav>
-      )}
-    </AnimatePresence>
-  );
-}
+        </div>
 
-interface NavLinkProps {
-  href: string;
-  children: React.ReactNode;
-  isActive?: boolean;
-}
+        {/* Mobile Dropdown Menu */}
+        {isOpen && (
+          <div className="xl:hidden border-b border-border bg-background/95 backdrop-blur-lg px-4 pt-3 pb-6 space-y-3">
+            {/* Mobile Mode Switcher */}
+            <div className="flex items-center p-1 rounded-lg bg-muted border border-border text-xs font-medium">
+              <Link
+                to={`/${currentLanguage}`}
+                onClick={() => setIsOpen(false)}
+                className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-md transition-all ${
+                  !isAcademic
+                    ? "bg-background text-foreground font-semibold shadow-xs"
+                    : "text-muted-foreground"
+                }`}
+              >
+                <Briefcase className="w-3.5 h-3.5 text-primary" />
+                <span>Job Positions</span>
+              </Link>
+              <Link
+                to={`/${currentLanguage}/academic`}
+                onClick={() => setIsOpen(false)}
+                className={`flex-1 flex items-center justify-center gap-1.5 py-1.5 rounded-md transition-all ${
+                  isAcademic
+                    ? "bg-background text-foreground font-semibold shadow-xs"
+                    : "text-muted-foreground"
+                }`}
+              >
+                <GraduationCap className="w-3.5 h-3.5 text-primary" />
+                <span>Academic Goals</span>
+              </Link>
+            </div>
 
-function NavLink({ href, children, isActive = false }: NavLinkProps) {
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
+            {/* Mobile Nav Links */}
+            <div className="grid grid-cols-2 gap-1 py-1">
+              {currentNavLinks.map((link, idx) => {
+                const isActive = isAcademic
+                  ? location.pathname === link.href || location.pathname.startsWith(link.href + "/")
+                  : false;
+                const isCV = "isCV" in link && link.isCV;
+                if (isAcademic) {
+                  return (
+                    <Link
+                      key={idx}
+                      to={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className={`text-xs font-medium px-3 py-2 rounded-md transition-colors ${
+                        isCV
+                          ? "border border-academic-border text-academic-accent hover:bg-academic-soft"
+                          : isActive
+                          ? "text-foreground bg-muted/70"
+                          : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      }`}
+                    >
+                      {link.name}
+                    </Link>
+                  );
+                }
+                return (
+                  <a
+                    key={idx}
+                    href={link.href}
+                    onClick={() => setIsOpen(false)}
+                    className="text-xs font-medium px-3 py-2 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                  >
+                    {link.name}
+                  </a>
+                );
+              })}
+            </div>
 
-    if (element) {
-      // Smooth scroll to the element
-      element.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+            {/* Mobile Action Buttons */}
+            <div className="pt-2 border-t border-border flex items-center gap-2">
+              {isAcademic ? (
+                <>
+                  <Button
+                    size="sm"
+                    onClick={() => {
+                      setCvModalOpen(true);
+                      setIsOpen(false);
+                    }}
+                    className="text-xs h-8 flex-1 gap-1"
+                  >
+                    <FileText className="w-3.5 h-3.5" />
+                    Academic CV
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    asChild
+                    className="text-xs h-8 flex-1 gap-1"
+                  >
+                    <a href="/Erfan-Asadi-Resume.pdf" download="Erfan-Asadi-Resume.pdf">
+                      <Download className="w-3.5 h-3.5" />
+                      PDF Resume
+                    </a>
+                  </Button>
+                </>
+              ) : (
+                <>
+                  <Button
+                    size="sm"
+                    onClick={() => {
+                      setResumeModalOpen(true);
+                      setIsOpen(false);
+                    }}
+                    className="text-xs h-8 flex-1 gap-1"
+                  >
+                    <FileText className="w-3.5 h-3.5" />
+                    View Resume
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    asChild
+                    className="text-xs h-8 flex-1 gap-1"
+                  >
+                    <a href="/Erfan-Asadi-Resume.pdf" download="Erfan-Asadi-Resume.pdf">
+                      <Download className="w-3.5 h-3.5" />
+                      Download PDF
+                    </a>
+                  </Button>
+                </>
+              )}
+            </div>
+          </div>
+        )}
+      </header>
 
-      // Update URL without reload
-      window.history.pushState(null, '', href);
-    }
-  };
-
-  return (
-    <a
-      href={href}
-      onClick={handleClick}
-      className={`relative px-3 py-2 text-sm transition-colors duration-200 rounded-md hover:bg-accent/50
-                 ${isActive ? 'text-primary font-medium' : ''}`}
-    >
-      {children}
-      {isActive && (
-        <motion.span
-          layoutId="navbar-indicator"
-          className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary mx-3"
-          transition={{ type: "spring", duration: 0.5 }}
-        />
-      )}
-    </a>
-  );
-}
-
-interface MobileNavLinkProps {
-  href: string;
-  onClick: () => void;
-  children: React.ReactNode;
-  isActive?: boolean;
-}
-
-function MobileNavLink({ href, onClick, children, isActive = false }: MobileNavLinkProps) {
-  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault();
-
-    // First close the mobile menu
-    onClick();
-
-    // Then scroll to the section
-    const targetId = href.replace('#', '');
-    const element = document.getElementById(targetId);
-
-    if (element) {
-      // Add a small delay to allow the menu to close first
-      setTimeout(() => {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-
-        // Update URL without reload
-        window.history.pushState(null, '', href);
-      }, 100);
-    }
-  };
-
-  return (
-    <a
-      href={href}
-      onClick={handleClick}
-      className={`flex items-center px-3 py-3 rounded-md transition-colors duration-200
-                ${isActive
-          ? 'bg-primary/10 text-primary font-medium'
-          : 'hover:bg-accent/30'}`}
-    >
-      {children}
-    </a>
+      {/* Modals */}
+      <IndustryResumeModal isOpen={resumeModalOpen} onClose={() => setResumeModalOpen(false)} />
+      <AcademicCVModal isOpen={cvModalOpen} onClose={() => setCvModalOpen(false)} />
+    </>
   );
 }

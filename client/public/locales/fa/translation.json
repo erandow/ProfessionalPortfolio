@@ -15,6 +15,7 @@
     "language": "زبان"
   },
   "hero": {
+    "welcome": "خوش آمدید!",
     "developer": "<Coder />",
     "developerDesc": "خلق تجربیات نوآورانه وب با تکنولوژی مدرن و ذوق خلاقانه.",
     "viewProjects": "مشاهده پروژه‌ها",

@@ -1,130 +1,222 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Calendar } from "lucide-react";
+import { ExternalLink, Github, Code2, Sparkles, Cpu, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useTranslation } from "react-i18next";
-import { useLanguageRoute } from "@/hooks/use-language-route";
 import blindVideoQualityAssessmentImage from "../images/LCVQA.png";
 import reactTypeWriteImage from "../images/TypeWriter.jpg";
 import giteaSecureLaunchImage from "../images/gitea.webp";
 import artificialNeuralNetworkSeriesImage from "../images/ANN-Workshop.jpg";
 
+interface Project {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  technologies: string[];
+  demoUrl?: string;
+  githubUrl?: string;
+  category: "research-ai" | "open-source";
+  period: string;
+  metrics?: string;
+}
+
 export default function ProjectsSection() {
-  const { t } = useTranslation();
-  const { isRTL } = useLanguageRoute();
-  const projects = [
+  const [filter, setFilter] = useState<"all" | "research-ai" | "open-source">("all");
+
+  const projects: Project[] = [
     {
-      id: 1,
-      title: "Low Complexity Blind Video Quality Assessment",
-      description: t("projects.LCBVQA"),
+      id: "lcbvqa",
+      title: "Low Complexity Blind Video Quality Assessment (LC-BVQA)",
+      subtitle: "PyTorch & CUDA Deep Perception Framework",
+      description: "A deep learning framework designed for real-time blind video quality estimation on UGC datasets (LIVE-VQA, KoNViD-1k). Computes fine-tuned correlation features across convolutional layers combined with high-level semantic representations.",
       image: blindVideoQualityAssessmentImage,
-      technologies: ["Python", "PyTorch", "CUDA", "Sickit-learn", "OpenCV", "Seaborn"],
-      demoUrl: "#",
+      technologies: ["Python", "PyTorch", "CUDA", "Scikit-Learn", "OpenCV", "Seaborn"],
       githubUrl: "https://github.com/erandow/LC-BVQA",
-      period: "Jan 2023 - Apr 2024"
+      category: "research-ai",
+      period: "2023 – 2024",
+      metrics: "Real-time inference with minimal FLOP footprint",
     },
     {
-      id: 2,
-      title: "React Type Writer",
-      description: t("projects.reactTypeWriteDescription"),
+      id: "ashti-academy",
+      title: "Ashti Academy AI Learning Marketplace",
+      subtitle: "HLS Streaming Platform with AI Recommendation",
+      description: "Scalable digital learning marketplace featuring encrypted HLS video streaming, AI-powered semantic search, automated content tagging, and personalized course recommendations built with Strapi and Node.js.",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&h=500",
+      technologies: ["Node.js", "Strapi", "HLS Video Streaming", "AI Recommender", "TypeScript"],
+      category: "research-ai",
+      period: "2023",
+      metrics: "Production-ready audio/video learning pipeline",
+    },
+    {
+      id: "react-type-writer",
+      title: "React Type Writer (@vegadev/react-type-writer)",
+      subtitle: "Published Open-Source NPM Package",
+      description: "A lightweight, zero-dependency, and elegant typewriter animation package for modern React applications with configurable speeds, cursor delays, and loop controls.",
       image: reactTypeWriteImage,
-      technologies: ["React", "TypeScript"],
+      technologies: ["React", "TypeScript", "NPM Package", "Rollup"],
       demoUrl: "https://www.npmjs.com/package/@vegadev/react-type-writer",
       githubUrl: "https://github.com/erandow/react-type-writer",
-      period: "Jun 2021 - Dec 2021"
+      category: "open-source",
+      period: "Published on NPM",
+      metrics: "Live on npm registry with 100% TypeScript typing",
     },
     {
-      id: 3,
-      title: "Artificial Neural Network Series",
-      description: t("projects.artificialNeuralNetworkSeriesDescription"),
+      id: "ann-series",
+      title: "Artificial Neural Networks Tutorials & Codebase",
+      subtitle: "Hands-on Deep Learning Foundations",
+      description: "Comprehensive educational series breaking down artificial neural network mathematics, manual backpropagation derivations, optimization mechanics (SGD, Adam), and PyTorch/TensorFlow implementations.",
       image: artificialNeuralNetworkSeriesImage,
-      technologies: ["Python", "NumPy", "Pandas", "PyTorch", "Keras", "TensorFlow"],
-      demoUrl: "",
+      technologies: ["Python", "NumPy", "Pandas", "PyTorch", "TensorFlow"],
       githubUrl: "https://github.com/erandow/ANN-Workshop/tree/master",
-      period: "Aug 2020 - Feb 2021"
+      category: "research-ai",
+      period: "Educational Open Source",
+      metrics: "Taught to university undergraduate classes",
     },
     {
-      id: 4,
-      title: "Gitea Secure Launch",
-      description: t("projects.giteaSecureLaunchDescription"),
+      id: "gitea-secure",
+      title: "Gitea Secure Launch Automation",
+      subtitle: "Containerized Git DevOps Infrastructure",
+      description: "Streamlined infrastructure automation for self-hosting Gitea with automated Let's Encrypt TLS certificates, Nginx reverse proxy, and isolated Docker container orchestration.",
       image: giteaSecureLaunchImage,
-      technologies: ["Docker", "Gitea", "Nginx"],
-      demoUrl: "",
+      technologies: ["Docker", "Gitea", "Nginx", "DevOps", "Bash"],
       githubUrl: "https://github.com/erandow/gitea-secure-launch",
-      period: "2025"
-    }
+      category: "open-source",
+      period: "2025",
+      metrics: "One-command secure Git server deployment",
+    },
   ];
 
-  return (
-    <section id="projects" className="py-20 bg-muted/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("projects.title")}</h2>
-          <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
-          <p className="text-muted-foreground max-w-3xl mx-auto">
-            {t("projects.subtitle")}
-          </p>
-        </motion.div>
+  const filteredProjects = projects.filter((p) => {
+    if (filter === "all") return true;
+    return p.category === filter;
+  });
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+  return (
+    <section id="projects" className="py-20 bg-muted/20 border-b border-border/40 scroll-mt-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary mb-3">
+              <Code2 className="w-3.5 h-3.5" />
+              <span>Research Code & Software</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
+              Selected Projects & Open Source
+            </h2>
+            <p className="text-base sm:text-lg text-muted-foreground mt-3">
+              Implementations bridging theoretical deep learning research with production-ready software and community tools.
+            </p>
+          </div>
+
+          {/* Filter Pills */}
+          <div className="flex items-center gap-2 mt-6 md:mt-0">
+            <Button
+              size="sm"
+              variant={filter === "all" ? "default" : "outline"}
+              onClick={() => setFilter("all")}
+              className="text-xs h-8"
+            >
+              All Projects
+            </Button>
+            <Button
+              size="sm"
+              variant={filter === "research-ai" ? "default" : "outline"}
+              onClick={() => setFilter("research-ai")}
+              className="text-xs h-8"
+            >
+              Research & AI
+            </Button>
+            <Button
+              size="sm"
+              variant={filter === "open-source" ? "default" : "outline"}
+              onClick={() => setFilter("open-source")}
+              className="text-xs h-8"
+            >
+              Open Source & Tools
+            </Button>
+          </div>
+        </div>
+
+        {/* Projects Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group"
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="rounded-2xl bg-card border border-border hover:border-primary/40 shadow-sm overflow-hidden flex flex-col justify-between group transition-all"
             >
-              <div className="bg-background rounded-lg overflow-hidden border shadow-sm h-full flex flex-col">
-                <div className="aspect-video relative overflow-hidden">
+              <div>
+                {/* Image */}
+                <div className="aspect-video w-full overflow-hidden bg-muted relative">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-                    <div className="flex space-x-2">
-                      <Button size="sm" variant="secondary" asChild>
-                        <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                          <ExternalLink className={`h-4 w-4 ${isRTL ? "ml-1" : "mr-1"}`} /> {t("projects.demo")}
-                        </a>
-                      </Button>
-                      <Button size="sm" variant="outline" className="bg-background/20 hover:bg-background/40 backdrop-blur-sm" asChild>
-                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                          <Github className={`h-4 w-4 ${isRTL ? "ml-1" : "mr-1"}`} /> {t("projects.code")}
-                        </a>
-                      </Button>
-                    </div>
+                  <div className="absolute top-3 right-3">
+                    <Badge variant="secondary" className="text-[10px] bg-background/90 backdrop-blur-sm border border-border/80">
+                      {project.period}
+                    </Badge>
                   </div>
                 </div>
-                <div className="p-6 flex-1 flex flex-col">
-                  <div className="flex items-center justify-between mb-3">
-                    <h3 className="font-bold text-xl">{project.title}</h3>
-                  </div>
-                  <div className="text-muted-foreground mb-4 text-sm flex items-center">
-                    <Calendar className="h-4 w-4 mr-1" />
-                    {project.period}
-                  </div>
-                  <p className="text-muted-foreground mb-5">
+
+                {/* Content */}
+                <div className="p-5 sm:p-6">
+                  <h3 className="font-bold text-lg text-foreground group-hover:text-primary transition-colors leading-snug mb-1">
+                    {project.title}
+                  </h3>
+                  <p className="text-xs font-medium text-primary mb-3">
+                    {project.subtitle}
+                  </p>
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed mb-4">
                     {project.description}
                   </p>
-                  <div className="mt-auto">
-                    <div className="flex flex-wrap gap-2">
-                      {project.technologies.map((tech, i) => (
-                        <Badge key={i} variant="secondary" className="font-normal">
-                          {tech}
-                        </Badge>
-                      ))}
+
+                  {project.metrics && (
+                    <div className="p-2.5 rounded-lg bg-muted/50 border border-border/60 text-xs text-foreground font-medium mb-4 flex items-center gap-1.5">
+                      <Sparkles className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
+                      <span>{project.metrics}</span>
                     </div>
+                  )}
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.technologies.map((tech, tIdx) => (
+                      <span
+                        key={tIdx}
+                        className="text-[10px] px-2 py-0.5 rounded bg-muted text-muted-foreground font-mono"
+                      >
+                        {tech}
+                      </span>
+                    ))}
                   </div>
                 </div>
+              </div>
+
+              {/* Footer Actions */}
+              <div className="p-5 sm:p-6 pt-0 border-t border-border/50 flex items-center gap-2 mt-4">
+                {project.githubUrl && (
+                  <Button size="sm" variant="outline" asChild className="text-xs h-8 flex-1 gap-1.5">
+                    <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                      <Github className="w-3.5 h-3.5" />
+                      Code
+                    </a>
+                  </Button>
+                )}
+                {project.demoUrl && (
+                  <Button size="sm" asChild className="text-xs h-8 flex-1 gap-1.5">
+                    <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      View Live
+                    </a>
+                  </Button>
+                )}
               </div>
             </motion.div>
           ))}

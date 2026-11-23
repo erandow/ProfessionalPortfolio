@@ -15,6 +15,7 @@
     "language": "Language"
   },
   "hero": {
+    "welcome": "Welcome!",
     "developer": "<Coder />",
     "developerDesc": "Crafting innovative web experiences with modern technology and creative flair.",
     "viewProjects": "View Projects",

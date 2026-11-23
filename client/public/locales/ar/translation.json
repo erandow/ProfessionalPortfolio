@@ -15,6 +15,7 @@
     "language": "اللغة"
   },
   "hero": {
+    "welcome": "أهلًا وسهلًا!",
     "developer": "<Coder />",
     "developerDesc": "صياغة تجارب ويب مبتكرة بتقنيات حديثة ولمسة إبداعية.",
     "viewProjects": "عرض المشاريع",

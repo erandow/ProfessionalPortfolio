@@ -1,161 +1,212 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   BookOpen,
   Calendar,
-  Users,
   ExternalLink,
   Award,
-  Download
+  Download,
+  FileText,
+  Code2,
+  ChevronDown,
+  ChevronUp,
+  Sparkles,
 } from "lucide-react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
-import { useLanguageRoute } from "@/hooks/use-language-route";
+import { publicationsData, Publication } from "@/lib/academic-data";
+import BibtexModal from "@/components/BibtexModal";
 
 export default function PublicationsSection() {
   const { t } = useTranslation();
-  const { isRTL } = useLanguageRoute();
-  const publications = [
-    {
-      id: 1,
-      title: "The Role of Fine-Tuned Feature Map Correlation in Video Quality Assessment",
-      journal: "ّIPRIA 2025",
-      date: "2025",
-      authors: ["Erfan Asadi", "Parmida Pourmatin", "Azadeh Mansouri"],
-      abstract: `Natural videos and user-generated content (UGC)
-                  illustrate complex distortions that are difficult to model. As a
-                  result, existing Video Quality Assessment (VQA) methods mostly
-                  have problem to achieve high performance on these videos. In
-                  this paper, we propose a method that utilizes correlation-based
-                  features fine-tuned on an image quality assessment dataset to en-
-                  hance VQA performance. These low-level features are combined
-                  with high-level features extracted from the final layers of the
-                  network, providing a rich representation of spatial degradations.
-                  For temporal pooling, a simple max-pooling operation is applied.
-                  Experimental results on two widely used UGC datasets, LIVE-
-                  VQA and KoNViD-1k, demonstrate strong performance while
-                  maintaining low computational complexity.`,
-      doi: "",
-      link: "",
-      pdfLink: "",
-      award: "Best Paper Award at IPRIA 2025",
-      categories: ["fine-tuned feature maps", "gram matrix", "no-reference video quality assessment", "deep convolutional neuralnetworks", "SVR"]
-    },
-    {
-      id: 2,
-      title: "NTIRE 2024 quality assessment of AI-generated content challenge",
-      journal: "Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition",
-      date: "2024",
-      authors: ["Xiaohong Liu", "Xiongkuo Min", "Erfan Asadi", "Azadeh Mansouri"],
-      abstract: "This paper reports on the NTIRE 2024 Quality Assessment of AI-Generated Content Challenge which will be held in conjunction with the New Trends in Image Restoration and Enhancement Workshop (NTIRE) at CVPR 2024. This challenge is to address a major challenge in the field of image and video processing namely Image Quality Assessment (IQA) and Video Quality Assessment (VQA) for AI-Generated Content (AIGC). ",
-      doi: "",
-      link: "https://openaccess.thecvf.com/content/CVPR2024W/NTIRE/html/Liu_NTIRE_2024_Quality_Assessment_of_AI-Generated_Content_Challenge_CVPRW_2024_paper.html",
-      pdfLink: "https://openaccess.thecvf.com/content/CVPR2024W/NTIRE/papers/Liu_NTIRE_2024_Quality_Assessment_of_AI-Generated_Content_Challenge_CVPRW_2024_paper.pdf",
-      award: null,
-      categories: ["NTIRE-2024", "Video Quality Assessment", "Image Quality Assessment"]
-    }
-  ];
+  const [activeBibtex, setActiveBibtex] = useState<{ title: string; bibtex: string } | null>(null);
+  const [expandedAbstracts, setExpandedAbstracts] = useState<Record<string, boolean>>({
+    "ipria-2025": true, // Expand first one by default
+  });
+
+  const toggleAbstract = (id: string) => {
+    setExpandedAbstracts((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+  };
 
   return (
-    <section id="publications" className="py-20">
+    <section id="publications" className="py-20 bg-muted/20 border-b border-border/40 scroll-mt-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("publications.title")}</h2>
-          <div className="w-20 h-1 bg-primary mx-auto mb-8"></div>
-          <p className="text-muted-foreground max-w-3xl mx-auto">
-            {t("publications.subtitle")}
+        {/* Section Header */}
+        <div className="max-w-3xl mb-12">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary mb-3">
+            <BookOpen className="w-3.5 h-3.5" />
+            <span>Peer-Reviewed Research</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
+            Publications & Academic Papers
+          </h2>
+          <p className="text-base sm:text-lg text-muted-foreground mt-3 leading-relaxed">
+            Peer-reviewed contributions in leading computer vision and pattern recognition venues, focusing on video quality assessment and generative content evaluation.
           </p>
-        </motion.div>
+        </div>
 
+        {/* Publications List */}
         <div className="space-y-6">
-          {publications.map((pub, index) => (
+          {publicationsData.map((pub, index) => (
             <motion.div
               key={pub.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
+              className={`p-6 sm:p-8 rounded-2xl bg-card border shadow-sm transition-all ${
+                pub.award ? "border-amber-500/40 shadow-amber-500/5 hover:border-amber-500/60" : "border-border hover:border-primary/40"
+              }`}
             >
-              <div className="bg-background rounded-lg border shadow-sm overflow-hidden">
-                <div className="p-6">
-                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
-                    <div>
-                      <h3 className="text-xl font-bold mb-2">{pub.title}</h3>
-                      <div className="flex flex-wrap items-center text-muted-foreground mb-3 gap-y-2">
-                        <span className="flex items-center mr-4">
-                          <BookOpen className="w-4 h-4 mr-1" /> {pub.journal}
-                        </span>
-                        <span className="flex items-center mr-4">
-                          <Calendar className="w-4 h-4 mr-1" /> {pub.date}
-                        </span>
-                        <span className="flex items-center">
-                          <Users className="w-4 h-4 mr-1" /> {pub.authors.join(", ")}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex gap-2 flex-shrink-0">
-                      {pub.link && <Button size="sm" variant="outline" asChild>
-                        <a href={pub.link} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                          <ExternalLink className={`h-4 w-4 ${isRTL ? "ml-1" : "mr-1"}`} /> {t("publications.view")}
-                        </a>
-                      </Button>}
-                      {pub.pdfLink && <Button size="sm" variant="secondary" asChild>
-                        <a href={pub.pdfLink} target="_blank" rel="noopener noreferrer" className="flex items-center">
-                          <Download className={`h-4 w-4 ${isRTL ? "ml-1" : "mr-1"}`} /> {t("publications.pdf")}
-                        </a>
-                      </Button>}
-                    </div>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2 mt-3 mb-4">
-                    {pub.categories.map((category, i) => (
-                      <Badge key={i} variant="outline" className="font-normal">
-                        {category}
-                      </Badge>
-                    ))}
-                  </div>
-
+              {/* Top metadata row */}
+              <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+                <div className="flex flex-wrap items-center gap-2">
+                  <Badge variant="default" className="text-xs font-semibold px-2.5 py-0.5">
+                    {pub.venueShort}
+                  </Badge>
+                  <span className="text-xs text-muted-foreground font-mono">
+                    {pub.year}
+                  </span>
                   {pub.award && (
-                    <div className="flex items-center text-sm text-primary mb-4">
-                      <Award className="w-4 h-4 mr-1" /> {pub.award}
-                    </div>
+                    <Badge className="bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30 text-xs font-semibold gap-1.5">
+                      <Award className="w-3.5 h-3.5 text-amber-500" />
+                      {pub.award}
+                    </Badge>
                   )}
-
-                  <Accordion type="single" collapsible className="w-full">
-                    <AccordionItem value="abstract" className="border-b-0">
-                      <AccordionTrigger className="py-2 text-sm">
-                        {t("publications.abstract")}
-                      </AccordionTrigger>
-                      <AccordionContent>
-                        <p className="text-muted-foreground">
-                          {pub.abstract}
-                        </p>
-                        {pub.doi && (
-                          <div className="mt-2 text-sm">
-                            <span className="font-medium">{t("publications.doi")}:</span> {pub.doi}
-                          </div>
-                        )}
-                      </AccordionContent>
-                    </AccordionItem>
-                  </Accordion>
                 </div>
+              </div>
+
+              {/* Title */}
+              <h3 className="text-xl sm:text-2xl font-bold text-foreground leading-snug mb-3">
+                {pub.title}
+              </h3>
+
+              {/* Authors List */}
+              <div className="text-sm sm:text-base text-muted-foreground mb-4">
+                {pub.authors.map((author, i) => (
+                  <span key={i}>
+                    {author === "Erfan Asadi" ? (
+                      <strong className="text-foreground font-bold underline decoration-primary decoration-2 underline-offset-2">
+                        {author}
+                      </strong>
+                    ) : (
+                      author
+                    )}
+                    {i < pub.authors.length - 1 ? ", " : ""}
+                  </span>
+                ))}
+              </div>
+
+              {/* Venue Full Name */}
+              <p className="text-xs sm:text-sm italic text-muted-foreground/90 mb-5">
+                {pub.venue}
+              </p>
+
+              {/* Tags */}
+              <div className="flex flex-wrap gap-1.5 mb-5">
+                {pub.tags.map((tag, tIdx) => (
+                  <Badge
+                    key={tIdx}
+                    variant="outline"
+                    className="text-[11px] font-normal py-0.5 px-2 bg-muted/40 text-muted-foreground border-border/60"
+                  >
+                    {tag}
+                  </Badge>
+                ))}
+              </div>
+
+              {/* Abstract Accordion */}
+              {expandedAbstracts[pub.id] && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="p-4 rounded-xl bg-muted/30 border border-border/60 text-xs sm:text-sm text-muted-foreground leading-relaxed mb-5"
+                >
+                  <p className="font-semibold text-foreground mb-1 text-xs uppercase tracking-wider">
+                    Abstract
+                  </p>
+                  <p>{pub.abstract}</p>
+                </motion.div>
+              )}
+
+              {/* Action Buttons */}
+              <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-border/50">
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  onClick={() => toggleAbstract(pub.id)}
+                  className="text-xs h-8 px-3 gap-1.5 text-muted-foreground hover:text-foreground"
+                >
+                  {expandedAbstracts[pub.id] ? (
+                    <>
+                      <ChevronUp className="w-3.5 h-3.5" />
+                      Hide Abstract
+                    </>
+                  ) : (
+                    <>
+                      <ChevronDown className="w-3.5 h-3.5" />
+                      Read Abstract
+                    </>
+                  )}
+                </Button>
+
+                {pub.paperUrl && (
+                  <Button size="sm" variant="outline" asChild className="text-xs h-8 px-3 gap-1.5">
+                    <a href={pub.paperUrl} target="_blank" rel="noopener noreferrer">
+                      <ExternalLink className="w-3.5 h-3.5" />
+                      Paper Page
+                    </a>
+                  </Button>
+                )}
+
+                {pub.pdfUrl && (
+                  <Button size="sm" variant="outline" asChild className="text-xs h-8 px-3 gap-1.5">
+                    <a href={pub.pdfUrl} target="_blank" rel="noopener noreferrer">
+                      <Download className="w-3.5 h-3.5" />
+                      PDF
+                    </a>
+                  </Button>
+                )}
+
+                {pub.codeUrl && (
+                  <Button size="sm" variant="outline" asChild className="text-xs h-8 px-3 gap-1.5">
+                    <a href={pub.codeUrl} target="_blank" rel="noopener noreferrer">
+                      <Code2 className="w-3.5 h-3.5" />
+                      Code (GitHub)
+                    </a>
+                  </Button>
+                )}
+
+                <Button
+                  size="sm"
+                  variant="secondary"
+                  onClick={() => setActiveBibtex({ title: pub.title, bibtex: pub.bibtex })}
+                  className="text-xs h-8 px-3 gap-1.5 ml-auto"
+                >
+                  <FileText className="w-3.5 h-3.5 text-primary" />
+                  Cite / BibTeX
+                </Button>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* BibTeX Modal */}
+      {activeBibtex && (
+        <BibtexModal
+          isOpen={!!activeBibtex}
+          onClose={() => setActiveBibtex(null)}
+          title={activeBibtex.title}
+          bibtex={activeBibtex.bibtex}
+        />
+      )}
     </section>
   );
 }

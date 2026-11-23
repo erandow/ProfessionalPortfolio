@@ -1,92 +1,86 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { skillsData } from "@/lib/constants";
+import { skillsData, skillsCategories, Skill } from "@/lib/constants";
 import { getSkillIcon } from "@/lib/skill-icons";
-import { useTranslation } from "react-i18next";
+import { Cpu, CheckCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 
 export default function SkillsSection() {
-  const { t } = useTranslation();
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
 
-  const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
+  const filteredSkills = skillsData.filter((skill) => {
+    if (selectedCategory === "all") return true;
+    return skill.category === selectedCategory;
+  });
 
   return (
-    <section
-      id="skills"
-      className="py-20 scroll-mt-16 relative bg-gray-50 dark:bg-gray-900"
-    >
+    <section id="skills" className="py-20 scroll-mt-16">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-4">{t("skills.title")}</h2>
-          <p className="text-lg opacity-80">
-            {t("skills.subtitle")}
+        {/* Header */}
+        <div className="max-w-3xl mb-12">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary mb-3">
+            <Cpu className="w-3.5 h-3.5" />
+            <span>Technical Stack</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground">
+            Skills & Research Tooling
+          </h2>
+          <p className="text-base sm:text-lg text-muted-foreground mt-3">
+            Comprehensive proficiency spanning deep learning research frameworks, autonomous multi-agent orchestration, and production software engineering.
           </p>
         </div>
 
-        <motion.div
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          {skillsData.map((skill, index) => (
-            <SkillBadge 
-              key={index} 
-              name={skill.name} 
-              level={skill.level} 
-              iconType={skill.iconType}
-              index={index} 
-            />
+        {/* Category Tabs */}
+        <div className="flex flex-wrap items-center gap-2 mb-10 pb-4 border-b border-border/60">
+          {skillsCategories.map((cat) => (
+            <Button
+              key={cat.id}
+              size="sm"
+              variant={selectedCategory === cat.id ? "default" : "outline"}
+              onClick={() => setSelectedCategory(cat.id)}
+              className="text-xs h-8"
+            >
+              {cat.label}
+            </Button>
           ))}
-        </motion.div>
+        </div>
+
+        {/* Skills Grid */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {filteredSkills.map((skill, index) => (
+            <motion.div
+              key={skill.name}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, delay: index * 0.03 }}
+              className="p-4 rounded-xl bg-card border border-border/80 hover:border-primary/50 shadow-sm hover:shadow-md transition-all flex flex-col items-center text-center justify-between group"
+            >
+              <div className="w-12 h-12 rounded-xl bg-muted/60 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+                {getSkillIcon(skill.iconType)}
+              </div>
+
+              <div>
+                <h4 className="font-semibold text-xs sm:text-sm text-foreground leading-tight mb-1">
+                  {skill.name}
+                </h4>
+                <Badge
+                  variant="secondary"
+                  className={`text-[10px] font-normal py-0 px-1.5 ${
+                    skill.level === "Expert"
+                      ? "bg-primary/10 text-primary"
+                      : skill.level === "Advanced"
+                      ? "bg-blue-500/10 text-blue-600 dark:text-blue-400"
+                      : "bg-muted text-muted-foreground"
+                  }`}
+                >
+                  {skill.level}
+                </Badge>
+              </div>
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
-  );
-}
-
-interface SkillBadgeProps {
-  name: string;
-  level: string;
-  iconType: string;
-  index: number;
-}
-
-function SkillBadge({ iconType, name, level, index }: SkillBadgeProps) {
-  const { t } = useTranslation();
-  return (
-    <motion.div
-      className="p-4 rounded-xl text-center shadow-md bg-card hover:-translate-y-2 transition-transform duration-300"
-      variants={{
-        hidden: { opacity: 0, y: 20 },
-        show: { 
-          opacity: 1, 
-          y: 0, 
-          transition: { 
-            duration: 0.5,
-            delay: index * 0.05
-          }
-        },
-      }}
-      whileHover={{
-        boxShadow: "0 10px 25px -10px rgba(0, 0, 0, 0.25)",
-      }}
-    >
-      <div className="h-14 flex items-center justify-center mb-3">
-        {getSkillIcon(iconType)}
-      </div>
-      <h3 className="font-medium">{name}</h3>
-      <div className="text-xs text-muted-foreground">{t(`skills.${level.toLowerCase()}`)}</div>
-    </motion.div>
   );
 }
