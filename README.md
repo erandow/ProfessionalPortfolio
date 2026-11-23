@@ -1,4 +1,27 @@
-# Modern Portfolio Website
+# ProfessionalPortfolio
+
+## Living Workbench
+
+The creative portfolio lives in `portfolio/`. It uses Next.js App Router, TypeScript, Tailwind CSS, and Motion. The homepage and case studies are prerendered. The Workbench simulation runs in the browser.
+
+Use Node.js 22 LTS or newer. Run these commands from the repository root.
+
+```sh
+npm ci --prefix portfolio
+npm run dev --prefix portfolio
+```
+
+Open [the local portfolio](http://localhost:3100). To build and run production locally:
+
+```sh
+npm run check --prefix portfolio
+npm run build --prefix portfolio
+npm run start --prefix portfolio
+```
+
+Case studies, professional experience, and contact links are maintained in `portfolio/lib/content.ts`. The portfolio reuses the existing résumé and images from `client/`.
+
+## Original Vite portfolio
 
 ![Portfolio Preview](assets/portfolio-preview.png)
 
