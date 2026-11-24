@@ -10,7 +10,7 @@ export interface PublicationData {
   year: number;
   authors: string[];
   status?: string;
-  abstract: string;
+  abstract?: string;
   award?: string;
   paperUrl?: string;
   pdfUrl?: string;
@@ -116,25 +116,27 @@ export default function PublicationItem({
           label={showBibtex ? "Hide BibTeX" : "BibTeX"}
           onClick={() => setShowBibtex(!showBibtex)}
         />
-        <button
-          type="button"
-          onClick={() => setShowAbstract(!showAbstract)}
-          className="inline-flex items-center gap-1 text-xs font-medium text-academic-muted hover:text-academic-accent px-2 py-1 transition-colors"
-        >
-          {showAbstract ? (
-            <>
-              Hide Abstract <ChevronUp className="w-3 h-3" />
-            </>
-          ) : (
-            <>
-              Abstract <ChevronDown className="w-3 h-3" />
-            </>
-          )}
-        </button>
+        {publication.abstract && (
+          <button
+            type="button"
+            onClick={() => setShowAbstract(!showAbstract)}
+            className="inline-flex items-center gap-1 text-xs font-medium text-academic-muted hover:text-academic-accent px-2 py-1 transition-colors"
+          >
+            {showAbstract ? (
+              <>
+                Hide Abstract <ChevronUp className="w-3 h-3" />
+              </>
+            ) : (
+              <>
+                Abstract <ChevronDown className="w-3 h-3" />
+              </>
+            )}
+          </button>
+        )}
       </div>
 
       {/* Abstract Drawer */}
-      {showAbstract && (
+      {publication.abstract && showAbstract && (
         <div className="mt-3 p-4 rounded-lg bg-academic-soft/50 border border-academic-border text-xs sm:text-sm text-academic-muted leading-relaxed max-w-[760px]">
           <p className="font-semibold text-academic-text mb-1 text-xs uppercase tracking-wider font-mono">
             Abstract

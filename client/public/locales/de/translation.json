@@ -15,6 +15,7 @@
     "language": "Sprache"
   },
   "hero": {
+    "pauseRotation": "Drehung des Avatars pausieren",
     "welcome": "Willkommen!",
     "developer": "<Entwickler />",
     "developerDesc": "Innovative Web-Erlebnisse mit moderner Technologie und kreativer Gestaltung schaffen.",

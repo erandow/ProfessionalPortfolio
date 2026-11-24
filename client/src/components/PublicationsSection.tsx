@@ -22,7 +22,7 @@ export default function PublicationsSection() {
   const { t } = useTranslation();
   const [activeBibtex, setActiveBibtex] = useState<{ title: string; bibtex: string } | null>(null);
   const [expandedAbstracts, setExpandedAbstracts] = useState<Record<string, boolean>>({
-    "ipria-2025": true, // Expand first one by default
+    "ipria-2025": true,
   });
 
   const toggleAbstract = (id: string) => {
@@ -71,6 +71,7 @@ export default function PublicationsSection() {
                   <span className="text-xs text-muted-foreground font-mono">
                     {pub.year}
                   </span>
+                  {pub.status && <Badge variant="outline">{pub.status}</Badge>}
                   {pub.award && (
                     <Badge className="bg-amber-500/15 text-amber-700 dark:text-amber-400 border border-amber-500/30 text-xs font-semibold gap-1.5">
                       <Award className="w-3.5 h-3.5 text-amber-500" />
@@ -120,7 +121,7 @@ export default function PublicationsSection() {
               </div>
 
               {/* Abstract Accordion */}
-              {expandedAbstracts[pub.id] && (
+              {pub.abstract && expandedAbstracts[pub.id] && (
                 <motion.div
                   initial={{ opacity: 0, height: 0 }}
                   animate={{ opacity: 1, height: "auto" }}
@@ -137,24 +138,26 @@ export default function PublicationsSection() {
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-border/50">
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  onClick={() => toggleAbstract(pub.id)}
-                  className="text-xs h-8 px-3 gap-1.5 text-muted-foreground hover:text-foreground"
-                >
-                  {expandedAbstracts[pub.id] ? (
-                    <>
-                      <ChevronUp className="w-3.5 h-3.5" />
-                      Hide Abstract
-                    </>
-                  ) : (
-                    <>
-                      <ChevronDown className="w-3.5 h-3.5" />
-                      Read Abstract
-                    </>
-                  )}
-                </Button>
+                {pub.abstract && (
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    onClick={() => toggleAbstract(pub.id)}
+                    className="text-xs h-8 px-3 gap-1.5 text-muted-foreground hover:text-foreground"
+                  >
+                    {expandedAbstracts[pub.id] ? (
+                      <>
+                        <ChevronUp className="w-3.5 h-3.5" />
+                        Hide Abstract
+                      </>
+                    ) : (
+                      <>
+                        <ChevronDown className="w-3.5 h-3.5" />
+                        Read Abstract
+                      </>
+                    )}
+                  </Button>
+                )}
 
                 {pub.paperUrl && (
                   <Button size="sm" variant="outline" asChild className="text-xs h-8 px-3 gap-1.5">

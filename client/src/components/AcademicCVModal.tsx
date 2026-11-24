@@ -138,7 +138,7 @@ export default function AcademicCVModal({ isOpen, onClose }: AcademicCVModalProp
                         {i < pub.authors.length - 1 ? ", " : ". "}
                       </span>
                     ))}
-                    "{pub.title}". <em>{pub.venue}</em> ({pub.year}).
+                    "{pub.title}". <em>{pub.venue}</em> ({pub.year}). {pub.status && <em>{pub.status}.</em>}
                   </p>
                   {pub.award && (
                     <span className="inline-block mt-1 px-2 py-0.5 rounded text-[11px] font-medium bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/30">

@@ -25,7 +25,8 @@ export interface Publication {
   venueShort: string;
   year: number;
   authors: string[];
-  abstract: string;
+  status?: string;
+  abstract?: string;
   award?: string;
   paperUrl?: string;
   pdfUrl?: string;
@@ -152,6 +153,23 @@ export const researchAreas: ResearchArea[] = [
 ];
 
 export const publicationsData: Publication[] = [
+  {
+    id: "mvip-2026",
+    title: "Quality Assessment of AI-Generated Images with Frequency-Aware Visual Features and Semantic Consistency Modeling",
+    venue: "International Conference on Machine Vision and Image Processing (MVIP)",
+    venueShort: "MVIP 2026",
+    year: 2026,
+    authors: ["Parmida Pourmatin", "Erfan Asadi", "Azadeh Mansouri"],
+    status: "Accepted",
+    tags: ["Image Quality Assessment", "AI-Generated Images", "Frequency-Aware Features", "Semantic Consistency"],
+    bibtex: `@inproceedings{pourmatin2026quality,
+  title={Quality Assessment of {AI}-Generated Images with Frequency-Aware Visual Features and Semantic Consistency Modeling},
+  author={Pourmatin, Parmida and Asadi, Erfan and Mansouri, Azadeh},
+  booktitle={International Conference on Machine Vision and Image Processing (MVIP)},
+  year={2026},
+  note={Accepted}
+}`,
+  },
   {
     id: "ipria-2025",
     title: "The Role of Fine-Tuned Feature Map Correlation in Video Quality Assessment",

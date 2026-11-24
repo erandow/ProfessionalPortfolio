@@ -15,6 +15,7 @@
     "language": "زبان"
   },
   "hero": {
+    "pauseRotation": "مکث در چرخش آواتار",
     "welcome": "خوش آمدید!",
     "developer": "<Coder />",
     "developerDesc": "خلق تجربیات نوآورانه وب با تکنولوژی مدرن و ذوق خلاقانه.",
