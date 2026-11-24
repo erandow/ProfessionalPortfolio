@@ -1,3 +1,5 @@
+export const showHobbies = false;
+
 export const profile = {
   name: "Erfan Asadi",
   email: "erfanasadi.ce@gmail.com",
@@ -9,62 +11,129 @@ export const profile = {
   resume: "/Erfan-Asadi-Resume.pdf",
 };
 
+// EKB repository snapshot, 2026-11-24. Count each PR once.
+export const ekbPullRequests = {
+  authoredAndMergedToMain: 271,
+  reviewedForOtherAuthors: 204,
+} as const;
+
 export const projects = [
   {
     slug: "ekb",
     name: "EKB Journal System",
-    category: "Frontend modernization",
-    title: "Modernizing a scholarly journal platform",
-    summary: "An incremental rebuild of the Egyptian Knowledge Bank’s journal platform with React, Next.js, and a bilingual interface.",
+    category: "Scholarly publishing",
+    title: "Leading EKB’s frontend rebuild",
+    summary: "I lead four frontend engineers rebuilding the Egyptian Knowledge Bank’s journal platform in Next.js. I review every frontend pull request. I built the submission and revision flows for authors, the workspace where reviewers evaluate a manuscript, and the tools publishers use to turn an accepted paper into an article.",
     role: "Frontend Tech Lead at NotionWave",
-    stack: ["React", "Next.js", "TypeScript", "Tailwind CSS", "React Query", "Orval", "i18n / RTL"],
+    stack: ["TypeScript", "React", "Next.js", "Tailwind CSS", "React Query", "Orval", "i18n / RTL", "NestJS", "Vertex AI", "Elasticsearch"],
     url: null,
     linkLabel: null,
     experience: [
-      { title: "The problem", body: "The Egyptian Knowledge Bank’s scholarly journal platform needed a frontend rebuild while its existing users continued working in the legacy PHP system." },
-      { title: "My role", body: "I lead four frontend engineers at NotionWave, set architecture and component standards, and work with backend and product teams on the platform rebuild." },
+      { title: "Leading the migration", body: "At NotionWave, I lead four frontend engineers. We move one workflow at a time from PHP to Next.js under /new so journals can keep working during the rebuild. I set component standards and work with product and backend engineers to check the new screens against the workflows editors already know." },
+      { title: "Reconstructing the old system", body: "The previous journal system was built without version control or documentation. As we migrate workflows from PHP to Next.js, we use AI to follow each workflow through the PHP code and write down its behavior as a spec. Checking those specs takes a substantial share of our time and energy. We work through the flow in the old application to confirm what an administrator actually sees." },
+      { title: "Account access and the publisher directory", body: "I rebuilt sign-in and password recovery around shared form components and added a way to request a fresh reset link after one expires. A journal can have several publishers, so I built controls for linking multiple organizations and made the public directory show where each division sits in the hierarchy." },
+      { title: "From first submission to corrected proof", body: "I built the author dashboard and submission wizard, including co-author details, file uploads and the final check before submission. The first valid save creates the draft, and a retry reuses it. After the decision, the author can reopen the manuscript with the editor’s feedback. I built a second wizard that reads the manuscript status and asks for the right response, whether that is a corrected proof, a required document or an editorial correction." },
+      { title: "Reviewing a manuscript across rounds", body: "I built the reviewer’s path from the invitation through the questionnaire, attachments and final recommendation. Reviewers write separate notes for the editor and the author. The form saves both automatically. For chief and final reviewers, I added a comparison panel so they can read earlier evaluations beside the one they are writing. The panel follows the API’s visibility rules for reviewer identities." },
+      { title: "Tools for editors and publishers", body: "I adapted journal administration tools so editorial staff can manage subjects, evaluation questions and board members within their own journal. For publishers, I built the accepted-manuscript workspace and publishing steps. If a required field is missing at publication, the wizard takes the publisher back to that step. I also built the issue-level PubMed XML download." },
     ],
     engineering: [
-      { title: "Page-by-page migration", body: "We move routes to React and Next.js under a /new path one page at a time, allowing the legacy system to serve existing workflows during migration." },
-      { title: "Bilingual UI and typed APIs", body: "The interface supports Arabic and English, including right-to-left layouts. We use Orval to generate typed clients from the OpenAPI specification." },
+      { title: "Giving the team a review standard", body: "Early in the migration I restored Storybook, added examples for shared controls and wrote the frontend review checklist. I used it when reviewing changes across the application. For example, when sorting was added to 22 editor-in-chief list pages, I checked the allowed columns against the API and asked for a contract test so the two implementations could not silently drift." },
+      { title: "One API, two interface languages", body: "Orval generates our React Query client from OpenAPI. After a switch to Arabic, the submission form could still show manuscript types in English because both languages shared a cache entry. I included the active locale in the cache key and added a regression test for the wizard." },
+      { title: "Replacing a file across review rounds", body: "Authors had to delete the main manuscript before uploading a revision. I made replacement update the active attachment in place while preserving the copies the editor had archived for comparison. Integration tests cover overlapping uploads and verify that the archived file contents survive." },
+      { title: "A smaller public journal homepage", body: "The public page sent readers translations for the entire application. I limited the client catalogue to the sections those pages use, taking the English messages from 432 KB to 51 KB. I also rendered the opening content on the server so readers can see it while ads and related journals load." },
+      { title: "Finding frontend failures", body: "Browser errors were hard to trace alongside API failures. I added structured, redacted logs from the browser and Next.js server to the existing Elasticsearch stream so the team can investigate both sides of a request." },
+      { title: "Getting lint feedback in seconds", body: "A frontend lint run could exceed ten minutes. Profiling led me to a minified third-party PDF worker, duplicate formatting checks and tests that loaded every translation key. After those changes, my local benchmark took 106 seconds cold in performance mode and 3–4 seconds with a warm cache." },
+    ],
+  },
+  {
+    slug: "ekb-ai-guide",
+    name: "EKB AI Guide",
+    category: "AI for journal administration",
+    title: "How I built the AI Guide",
+    summary: "I built a bilingual assistant for the Egyptian Knowledge Bank that finds an answer in the product documentation, cites the source and takes a journal administrator to the field they need.",
+    role: "Frontend Tech Lead at NotionWave",
+    stack: ["TypeScript", "Next.js", "NestJS", "Elasticsearch", "Vertex AI"],
+    url: null,
+    linkLabel: null,
+    experience: [
+      { title: "Finding a field in an unfamiliar dashboard", body: "A journal administrator might know the policy they want to change, such as the length of an abstract, without knowing what the dashboard calls it. As frontend lead at NotionWave, I built the AI Guide across the dashboard and API so the administrator could ask in their own words." },
+      { title: "Retrieving help in the right language", body: "I connected 19 help articles, each available in English and Arabic, to a hybrid search in Elasticsearch. It combines keyword matches with Vertex AI embeddings so both an exact setting name and a paraphrased question can surface relevant passages. Only reviewed material in the selected language is eligible." },
+      { title: "From an answer to the actual control", body: "I built the conversation panel to stream the answer and show the help it draws on. An administrator can follow a suggestion to the relevant page and see the field highlighted there. The guide handles navigation. The administrator decides what to enter and save." },
+    ],
+    engineering: [
+      { title: "Keeping directions in sync with the interface", body: "I used a shared registry of pages, menu entries and settings to connect answers to real destinations. Tests compare the registry with the routes and translated labels in the frontend. A renamed field can be caught during development before it leaves the guide pointing at an old label." },
+      { title: "Highlighting the right field in Arabic", body: "A highlight that searches for the English field name misses its target on an Arabic page. I made the guide look up the label using the same translation key as the form. The answer can point to the control in the language the administrator sees." },
+      { title: "Checking what the guide can answer", body: "I scoped the tools to product help and navigation, with journal administrators getting access when their journal is enabled. I added checks for citations, access and questions outside that scope. The release validation recorded 311 passing integration tests across 13 suites, including journal settings and the guide API." },
     ],
   },
   {
     slug: "troweb",
+    badge: "startup",
     name: "Troweb",
     category: "Agentic AI",
-    title: "A workspace for working with data",
-    summary: "A personal data workspace that brings multi-agent workflows into a web application.",
+    title: "Building Troweb’s frontend and migrating it in stages",
+    summary: "I led frontend development for Troweb, a workspace where people organize documents into collections and ask AI agents to work with them. I set up the new React application and used the Strangler Fig pattern to move chat into it while colleagues continued using the existing workspace.",
     role: "Frontend Tech Lead & AI Agent Developer",
-    stack: ["TypeScript", "React Router", "GraphQL (URQL)", "LangGraph", "LangChain", "Python", "Node.js", "MongoDB"],
+    stack: ["TypeScript", "React", "Remix", "React Router 7", "Vite", "Tailwind CSS", "GraphQL (urql)", "LangChain", "LangGraph", "Python", "Node.js", "MongoDB"],
     url: "https://www.troweb.com/",
     linkLabel: "Visit Troweb",
     experience: [
-      { title: "The problem", body: "A personal data workspace needs a way for people to perform data tasks without leaving the application. Troweb brings those tasks and AI-assisted workflows into the same product." },
-      { title: "My role", body: "I led frontend delivery at NotionWave from 2023 to 2026, managing three senior frontend engineers and overseeing architecture, code review, and delivery." },
+      { title: "Leading the frontend", body: "At NotionWave, I managed three senior frontend engineers for two years and was responsible for architecture, code review and delivery. I also connected Troweb to the repository that held our company documentation. Teams could keep using the original project as we introduced the integration in stages." },
+      { title: "Designing the collection workspace", body: "I built the collection tree and item views for browsing a library. A collection could hold records with different structures, so I built field editors and views for numbers, dates and nested objects. I also built the permissions table that showed which roles were assigned locally and which came from a parent collection." },
+      { title: "Turning a document into records", body: "One of our early importer examples was a text file of multiple-choice questions. I worked on the importer that used LangChain and GPT-3.5 to infer a schema from the text and create records in the selected collection, each linked to its source file. I later built the per-file progress view so someone importing a batch could see which files had finished or failed." },
+      { title: "Giving agents access to the workspace", body: "I built the multi-model chat and integrated agents using LangChain and LangGraph across GPT, Claude and Gemini. Users could attach a file, select a collection, or enable library and web search, then use an agent to research a question or generate an image. Troweb tracked usage through credits." },
+      { title: "What happened after launch", body: "The launch fell short of our goals. Marketers, sales colleagues, product owners and product managers at NotionWave still use Troweb internally. Feature development has stopped, and we continue to update the models." },
     ],
     engineering: [
-      { title: "Incremental frontend replacement", body: "I replaced the legacy frontend incrementally with a frontend-v2 migration. The strangler pattern let us replace parts of the application while keeping production available." },
-      { title: "Model-agnostic agent orchestration", body: "I integrated LangChain and LangGraph agents through a layer that supported GPT, Claude, and Gemini. The agents automated tasks in the personal data workspace." },
+      { title: "The first move from Next.js to Remix", body: "In 2022 I moved routes into Remix while reusing React pages from our UI kit. The new search and collection routes initially rendered their existing screens. That let us change how requests reached a page before rebuilding its interface. I also added a Storybook interaction that typed into the search control so we could exercise it in isolation." },
+      { title: "Setting up the new frontend", body: "In August 2025 I initialized the replacement application with React Router 7, TypeScript, Vite, Tailwind CSS, server-side rendering and a Docker build. I wrote the team’s conventions for registering routes, loading data and organizing components. Routes could load workspace data through GraphQL and urql, while shared controls handled its presentation." },
+      { title: "Moving chat one route at a time", body: "I led the Strangler Fig migration and merged it into the main branch in September 2025. We ran the new frontend under /v2. I wired its entry point to open a chat thread there, while Explore and administration still routed back to the existing app. Someone could use the new chat and manage the same collection in the old interface during the rollout." },
+      { title: "Keeping a streamed answer with its sources", body: "I used server-sent events to update a reply as the agent produced text and sources. If the stream failed, retry restored the model, agent, search settings and attachments from the original message. When someone reopened a thread, the history query supplied fresh signed URLs so generated images could be previewed and downloaded again." },
+      { title: "Supporting different languages and product editions", body: "I added i18next, a language switcher and locally hosted fonts for different scripts. I adapted the chat layout for right-to-left languages while keeping code left-to-right. For the Troweb and AvidMind editions, I centralized brand-specific links and added installable web app manifests so each edition opened with its own name and icon." },
     ],
   },
   {
     slug: "doexam",
+    badge: "startup",
     name: "DoExam",
     category: "Frontend engineering",
-    title: "Online assessment for K–12",
-    summary: "An online testing platform with a bilingual exam experience, performance reporting, and asynchronous grading.",
+    title: "Building DoExam’s frontend from scratch",
+    summary: "At NotionWave, I built the frontend for DoExam, a platform for large-scale international exams. My work on the TOEIC project covered the questions candidates saw, the logic that kept track of their answers, and the reports they received after grading.",
     role: "Frontend Developer",
-    stack: ["TypeScript", "React", "GraphQL", "Node.js", "MongoDB"],
+    stack: ["Next.js", "Material UI", "React", "TypeScript"],
     url: "https://www.doexam.com/en",
     linkLabel: "Visit DoExam",
     experience: [
-      { title: "The problem", body: "A large online exam has a shared start time, so delivering exam materials and handling grading on the live exam path can create a burst of work." },
-      { title: "My role", body: "At NotionWave, I built the English and Persian exam interface, including right-to-left support, plus performance reports for students and cohorts." },
+      { title: "Setting up the exam application", body: "I started with a new Next.js application and used Material UI to build the exam screens. A candidate could take the exam in English or Persian, so the screens had to work in both reading directions. That mattered even within a single question. In Persian, the prompt, the answer choices and the controls for selecting them all had to read naturally from right to left." },
+      { title: "Turning imported questions into an exam", body: "The exam content came from imported question sets. I built components that could take a question in any supported format and give the candidate the right way to answer it. For a multiple-choice question, the component took the prompt and its options, displayed them together and showed which option the candidate had selected. The same component could handle the next multiple-choice question even when its wording and options were entirely different." },
+      { title: "Keeping track of a candidate’s answers", body: "I implemented the frontend logic that kept each response attached to its question as the candidate worked through the exam. If someone chose an option and moved on, that choice still had to reach the server to count toward their score. The frontend encrypted the answer data before sending it and retried the transfer when delivery failed. This mattered because a candidate could see their choice on screen even if the first attempt to send it had failed." },
+      { title: "Building the individual and group report pages", body: "Once a candidate submitted the exam, a background job graded the responses. I built the pages that made those results readable. On the individual report page, a candidate could see their score alongside charts and illustrations of their performance. On the group report page, I brought the results of candidates who sat the same exam into one view. A reader could see how the group performed without piecing that picture together from individual score reports." },
+      { title: "What happened to DoExam", body: "DoExam ultimately failed as a startup. By the time some of its features moved to a later project, I had already left the team." },
     ],
     engineering: [
-      { title: "Delivering exam materials", body: "We cached encrypted exam bundles on the CDN ahead of time and released the decryption keys when the exam began. Students could receive most of the material before the shared start event." },
-      { title: "Keeping grading separate", body: "I built an asynchronous corrector so grading ran independently from live exam sessions." },
+      { title: "Downloading the exam before it opened", body: "The design target was 500,000 candidates taking the same exam. If each person requested the entire question set at the scheduled start, the largest downloads would all arrive together. We encrypted the exam bundle and put it on the CDN in advance so candidates could download it early. At exam time we released the key that unlocked their copy. The questions stayed unreadable until then, and most of the data had already crossed the network." },
+      { title: "Staggering the start", body: "Even with the bundle already downloaded, opening every session at the same instant would create a spike in requests. We gave each candidate a short, random delay. One candidate might enter 10 seconds after the scheduled start and another after 30 seconds. That spread the remaining requests across the opening seconds of the exam." },
+    ],
+  },
+  {
+    slug: "lernito",
+    name: "Lernito",
+    category: "Learning platforms",
+    title: "My first junior developer role at Lernito",
+    summary: "I learned HTML and CSS on Lernito’s development team. I spent much of my time fixing bugs in the learning platform and connected it to Skyroom so teachers could create live classes from Lernito.",
+    role: "Junior Web Developer",
+    stack: ["HTML", "CSS", "LiveScript", "React", "Node.js", "MongoDB"],
+    url: "https://lernito.com/",
+    linkLabel: "Visit Lernito",
+    experience: [
+      { title: "Learning on a live product", body: "Lernito was already in maintenance when I joined. Working on its React screens for plan management and class groups taught me how HTML and CSS fit into an existing application. Tracking down bugs with my teammates was how I learned the day-to-day work of a development team." },
+      { title: "How teachers used groups", body: "A teacher could create a class group and invite students with a link. Once students joined, the teacher could share a set of questions, schedule an exam, and review results for the class or an individual student." },
+      { title: "The shift to remote classes", body: "I worked on Lernito at Avid Arvand Technologies from 2019 to 2021. As schools moved online during the pandemic, the platform reached about 80,000 active users." },
+    ],
+    engineering: [
+      { title: "Maintaining the React frontend", body: "I tracked down and fixed bugs in the existing frontend. I also built React components for the screens that administrators used to manage plans and teachers used to manage class groups." },
+      { title: "Creating a Skyroom class from Lernito", body: "I connected Lernito to Skyroom, the service that hosted live lessons. Teachers could create a live class in Lernito and use the corresponding room in Skyroom to teach it." },
+      { title: "From web to Android", body: "I developed features across the React frontend and Node.js backend with a team that used LiveScript and MongoDB. I also helped release the Android app on Google Play." },
     ],
   },
   {
@@ -72,7 +141,7 @@ export const projects = [
     name: "LC-BVQA",
     category: "Applied AI",
     title: "Estimating video quality without a reference",
-    summary: "A low-complexity deep learning system for blind video quality assessment.",
+    summary: "How closely can a model match the quality score viewers give a video? LC-BVQA estimates that score from the frames of the clip alone.",
     role: "Research & implementation",
     stack: ["Python", "PyTorch", "CUDA", "OpenCV", "scikit-learn"],
     url: "https://github.com/erandow/LC-BVQA",
@@ -82,8 +151,60 @@ export const projects = [
       { title: "My role", body: "I developed a low-complexity, deep learning-based system for this task as part of my graduate work in artificial intelligence." },
     ],
     engineering: [
-      { title: "Processing and evaluation", body: "The public implementation separates frame extraction, feature extraction, pooling, and support vector regression. It uses OpenCV for video processing, PyTorch and CUDA for the model, and scikit-learn for evaluation." },
-      { title: "A design question", body: "Estimating quality from video means deciding how much computation to spend extracting features from frames. The project explores this tradeoff through low-complexity feature processing." },
+      { title: "Learning what quality looks like", body: "The feature extractor starts with a pretrained Inception-v3 network. Fine-tuning it on images with human quality ratings gives its filters a quality-related training signal. At extraction time, each video frame is resized, center-cropped to 299 × 299 pixels and normalized before it enters the network." },
+      { title: "Which filters respond together?", body: "At Mixed_5b and Mixed_5c, each channel is a map of one filter’s responses across the frame. The code takes a normalized dot product for each pair of maps. A large value means the filters respond strongly at the same locations. These values form a symmetric Gram matrix. With three channels, for example, only six of the nine entries need storing, including the diagonal. The final avgpool layer supplies a separate vector directly." },
+      { title: "One descriptor for the whole clip", body: "For each feature, the temporal mean captures its typical response and the maximum retains its strongest response in any frame. Concatenating these summaries gives the same number of values for a short clip as for a long one. The example in the repository combines Mixed_5c with avgpool, standardizes the inputs and fits a linear support vector regressor to mean opinion scores." },
+      { title: "Checking the score against viewers", body: "The evaluation script shuffles videos into five folds, trains on four and predicts scores for the held-out fold. It repeats the five-fold procedure 20 times. Spearman correlation measures whether the model ranks clips in the same order as viewers. Pearson correlation measures how closely predicted and mean viewer scores follow a linear relationship." },
+    ],
+  },
+  {
+    slug: "ashti",
+    name: "Ashti Academy",
+    category: "Learning platforms",
+    title: "Building a Persian-language learning platform",
+    summary: "I built the storefront and connected the services behind Ashti Academy, a Persian-language platform for cognitive skills and personal development. A learner can move from an article to a course preview, pay for a course and find its lessons again in their account.",
+    role: "Full-stack developer",
+    stack: ["TypeScript", "React Router", "GraphQL", "Strapi", "PostgreSQL", "Python / Flask", "LangGraph", "BullMQ / Redis", "FFmpeg", "MinIO", "Docker Compose"],
+    url: null,
+    linkLabel: null,
+    experience: [
+      { title: "Finding a place to start", body: "Someone arriving from an article can explore the blog, like a post or reply to a comment before choosing a course. In the shop, visitors can search by title, narrow the list by category or topic, look for discounts and open a free lesson to hear or see how a subject is taught. The homepage also features podcasts." },
+      { title: "A dashboard shaped by the learner", body: "During registration, learners verify their phone number with a one-time code. The introductory questionnaire accepts choices, written answers and answers on a scale. The dashboard brings together their topics, suggested courses and articles, and courses they already have." },
+      { title: "What a purchase looks like", body: "A learner adds a course to the cart and pays through ZarinPal. On return, the confirmation screen shows the payment outcome and, when available, a reference number. The account has an order history for checking a payment and a library for finding a lesson. Free course access also appears in that library." },
+      { title: "A publishing desk for the academy", body: "In Strapi, an editor can organise lessons into courses, set prices and discounts on products, choose free previews and upload lesson media. The editor can see when a video is ready. Blog posts, categories, featured content and the introductory questionnaire have their own records, so the team can edit them independently of the storefront." },
+      { title: "Account messages and feedback", body: "Learners can review products and see account messages in a notification inbox. Opening messages and marking them as read updates the unread state. On the editorial side, notification templates hold the wording for each delivery channel." },
+    ],
+    engineering: [
+      { title: "Where each repository fits", body: "The academy repository ties the services together with Git submodules and Docker Compose profiles. academy-webapp holds the React Router storefront and server-side loaders. academy-cms owns the Strapi content model and commerce API. The Compose setup defines PostgreSQL for records, Redis for shared services and MinIO for media. academy-ui is a separate React prototype whose administration screens use sample users, products and transactions." },
+      { title: "From a cart to a course library", body: "Cart middleware calculates fixed or percentage discounts. Order items carry a price snapshot so the purchase record retains the amount at checkout. The server verifies the returning payment with ZarinPal. For a paid order, Strapi creates a product-access record for each item and then marks the order complete." },
+      { title: "From questionnaire answers to suggestions", body: "The Flask service in academy-data-service passes the questions, answers and available topic tags to a single LangGraph step. It keeps tag IDs that match the catalogue and updates the learner profile. The recommender can use profile tags, the tags of the open product or article, or both. With neither source it requests a random selection. This also gives a first-time visitor something to explore." },
+      { title: "From an editor’s upload to the player", body: "Changing a lesson’s media triggers a job in academy-streaming-service. BullMQ and Redis let the worker process two jobs concurrently. It downloads the source locally and runs FFmpeg to produce 720p H.264 video with AAC audio and HLS segments targeting six seconds. It uploads the playlist and segments to MinIO and reports success or failure to Strapi. The web app serves playlists with a short cache lifetime and segments with a longer one." },
+      { title: "Identity and messages across services", body: "The storefront’s password form uses Strapi’s local sign-in API. The wider stack also includes Keycloak configuration. The CMS provides email and Kavenegar SMS adapters, plus templates and read receipts for the internal inbox. academy-wpp-bot manages a separate QR-paired WhatsApp session with health and message-sending endpoints. Connecting that service to the CMS notification adapter is still a separate integration task." },
+      { title: "Keeping filters and page numbers in sync", body: "A visitor on page four can select a topic with only one page of courses. Keeping the old page number would hide those results. The shop now takes category, tag, discount and search changes back to page one. Changing the sort order keeps the current page, and the URL carries the active filters when the visitor pages forward." },
+      { title: "Debugging a missing course and a misleading badge", body: "The purchases page reads two sources, completed orders and explicit access grants. A recorded fix filters out grants with a missing product and skips empty records. The page merges the remaining entries by product ID so a learner sees a course once. Another fix limits the unread count to internal messages, so an email or SMS record cannot inflate the inbox badge." },
+      { title: "What I would verify next", body: "I would test a repeated payment confirmation and an interrupted multi-item order, checking that each purchase grants access exactly once. For video, I would test a queue outage just after an upload and make sure the editor gets a recoverable status. I would also verify preview and purchased lessons across both the lesson page and media delivery, then test a lower-bitrate rendition on a slow connection." },
+    ],
+  },
+  {
+    slug: "typewriter",
+    name: "React Type Writer",
+    category: "Open source",
+    title: "A typing effect in a React hook",
+    summary: "I built React Type Writer with Iman Akrami. Our hook types and erases a sequence of phrases, returning the text so a React component can display it in its own layout.",
+    role: "Library co-author",
+    stack: ["React", "TypeScript", "Rollup"],
+    npmPackage: "@vegadev/react-type-writer",
+    url: "https://github.com/erandow/react-type-writer",
+    linkLabel: "View source code",
+    experience: [
+      { title: "Animating just part of a heading", body: "A portfolio heading might introduce its author and end with a skill that changes. We designed useTypeWriter to return the characters currently on screen. The introduction can stay in place while a span displays the changing skill in a different colour. The component still owns the heading, its typography and its layout." },
+      { title: "Choosing where the typing ends", body: "For a greeting, pass one string. Once the last letter appears, the greeting stays on screen. For a sequence, pass the phrases in reading order. The hook holds each completed phrase long enough to read, erases it one character at a time and starts the next. By default it leaves the final phrase visible." },
+      { title: "A two-phrase heading", body: "In this example, the heading types “React”, holds it for two seconds, then erases it and types “TypeScript”. The underscore blinks throughout the pause. Setting infiniteLoop to true brings the sequence back to “React” after the second phrase." },
+    ],
+    engineering: [
+      { title: "Moving from typing to erasing", body: "The hook tracks the phrase index, the number of visible characters and the direction of travel. Typing advances the character count, and erasing walks it back to zero. The hook renders a slice of the original phrase at each step, so the same logic works for a single word or a whole sentence." },
+      { title: "Giving the cursor its own rhythm", body: "Keystrokes have a variable delay. The delay option controls the pause after a phrase, while blinkerDelay controls how often the cursor changes visibility. Separate React effects let the cursor keep time while the text stands still. Each effect clears its pending timeout during cleanup." },
+      { title: "Shipping the hook on npm", body: "Rollup builds both ES module and CommonJS versions, and the package includes TypeScript declarations for the hook’s options and return value. Version 1.2.3 lists React 16, 17 and 18 as peer dependency ranges. The application supplies React, and the package has no runtime dependencies of its own." },
     ],
   },
 ] as const;
@@ -91,8 +212,8 @@ export const projects = [
 export const experience = [
   { company: "NotionWave · EKB Journal System", role: "Frontend Tech Lead", period: "2026–Present", detail: "Lead the frontend team rebuilding the Egyptian Knowledge Bank’s scholarly journal platform." },
   { company: "NotionWave · Troweb", role: "Frontend Tech Lead & AI Agent Developer", period: "2023–2026", detail: "Led frontend development and integrated AI agents into a personal data workspace." },
-  { company: "NotionWave · DoExam", role: "Frontend Developer", period: "2021–2023", detail: "Built the bilingual exam-taking experience, performance reports, and asynchronous grading." },
-  { company: "Avid Arvand Technologies · Lernito", role: "Web Application Developer", period: "2019–2021", detail: "Developed an integrated online classroom, question bank, and assessment platform." },
+  { company: "NotionWave · DoExam", role: "Frontend Developer", period: "2021–2023", detail: "Built the bilingual exam interface and visual score reports for candidates and cohorts." },
+  { company: "Avid Arvand Technologies · Lernito", role: "Junior Web Developer", period: "2019–2021", detail: "Maintained the learning platform and integrated Skyroom so teachers could create live classes from Lernito." },
 ] as const;
 
 export const education = [
@@ -103,6 +224,7 @@ export const education = [
     location: "Tehran, Iran",
     thesis: "Low Complexity Blind Video Quality Assessment",
     honor: "National Exceptional Talent Scholarship",
+    teaching: "Teaching Assistant · Neural Networks (2022–2024)",
   },
   {
     degree: "B.Sc. in Computer Engineering",
@@ -111,8 +233,18 @@ export const education = [
     location: "Rasht, Iran",
     thesis: "Metadata Extraction from Academic Research Papers",
     honor: "Graduated as an Outstanding Student",
+    teaching: "Teaching Assistant",
   },
 ] as const;
+
+export const videoQualityPaper = {
+  title: "The Role of Fine-Tuned Feature Map Correlation in Video Quality Assessment",
+  venue: "IPRIA 2025",
+  authors: "Erfan Asadi, Parmida Pourmatin, and Azadeh Mansouri",
+  award: "Best Paper Award",
+  summary: "Uses correlations between fine-tuned features to estimate video quality without a reference video.",
+  paperUrl: "https://ieeexplore.ieee.org/document/11263611/",
+} as const;
 
 export const publications = [
   {
@@ -123,14 +255,7 @@ export const publications = [
     summary: "Assesses the quality of AI-generated images using frequency-aware visual features and semantic consistency.",
     paperUrl: null,
   },
-  {
-    title: "The Role of Fine-Tuned Feature Map Correlation in Video Quality Assessment",
-    venue: "IPRIA 2025",
-    authors: "Erfan Asadi, Parmida Pourmatin, and Azadeh Mansouri",
-    award: "Best Paper Award",
-    summary: "Uses correlations between fine-tuned features to estimate video quality without a reference video.",
-    paperUrl: "https://ieeexplore.ieee.org/document/11263611/",
-  },
+  videoQualityPaper,
   {
     title: "NTIRE 2024 Quality Assessment of AI-Generated Content Challenge",
     venue: "IEEE/CVF CVPR Workshops · 2024",

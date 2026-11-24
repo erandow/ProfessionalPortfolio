@@ -16,11 +16,11 @@ export type ContentTranslation = {
     summary: string;
     role: string;
     linkLabel?: string;
-    experience: [CaseSection, CaseSection];
-    engineering: [CaseSection, CaseSection];
+    experience: CaseSection[];
+    engineering: CaseSection[];
   }>;
   experience: TranslationEntries<typeof experience, { role: string; period: string; detail: string }>;
-  education: TranslationEntries<typeof education, { degree: string; institution: string; location: string; thesis: string; honor: string }>;
+  education: TranslationEntries<typeof education, { degree: string; institution: string; location: string; thesis: string; honor: string; teaching: string }>;
   publications: TranslationEntries<typeof publications, { venue: string; award: string | null; summary: string }>;
 };
 

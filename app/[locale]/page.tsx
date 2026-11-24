@@ -10,8 +10,10 @@ import officeWalkthrough from "@/assets/erfan-office-walkthrough.webp";
 import researchPortrait from "@/assets/erfan-research.webp";
 import researchWriting from "@/assets/erfan-research-writing.webp";
 import graduationPortrait from "@/assets/erfan-graduation.webp";
+import { HobbyGallery } from "@/components/hobby-gallery";
+import { getHobbies } from "@/lib/hobbies";
 import { ProjectGrid } from "@/components/project-grid";
-import { profile } from "@/lib/content";
+import { profile, showHobbies } from "@/lib/content";
 import { getLocale, getPortfolio } from "@/lib/i18n";
 import { localizedPath } from "@/lib/locales";
 
@@ -25,7 +27,8 @@ const contactMethods = [
 
 export default async function Home({ params }: PageProps<"/[locale]">) {
   const locale = await getLocale(params);
-  const { messages: m, projects, experience, education, publications } = await getPortfolio(locale);
+  const [portfolio, hobbies] = await Promise.all([getPortfolio(locale), showHobbies ? getHobbies() : []]);
+  const { messages: m, projects, experience, education, publications } = portfolio;
   const h = m.home;
   return (
     <>
@@ -71,7 +74,12 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
               />
             </picture>
           </div>
-          <ProjectGrid locale={locale} projects={projects} labels={m.work} featureEkb />
+          <ProjectGrid
+            locale={locale}
+            projects={projects.filter(({ slug }) => !["ashti", "typewriter", "ekb-ai-guide", "lc-bvqa"].includes(slug))}
+            labels={m.work}
+            featureEkb
+          />
         </div>
       </section>
 
@@ -112,6 +120,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
                   <p className="academic-byline">{entry.institution}</p>
                   <p>{h.thesis} · <cite>{entry.thesis}</cite></p>
                   <p>{entry.honor}</p>
+                  <p>{entry.teaching}</p>
                 </li>
               ))}
             </ol>
@@ -169,6 +178,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
           </div>
           <div>
             <p>{h.bio}</p>
+            <p>{h.developmentFocus}</p>
             <p>{h.researchBio}</p>
             <section id="resume" className="resume-callout" aria-labelledby="resume-title">
               <h3 id="resume-title">{m.resume}</h3>
@@ -179,6 +189,18 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
           </div>
         </div>
       </section>
+
+      {showHobbies && (
+        <section id="hobbies" className="light-section" aria-labelledby="hobbies-title">
+          <div className="shell section-space split-section">
+            <div>
+              <h2 id="hobbies-title">{m.nav.hobbies}<span>.</span></h2>
+              <p className="hobby-intro">{m.hobbies.description}</p>
+            </div>
+            <HobbyGallery entries={hobbies} labels={m.hobbies} locale={locale} />
+          </div>
+        </section>
+      )}
 
       <section id="contact" className="shell section-space contact-section" aria-labelledby="contact-title">
         <p className="eyebrow section-kicker"><Asterisk size={17} aria-hidden="true" /> {m.nav.contact}</p>

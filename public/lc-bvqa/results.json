@@ -1,0 +1,331 @@
+{
+  "withinDataset": {
+    "KoNViD-1k": [
+      {
+        "layers": [
+          "avgpool",
+          "Mixed_5b",
+          "Mixed_5c"
+        ],
+        "kernel": "linear",
+        "SROCC": "0.7983",
+        "PLCC": "0.8067"
+      },
+      {
+        "layers": [
+          "avgpool",
+          "Mixed_5b",
+          "Mixed_5c"
+        ],
+        "kernel": "RBF",
+        "SROCC": "0.7924",
+        "PLCC": "0.7822"
+      },
+      {
+        "layers": [
+          "avgpool",
+          "Mixed_5b"
+        ],
+        "kernel": "linear",
+        "SROCC": "0.8145",
+        "PLCC": "0.8076"
+      },
+      {
+        "layers": [
+          "avgpool",
+          "Mixed_5b"
+        ],
+        "kernel": "RBF",
+        "SROCC": "0.7895",
+        "PLCC": "0.7797"
+      },
+      {
+        "layers": [
+          "avgpool",
+          "Mixed_5c"
+        ],
+        "kernel": "linear",
+        "SROCC": "0.7987",
+        "PLCC": "0.7964"
+      },
+      {
+        "layers": [
+          "avgpool",
+          "Mixed_5c"
+        ],
+        "kernel": "RBF",
+        "SROCC": "0.7679",
+        "PLCC": "0.7769"
+      },
+      {
+        "layers": [
+          "avgpool"
+        ],
+        "kernel": "linear",
+        "SROCC": "0.5841",
+        "PLCC": "0.5737"
+      },
+      {
+        "layers": [
+          "avgpool"
+        ],
+        "kernel": "RBF",
+        "SROCC": "0.6433",
+        "PLCC": "0.6498"
+      },
+      {
+        "layers": [
+          "Mixed_5b"
+        ],
+        "kernel": "linear",
+        "SROCC": "0.8179",
+        "PLCC": "0.8118"
+      },
+      {
+        "layers": [
+          "Mixed_5b"
+        ],
+        "kernel": "RBF",
+        "SROCC": "0.7838",
+        "PLCC": "0.7727"
+      },
+      {
+        "layers": [
+          "Mixed_5b",
+          "Mixed_5c"
+        ],
+        "kernel": "linear",
+        "SROCC": "0.8139",
+        "PLCC": "0.8052"
+      },
+      {
+        "layers": [
+          "Mixed_5b",
+          "Mixed_5c"
+        ],
+        "kernel": "RBF",
+        "SROCC": "0.7798",
+        "PLCC": "0.7846"
+      },
+      {
+        "layers": [
+          "Mixed_5c"
+        ],
+        "kernel": "linear",
+        "SROCC": "0.7809",
+        "PLCC": "0.7780"
+      },
+      {
+        "layers": [
+          "Mixed_5c"
+        ],
+        "kernel": "RBF",
+        "SROCC": "0.7939",
+        "PLCC": "0.7904"
+      }
+    ],
+    "LIVE-VQC": [
+      {
+        "layers": [
+          "avgpool",
+          "Mixed_5b"
+        ],
+        "kernel": "linear",
+        "SROCC": "0.7842",
+        "PLCC": "0.7923"
+      },
+      {
+        "layers": [
+          "avgpool",
+          "Mixed_5b"
+        ],
+        "kernel": "RBF",
+        "SROCC": "0.7672",
+        "PLCC": "0.7918"
+      },
+      {
+        "layers": [
+          "avgpool",
+          "Mixed_5c"
+        ],
+        "kernel": "linear",
+        "SROCC": "0.7923",
+        "PLCC": "0.8139"
+      },
+      {
+        "layers": [
+          "avgpool",
+          "Mixed_5c"
+        ],
+        "kernel": "RBF",
+        "SROCC": "0.7259",
+        "PLCC": "0.7690"
+      },
+      {
+        "layers": [
+          "avgpool"
+        ],
+        "kernel": "linear",
+        "SROCC": "0.5624",
+        "PLCC": "0.6241"
+      },
+      {
+        "layers": [
+          "avgpool"
+        ],
+        "kernel": "RBF",
+        "SROCC": "0.5274",
+        "PLCC": "0.6001"
+      },
+      {
+        "layers": [
+          "Mixed_5b"
+        ],
+        "kernel": "linear",
+        "SROCC": "0.7939",
+        "PLCC": "0.8125"
+      },
+      {
+        "layers": [
+          "Mixed_5b"
+        ],
+        "kernel": "RBF",
+        "SROCC": "0.7867",
+        "PLCC": "0.7626"
+      },
+      {
+        "layers": [
+          "Mixed_5b",
+          "Mixed_5c"
+        ],
+        "kernel": "linear",
+        "SROCC": "0.7704",
+        "PLCC": "0.8027"
+      },
+      {
+        "layers": [
+          "Mixed_5b",
+          "Mixed_5c"
+        ],
+        "kernel": "RBF",
+        "SROCC": "0.7690",
+        "PLCC": "0.7768"
+      },
+      {
+        "layers": [
+          "Mixed_5c"
+        ],
+        "kernel": "linear",
+        "SROCC": "0.7572",
+        "PLCC": "0.8007"
+      },
+      {
+        "layers": [
+          "Mixed_5c"
+        ],
+        "kernel": "RBF",
+        "SROCC": "0.7607",
+        "PLCC": "0.8121"
+      },
+      {
+        "layers": [
+          "avgpool",
+          "Mixed_5b",
+          "Mixed_5c"
+        ],
+        "kernel": "linear",
+        "SROCC": "0.7868",
+        "PLCC": "0.7910"
+      },
+      {
+        "layers": [
+          "avgpool",
+          "Mixed_5b",
+          "Mixed_5c"
+        ],
+        "kernel": "RBF",
+        "SROCC": "0.7611",
+        "PLCC": "0.8098"
+      }
+    ]
+  },
+  "crossDataset": [
+    {
+      "method": "CNN-TLVQM (2020, MM)",
+      "liveToKonvid": {
+        "PLCC": "0.631",
+        "SROCC": "0.642"
+      },
+      "konvidToLive": {
+        "PLCC": "0.752",
+        "SROCC": "0.713"
+      }
+    },
+    {
+      "method": "VIDEVAL (2021, TIP)",
+      "liveToKonvid": {
+        "PLCC": "0.621",
+        "SROCC": "0.625"
+      },
+      "konvidToLive": {
+        "PLCC": "0.841",
+        "SROCC": "0.669"
+      }
+    },
+    {
+      "method": "DisCoVQA (2022, arxiv)",
+      "liveToKonvid": {
+        "PLCC": "0.785",
+        "SROCC": "0.754"
+      },
+      "konvidToLive": {
+        "PLCC": "0.787",
+        "SROCC": "0.737"
+      }
+    },
+    {
+      "method": "GST-VQA (2021, TCSVT)",
+      "liveToKonvid": {
+        "PLCC": "0.7074",
+        "SROCC": "0.685"
+      },
+      "konvidToLive": {
+        "PLCC": "0.777",
+        "SROCC": "0.732"
+      }
+    },
+    {
+      "method": "MDTVSFA (2021, JCV)",
+      "liveToKonvid": {
+        "PLCC": "0.711",
+        "SROCC": "0.645"
+      },
+      "konvidToLive": {
+        "PLCC": "0.816",
+        "SROCC": "0.716"
+      }
+    },
+    {
+      "method": "Bakhtiar (2022, DFMP)",
+      "liveToKonvid": {
+        "PLCC": "0.647",
+        "SROCC": "0.679"
+      },
+      "konvidToLive": {
+        "PLCC": "0.823",
+        "SROCC": "0.756"
+      }
+    },
+    {
+      "method": "Proposed Method",
+      "liveToKonvid": {
+        "PLCC": "0.6715",
+        "SROCC": "0.6698"
+      },
+      "konvidToLive": {
+        "PLCC": "0.821",
+        "SROCC": "0.729"
+      }
+    }
+  ]
+}

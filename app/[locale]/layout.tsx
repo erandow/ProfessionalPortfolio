@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
-import { profile } from "@/lib/content";
 import { getLocale, getPortfolio } from "@/lib/i18n";
 import { localizedPath, locales } from "@/lib/locales";
 import { Document } from "@/components/document";
@@ -40,14 +39,7 @@ export default async function RootLayout({ children, params }: LocaleLayoutProps
         projectCommands={projects.map(({ name, category, slug }) => ({ label: name, category, href: localizedPath(locale, `/work/${slug}`) }))}
       />
       <main id="main-content" tabIndex={-1}>{children}</main>
-      <footer className="site-footer shell">
-        <Link href={localizedPath(locale)}>{m.name}</Link>
-        <div className="flex flex-wrap gap-x-5 gap-y-2">
-          <a href={profile.github}><bdi>GitHub</bdi></a>
-          <a href={profile.linkedin}><bdi>LinkedIn</bdi></a>
-          <a href={profile.resume}>{m.resume}</a>
-        </div>
-      </footer>
+      <SiteFooter locale={locale} messages={m} />
     </Document>
   );
 }

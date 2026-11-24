@@ -5,10 +5,10 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Command } from "cmdk";
 import * as Dialog from "@radix-ui/react-dialog";
-import { BookOpen, FileText, FolderOpen, GraduationCap, House, Mail, Search, User, X } from "lucide-react";
+import { BookImage, BookOpen, FileText, FolderOpen, GraduationCap, House, Mail, Search, User, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import faceLogo from "@/assets/erfan-face.webp";
-import { profile } from "@/lib/content";
+import { profile, showHobbies } from "@/lib/content";
 import type { Messages } from "@/lib/i18n";
 import { isLocale, localizedPath, locales, withoutLocale, type Locale } from "@/lib/locales";
 import { PreferenceMenu } from "./preference-menu";
@@ -23,6 +23,7 @@ const links = [
 const commandLinks = [
   { href: "/", label: "home", icon: House },
   ...links,
+  ...(showHobbies ? [{ href: "/#hobbies", label: "hobbies", icon: BookImage } as const] : []),
   { href: "/#education", label: "education", icon: GraduationCap },
   { href: "/#publications", label: "publications", icon: BookOpen },
   { href: profile.resume, label: "resumePdf", icon: FileText },
@@ -63,7 +64,7 @@ export function SiteNav({ locale, name, labels, projectCommands }: {
   }
 
   return (
-    <header className="site-header shell">
+    <header id="top" tabIndex={-1} className="site-header shell">
       <Link className="wordmark" href={localizedPath(locale)} aria-label={labels.homeLabel}>
         <span className="brand-mark"><Image src={faceLogo} alt="" sizes="(max-width: 540px) 40px, 50px" loading="eager" /></span>
         <span>{name}</span>
