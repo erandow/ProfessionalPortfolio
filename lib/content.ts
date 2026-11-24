@@ -3,6 +3,7 @@ export const profile = {
   email: "erfanasadi.ce@gmail.com",
   phone: "+98 912 056 0867",
   telegram: "erandow",
+  twitter: "_erandow_",
   github: "https://github.com/erandow",
   linkedin: "https://www.linkedin.com/in/erandow/",
   resume: "/Erfan-Asadi-Resume.pdf",
@@ -87,14 +88,12 @@ export const projects = [
   },
 ] as const;
 
-export type Project = (typeof projects)[number];
-
 export const experience = [
   { company: "NotionWave · EKB Journal System", role: "Frontend Tech Lead", period: "2026–Present", detail: "Lead the frontend team rebuilding the Egyptian Knowledge Bank’s scholarly journal platform." },
   { company: "NotionWave · Troweb", role: "Frontend Tech Lead & AI Agent Developer", period: "2023–2026", detail: "Led frontend development and integrated AI agents into a personal data workspace." },
   { company: "NotionWave · DoExam", role: "Frontend Developer", period: "2021–2023", detail: "Built the bilingual exam-taking experience, performance reports, and asynchronous grading." },
   { company: "Avid Arvand Technologies · Lernito", role: "Web Application Developer", period: "2019–2021", detail: "Developed an integrated online classroom, question bank, and assessment platform." },
-];
+] as const;
 
 export const education = [
   {
@@ -113,7 +112,7 @@ export const education = [
     thesis: "Metadata Extraction from Academic Research Papers",
     honor: "Graduated as an Outstanding Student",
   },
-];
+] as const;
 
 export const publications = [
   {
@@ -127,10 +126,10 @@ export const publications = [
   {
     title: "The Role of Fine-Tuned Feature Map Correlation in Video Quality Assessment",
     venue: "IPRIA 2025",
-    authors: "Parmida Pourmatin, Erfan Asadi, and Azadeh Mansouri",
+    authors: "Erfan Asadi, Parmida Pourmatin, and Azadeh Mansouri",
     award: "Best Paper Award",
     summary: "Uses correlations between fine-tuned features to estimate video quality without a reference video.",
-    paperUrl: "https://www.parmida-pourmatin.com/media/files/Paper.pdf",
+    paperUrl: "https://ieeexplore.ieee.org/document/11263611/",
   },
   {
     title: "NTIRE 2024 Quality Assessment of AI-Generated Content Challenge",
@@ -140,4 +139,4 @@ export const publications = [
     summary: "Reports on a challenge benchmarking methods for assessing the perceptual quality of AI-generated images and videos.",
     paperUrl: "https://openaccess.thecvf.com/content/CVPR2024W/NTIRE/papers/Liu_NTIRE_2024_Quality_Assessment_of_AI-Generated_Content_Challenge_CVPRW_2024_paper.pdf",
   },
-];
+] as const;

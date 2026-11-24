@@ -5,28 +5,36 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Command } from "cmdk";
 import * as Dialog from "@radix-ui/react-dialog";
-import { BookOpen, FileText, FlaskConical, FolderOpen, GraduationCap, House, Mail, Search, User, X } from "lucide-react";
+import { BookOpen, FileText, FolderOpen, GraduationCap, House, Mail, Search, User, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import faceLogo from "@/assets/erfan-face.webp";
 import { profile } from "@/lib/content";
+import type { Messages } from "@/lib/i18n";
+import { isLocale, localizedPath, locales, withoutLocale, type Locale } from "@/lib/locales";
+import { PreferenceMenu } from "./preference-menu";
+import { ThemeSelect } from "./theme-select";
 
 const links = [
-  { href: "/work", label: "Work", icon: FolderOpen },
-  { href: "/lab", label: "Lab", icon: FlaskConical },
-  { href: "/#about", label: "About", icon: User },
-  { href: "/#contact", label: "Contact", icon: Mail },
-];
+  { href: "/work", label: "work", icon: FolderOpen },
+  { href: "/#about", label: "about", icon: User },
+  { href: "/#contact", label: "contact", icon: Mail },
+] as const;
 
 const commandLinks = [
-  { href: "/", label: "Home", icon: House },
+  { href: "/", label: "home", icon: House },
   ...links,
-  { href: "/#education", label: "Education", icon: GraduationCap },
-  { href: "/#publications", label: "Publications", icon: BookOpen },
-  { href: profile.resume, label: "Résumé PDF", icon: FileText },
-];
+  { href: "/#education", label: "education", icon: GraduationCap },
+  { href: "/#publications", label: "publications", icon: BookOpen },
+  { href: profile.resume, label: "resumePdf", icon: FileText },
+] as const;
 
-export function SiteNav({ projectCommands }: { projectCommands: { label: string; category: string; href: string }[] }) {
-  const pathname = usePathname();
+export function SiteNav({ locale, name, labels, projectCommands }: {
+  locale: Locale;
+  name: string;
+  labels: Messages["nav"];
+  projectCommands: { label: string; category: string; href: string }[];
+}) {
+  const pathname = withoutLocale(usePathname());
   const router = useRouter();
   const trigger = useRef<HTMLButtonElement>(null);
   const origin = useRef<HTMLElement | null>(null);
@@ -47,7 +55,7 @@ export function SiteNav({ projectCommands }: { projectCommands: { label: string;
 
   function navigate(href: string) {
     setOpen(false);
-    if (href.endsWith(".pdf")) {
+    if (href === profile.resume) {
       window.location.assign(href);
       return;
     }
@@ -56,30 +64,51 @@ export function SiteNav({ projectCommands }: { projectCommands: { label: string;
 
   return (
     <header className="site-header shell">
-      <Link className="wordmark" href="/" aria-label="Erfan Asadi home">
-        <span className="brand-mark"><Image src={faceLogo} alt="" sizes="42px" loading="eager" /></span>
-        <span>Erfan Asadi</span>
+      <Link className="wordmark" href={localizedPath(locale)} aria-label={labels.homeLabel}>
+        <span className="brand-mark"><Image src={faceLogo} alt="" sizes="(max-width: 540px) 40px, 50px" loading="eager" /></span>
+        <span>{name}</span>
       </Link>
-      <nav aria-label="Main navigation" className="main-nav">
+      <nav aria-label={labels.main} className="main-nav">
         {links.map(({ href, label }) => (
-          <Link key={href} href={href} aria-current={pathname === href ? "page" : undefined} data-active={pathname === href || pathname.startsWith(href + "/")}>{label}</Link>
+          <Link key={href} href={localizedPath(locale, href)} aria-current={pathname === href ? "page" : undefined} data-active={pathname === href || pathname.startsWith(href + "/")}>{labels[label]}</Link>
         ))}
       </nav>
-      <button
-        className="command-trigger"
-        type="button"
-        ref={trigger}
-        aria-label="Search pages and projects"
-        aria-haspopup="dialog"
-        aria-keyshortcuts="Control+K Meta+K"
-        onClick={() => {
-          origin.current = trigger.current;
-          setOpen(true);
-        }}
-      >
-        <Search size={17} aria-hidden="true" /><span>Search</span>
-        <kbd aria-hidden="true">{isApple ? "⌘ K" : "Ctrl K"}</kbd>
-      </button>
+      <div className="header-controls">
+        <button
+          className="command-trigger"
+          type="button"
+          ref={trigger}
+          aria-label={labels.searchLabel}
+          aria-haspopup="dialog"
+          aria-keyshortcuts="Control+K Meta+K"
+          onClick={() => {
+            origin.current = trigger.current;
+            setOpen(true);
+          }}
+        >
+          <Search size={17} aria-hidden="true" /><span>{labels.search}</span>
+          <kbd dir="ltr" aria-hidden="true">{isApple ? "⌘ K" : "Ctrl K"}</kbd>
+        </button>
+        <div className="preference-controls">
+          <ThemeSelect locale={locale} />
+          <PreferenceMenu
+            label={labels.language}
+            value={locale}
+            direction={locales[locale].direction}
+            options={Object.entries(locales).map(([code, { name, flag, direction }]) => ({
+              value: code, label: name, lang: code, dir: direction,
+              icon: <img className="language-flag" src={flag} width={24} height={18} alt="" />,
+            }))}
+            onChange={(nextLocale) => {
+              if (!isLocale(nextLocale) || nextLocale === locale) return;
+              const { pathname, search, hash } = window.location;
+              window.location.assign(localizedPath(nextLocale, withoutLocale(pathname)) + search + hash);
+            }}
+          >
+            <img className="language-flag" src={locales[locale].flag} width={24} height={18} alt="" />
+          </PreferenceMenu>
+        </div>
+      </div>
       <Dialog.Root open={open} onOpenChange={setOpen}>
         <Dialog.Portal>
           <Dialog.Overlay className="command-overlay" />
@@ -91,23 +120,23 @@ export function SiteNav({ projectCommands }: { projectCommands: { label: string;
               (origin.current === document.body ? trigger.current : origin.current ?? trigger.current)?.focus();
             }}
           >
-            <Dialog.Title className="sr-only">Command palette</Dialog.Title>
-            <Command label="Search pages and projects">
+            <Dialog.Title className="sr-only">{labels.palette}</Dialog.Title>
+            <Command label={labels.searchLabel}>
               <div className="command-input-row">
                 <Search size={20} aria-hidden="true" />
-                <Command.Input placeholder="Search pages and projects…" />
-                <button className="icon-button" type="button" aria-label="Close command palette" onClick={() => setOpen(false)}><X size={18} /></button>
+                <Command.Input placeholder={labels.placeholder} />
+                <button className="icon-button" type="button" aria-label={labels.close} onClick={() => setOpen(false)}><X size={18} /></button>
               </div>
               <Command.List>
-                <Command.Empty>No matching commands.</Command.Empty>
-                <Command.Group heading="Navigate">
+                <Command.Empty>{labels.empty}</Command.Empty>
+                <Command.Group heading={labels.navigate}>
                   {commandLinks.map(({ href, label, icon: Icon }) => (
-                    <Command.Item key={href} value={label} onSelect={() => navigate(href)}><Icon size={17} aria-hidden="true" />{label}</Command.Item>
+                    <Command.Item key={href} value={labels[label]} onSelect={() => navigate(label === "resumePdf" ? href : localizedPath(locale, href))}><Icon size={17} aria-hidden="true" />{labels[label]}</Command.Item>
                   ))}
                 </Command.Group>
-                <Command.Group heading="Case studies">
+                <Command.Group heading={labels.cases}>
                   {projectCommands.map(({ label, href, category }) => (
-                    <Command.Item key={href} value={label} keywords={[category]} onSelect={() => navigate(href)}><FolderOpen size={17} aria-hidden="true" />{label}</Command.Item>
+                    <Command.Item key={href} value={label} keywords={[category]} onSelect={() => navigate(href)}><FolderOpen size={17} aria-hidden="true" /><bdi>{label}</bdi></Command.Item>
                   ))}
                 </Command.Group>
               </Command.List>

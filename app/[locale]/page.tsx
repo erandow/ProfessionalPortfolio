@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, Asterisk, Download, FileText, FlaskConical, Linkedin, Mail, Phone, Send } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Asterisk, Download, FileText, Linkedin, Mail, Phone, Send, Twitter } from "lucide-react";
 import welcomePortrait from "@/assets/erfan-suit.webp";
 import welcomeWave from "@/assets/erfan-suit-wave.webp";
 import workPortrait from "@/assets/erfan-working.webp";
@@ -11,31 +11,41 @@ import researchPortrait from "@/assets/erfan-research.webp";
 import researchWriting from "@/assets/erfan-research-writing.webp";
 import graduationPortrait from "@/assets/erfan-graduation.webp";
 import { ProjectGrid } from "@/components/project-grid";
-import { education, experience, profile, publications } from "@/lib/content";
+import { profile } from "@/lib/content";
+import { getLocale, getPortfolio } from "@/lib/i18n";
+import { localizedPath } from "@/lib/locales";
 
 const contactMethods = [
   { label: "Email", detail: profile.email, href: `mailto:${profile.email}`, Icon: Mail },
   { label: "LinkedIn", detail: profile.name, href: profile.linkedin, Icon: Linkedin },
   { label: "Telegram", detail: `@${profile.telegram}`, href: `https://t.me/${profile.telegram}`, Icon: Send },
   { label: "Phone", detail: profile.phone, href: `tel:${profile.phone.replaceAll(" ", "")}`, Icon: Phone },
+  { label: "Twitter", detail: `@${profile.twitter}`, href: `https://x.com/${profile.twitter}`, Icon: Twitter },
 ];
 
-export default function Home() {
+export default async function Home({ params }: PageProps<"/[locale]">) {
+  const locale = await getLocale(params);
+  const { messages: m, projects, experience, education, publications } = await getPortfolio(locale);
+  const h = m.home;
   return (
     <>
       <section className="hero" aria-labelledby="intro-title">
         <div className="shell hero-inner">
           <div className="hero-copy">
-            <h1 id="intro-title">Erfan Asadi<span>.</span></h1>
-            <p className="hero-intro">Frontend tech lead and AI product engineer.</p>
-            <p className="hero-tagline">Serious engineering. <em>Playful thinking.</em></p>
+            <h1 id="intro-title">{m.name}<span>.</span></h1>
+            <p className="hero-intro">{h.intro}</p>
+            <p className="hero-tagline">{h.tagline} <em>{h.taglineEmphasis}</em></p>
             <div className="hero-actions">
-              <Link href="#selected-work" className="button button-primary">View work</Link>
-              <a href={profile.resume} className="button button-outline"><FileText size={16} aria-hidden="true" /> Résumé</a>
+              <Link href="#selected-work" className="button button-primary">{h.viewWork}</Link>
+              <a href={profile.resume} className="button button-outline"><FileText size={16} aria-hidden="true" /> {m.resume}</a>
             </div>
           </div>
+          <a href="#selected-work" className="hero-scroll eyebrow">
+            {h.scroll}
+            <ArrowDown size={16} aria-hidden="true" />
+          </a>
           <figure className="hero-welcome">
-            <figcaption>Welcome!</figcaption>
+            <figcaption>{h.welcome}</figcaption>
             <picture>
               <source media="(prefers-reduced-motion: no-preference)" srcSet={welcomeWave.src} />
               <img src={welcomePortrait.src} width={welcomePortrait.width} height={welcomePortrait.height} alt="" />
@@ -48,32 +58,32 @@ export default function Home() {
         <div className="shell section-space">
           <div className="selected-work-heading">
             <div>
-              <p className="eyebrow section-kicker"><Asterisk size={17} aria-hidden="true" /> Portfolio</p>
-              <h2 id="selected-title">Selected work<span>.</span></h2>
-              <Link href="/work" className="button button-light">All case studies</Link>
+              <p className="eyebrow section-kicker"><Asterisk size={17} aria-hidden="true" /> {h.portfolio}</p>
+              <h2 id="selected-title">{h.selectedWork}<span>.</span></h2>
+              <Link href={localizedPath(locale, "/work")} className="button button-light">{m.work.all}</Link>
             </div>
             <picture className="selected-work-portrait">
               <source media="(prefers-reduced-motion: no-preference)" srcSet={workTyping.src} />
               <Image
                 src={workPortrait}
-                alt="Illustration of Erfan Asadi typing at a desk with a laptop and an open sketchbook"
+                alt={h.workAlt}
                 sizes="(max-width: 440px) calc(100vw - 2rem), 400px"
               />
             </picture>
           </div>
-          <ProjectGrid featureEkb />
+          <ProjectGrid locale={locale} projects={projects} labels={m.work} featureEkb />
         </div>
       </section>
 
       <section id="experience" className="shell section-space split-section" aria-labelledby="experience-title">
         <div>
-          <p className="eyebrow section-kicker"><Asterisk size={17} aria-hidden="true" /> Career</p>
-          <h2 id="experience-title">Experience<span>.</span></h2>
+          <p className="eyebrow section-kicker"><Asterisk size={17} aria-hidden="true" /> {h.career}</p>
+          <h2 id="experience-title">{h.experience}<span>.</span></h2>
           <picture className="experience-portrait">
             <source media="(prefers-reduced-motion: no-preference)" srcSet={officeWalkthrough.src} />
             <Image
               src={officePortrait}
-              alt="Illustration of Erfan Asadi guiding teammates through a project board in an office"
+              alt={h.experienceAlt}
               sizes="(max-width: 480px) calc(100vw - 2rem), (max-width: 760px) 448px, 38vw"
             />
           </picture>
@@ -82,7 +92,7 @@ export default function Home() {
           {experience.map((job) => (
             <li key={job.company}>
               <p className="eyebrow">{job.period}</p>
-              <h3>{job.company}</h3>
+              <h3><bdi>{job.company}</bdi></h3>
               <p className="job-role">{job.role}</p>
               <p>{job.detail}</p>
             </li>
@@ -93,14 +103,14 @@ export default function Home() {
       <section id="education" className="light-section" aria-labelledby="education-title">
         <div className="shell section-space education-layout">
           <div>
-            <h2 id="education-title">Education<span>.</span></h2>
+            <h2 id="education-title">{m.nav.education}<span>.</span></h2>
             <ol className="academic-entries">
               {education.map((entry) => (
                 <li key={entry.institution}>
-                  <p className="eyebrow academic-meta">{entry.period} · {entry.location}</p>
+                  <p className="eyebrow academic-meta"><bdi>{entry.period}</bdi> · {entry.location}</p>
                   <h3>{entry.degree}</h3>
                   <p className="academic-byline">{entry.institution}</p>
-                  <p>Thesis · <cite>{entry.thesis}</cite></p>
+                  <p>{h.thesis} · <cite>{entry.thesis}</cite></p>
                   <p>{entry.honor}</p>
                 </li>
               ))}
@@ -109,22 +119,22 @@ export default function Home() {
           <Image
             className="graduation-portrait"
             src={graduationPortrait}
-            alt="Erfan Asadi in a graduation cap and gown"
+            alt={h.graduationAlt}
             sizes="(max-width: 760px) 121px, (max-width: 1050px) 181px, 224px"
           />
         </div>
       </section>
 
       <section id="publications" className="light-section publications-section" aria-labelledby="publications-title">
-        <div className="shell section-space split-section">
+        <div className="shell section-space split-section publication-layout">
           <div>
-            <h2 id="publications-title">Publications<span>.</span></h2>
-            <picture>
+            <h2 id="publications-title">{m.nav.publications}<span>.</span></h2>
+            <picture className="publication-figure">
               <source media="(prefers-reduced-motion: no-preference)" srcSet={researchWriting.src} />
               <Image
                 className="publication-portrait"
                 src={researchPortrait}
-                alt="Erfan Asadi writing research notes at a university library table"
+                alt={h.researchAlt}
                 sizes="(max-width: 760px) 92vw, (max-width: 1280px) 38vw, 480px"
               />
             </picture>
@@ -134,13 +144,13 @@ export default function Home() {
               const [beforeName, afterName] = paper.authors.split(profile.name);
               return (
                 <li key={paper.title}>
-                  <p className="eyebrow academic-meta">{paper.venue}{paper.award && <> · {paper.award}</>}</p>
-                  <h3>{paper.title}</h3>
-                  <p className="academic-byline">{beforeName}<strong>{profile.name}</strong>{afterName}</p>
+                  <p className="eyebrow academic-meta"><bdi>{paper.venue}</bdi>{paper.award && <> · {paper.award}</>}</p>
+                  <h3 lang="en"><bdi>{paper.title}</bdi></h3>
+                  <p className="academic-byline" lang="en"><bdi>{beforeName}<strong>{profile.name}</strong>{afterName}</bdi></p>
                   <p>{paper.summary}</p>
                   {paper.paperUrl && (
-                    <a href={paper.paperUrl} className="academic-paper-link">
-                      Read paper (PDF)<span className="sr-only"> · {paper.title}</span>
+                    <a href={paper.paperUrl} target="_blank" rel="noopener noreferrer" className="academic-paper-link">
+                      {h.readPaper}<span className="sr-only"> · <bdi lang="en">{paper.title}</bdi> ({h.newTab})</span>
                       <ArrowUpRight size={16} aria-hidden="true" />
                     </a>
                   )}
@@ -154,17 +164,16 @@ export default function Home() {
       <section id="about" className="about-section">
         <div className="shell section-space about-grid">
           <div>
-            <p className="eyebrow section-kicker"><Asterisk size={17} aria-hidden="true" /> About</p>
-            <h2>A bit about me<span>.</span></h2>
+            <p className="eyebrow section-kicker"><Asterisk size={17} aria-hidden="true" /> {m.nav.about}</p>
+            <h2>{h.aboutTitle}<span>.</span></h2>
           </div>
           <div>
-            <p>I lead frontend development for the Egyptian Knowledge Bank’s scholarly journal platform at NotionWave. I’ve also built online learning products and integrated AI agents into a personal data workspace.</p>
-            <p>I also have a master’s in artificial intelligence from Kharazmi University, where I worked on blind video quality assessment.</p>
+            <p>{h.bio}</p>
+            <p>{h.researchBio}</p>
             <section id="resume" className="resume-callout" aria-labelledby="resume-title">
-              <h3 id="resume-title">Résumé</h3>
+              <h3 id="resume-title">{m.resume}</h3>
               <div className="flex flex-wrap gap-3">
-                <a href={profile.resume} className="button button-outline" download><Download size={16} aria-hidden="true" /> Download PDF</a>
-                <Link href="/lab" className="button button-outline"><FlaskConical size={16} aria-hidden="true" /> Visit the Lab</Link>
+                <a href={profile.resume} className="button button-outline" download><Download size={16} aria-hidden="true" /> {h.download}</a>
               </div>
             </section>
           </div>
@@ -172,16 +181,16 @@ export default function Home() {
       </section>
 
       <section id="contact" className="shell section-space contact-section" aria-labelledby="contact-title">
-        <p className="eyebrow section-kicker"><Asterisk size={17} aria-hidden="true" /> Contact</p>
-        <h2 id="contact-title">Let’s talk<span>.</span></h2>
+        <p className="eyebrow section-kicker"><Asterisk size={17} aria-hidden="true" /> {m.nav.contact}</p>
+        <h2 id="contact-title">{h.talk}<span>.</span></h2>
         <ul className="contact-links">
           {contactMethods.map(({ label, detail, href, Icon }) => (
             <li key={label}>
               <a href={href} className="contact-link" data-channel={label}>
                 <span className="contact-icon"><Icon size={24} strokeWidth={1.75} aria-hidden="true" /></span>
                 <span className="contact-details">
-                  <span className="eyebrow">{label}</span>
-                  <span>{detail}</span>
+                  <span className="eyebrow">{label === "Email" ? h.email : label === "Phone" ? h.phone : label}</span>
+                  <span><bdi dir={label === "LinkedIn" ? undefined : "ltr"}>{label === "LinkedIn" ? m.name : detail}</bdi></span>
                 </span>
                 <ArrowUpRight className="contact-arrow" size={18} aria-hidden="true" />
               </a>
