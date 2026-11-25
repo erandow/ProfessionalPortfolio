@@ -11,6 +11,7 @@ import { QualityPipeline, QualityResults } from "@/components/quality-pipeline";
 import { ekbPullRequests, projects, videoQualityPaper } from "@/lib/content";
 import { getLocale, getPortfolio, type Messages } from "@/lib/i18n";
 import { localizedPath } from "@/lib/locales";
+import { pageMetadata } from "@/lib/seo";
 
 type CasePageProps = PageProps<"/[locale]/work/[slug]">;
 
@@ -27,12 +28,19 @@ async function getCaseStudy(params: CasePageProps["params"]) {
   const project = projects.find((item) => item.slug === slug);
   const relatedSlug = slug === "ekb" ? "ekb-ai-guide" : slug === "ekb-ai-guide" ? "ekb" : undefined;
   const relatedProject = projects.find((item) => item.slug === relatedSlug);
-  return { locale, work: messages.work, project, relatedProject };
+  return { locale, messages, project, relatedProject };
 }
 
 export async function generateMetadata({ params }: CasePageProps): Promise<Metadata> {
-  const { project } = await getCaseStudy(params);
-  return project ? { title: project.slug === "ekb-ai-guide" ? project.title : project.name, description: project.summary } : {};
+  const { locale, messages, project } = await getCaseStudy(params);
+  if (!project) return {};
+
+  const title = project.seoTitle ?? (project.slug === "ekb-ai-guide" ? project.title : project.name);
+  return pageMetadata(locale, `/work/${project.slug}`, {
+    title: `${title} | ${messages.name}`,
+    description: project.summary,
+    siteName: messages.siteName,
+  });
 }
 
 function CaseSections({ sections }: { sections: readonly { title: string; body: string }[] }) {
@@ -98,7 +106,7 @@ function JournalLeadership({ copy, locale }: { copy: Messages["work"]["journalLe
 }
 
 export default async function CasePage({ params }: CasePageProps) {
-  const { locale, work, project, relatedProject } = await getCaseStudy(params);
+  const { locale, messages: { work }, project, relatedProject } = await getCaseStudy(params);
   if (!project) notFound();
   const isGuide = project.slug === "ekb-ai-guide";
 

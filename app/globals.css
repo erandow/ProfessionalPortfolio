@@ -416,6 +416,7 @@ h2 > span { color: var(--accent); }
 .academic-meta { color: #526323; }
 .academic-byline { margin-bottom: .35rem; }
 .academic-byline strong { color: var(--ink); }
+.publication-links { display: flex; flex-wrap: wrap; column-gap: 1rem; }
 .academic-paper-link {
   display: inline-flex;
   align-items: center;

@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { siteUrl } from "./lib/seo";
 
 const config: NextConfig = {
   agentRules: false,
@@ -14,6 +15,12 @@ const config: NextConfig = {
   },
   async redirects() {
     return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www\\.erfan-asadi\\.ir" }],
+        destination: `${siteUrl}/:path*`,
+        permanent: true,
+      },
       { source: "/en", destination: "/", permanent: true },
       { source: "/en/:path+", destination: "/:path+", permanent: true },
     ];

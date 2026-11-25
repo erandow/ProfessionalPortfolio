@@ -4,12 +4,18 @@ import typing from "@/assets/erfan-working-typing.webp";
 import still from "@/assets/erfan-working.webp";
 import { ProjectGrid } from "@/components/project-grid";
 import { getLocale, getPortfolio } from "@/lib/i18n";
+import { pageMetadata } from "@/lib/seo";
 
 type WorkPageProps = PageProps<"/[locale]/work">;
 
 export async function generateMetadata({ params }: WorkPageProps): Promise<Metadata> {
-  const { messages: { work } } = await getPortfolio(await getLocale(params));
-  return { title: work.title, description: work.description };
+  const locale = await getLocale(params);
+  const { messages: { work, name, siteName } } = await getPortfolio(locale);
+  return pageMetadata(locale, "/work", {
+    title: `${work.title} | ${name}`,
+    description: work.description,
+    siteName,
+  });
 }
 
 export default async function WorkPage({ params }: WorkPageProps) {

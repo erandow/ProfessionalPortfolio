@@ -13,6 +13,7 @@ export type ContentTranslation = {
   projects: Record<(typeof projects)[number]["slug"], {
     category: string;
     title: string;
+    seoTitle?: string;
     summary: string;
     role: string;
     linkLabel?: string;

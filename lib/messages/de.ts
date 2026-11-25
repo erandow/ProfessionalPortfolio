@@ -5,6 +5,7 @@ const notFound = { title: "Seite nicht gefunden", back: "Zurück zur Startseite"
 export const messages: Messages = {
   name: "Erfan Asadi",
   siteName: "Living Workbench",
+  seoRole: "Technischer Leiter für Frontend-Entwicklung und Entwickler von KI-Produkten",
   description: "Erfan Asadi leitet die Frontend-Entwicklung und entwickelt KI-Produkte. Entdecken Sie seine technischen Fallstudien und wissenschaftlichen Veröffentlichungen.",
   skip: "Zum Inhalt springen",
   footer: { resources: "Ressourcen", backToTop: "Nach oben" },
@@ -158,6 +159,7 @@ export const content: ContentTranslation = {
     ekb: {
       category: "Wissenschaftliches Publizieren",
       title: "Die Frontend-Migration von EKB leiten",
+      seoTitle: "Umbau der Zeitschriftenplattform der Egyptian Knowledge Bank",
       summary: "Ich leite vier Frontend-Entwickler beim Umbau der Zeitschriftenplattform der Egyptian Knowledge Bank mit Next.js. Ich prüfe jeden Frontend-Pull-Request. Ich habe die Einreichung und Überarbeitung für Autoren, den Arbeitsbereich für Gutachter und die Werkzeuge entwickelt, mit denen Verlage angenommene Beiträge veröffentlichen.",
       role: "Technischer Leiter für Frontend-Entwicklung bei NotionWave",
       experience: [
@@ -252,6 +254,7 @@ export const content: ContentTranslation = {
     "lc-bvqa": {
       category: "Angewandte KI",
       title: "Videoqualität ohne Referenz schätzen",
+      seoTitle: "LC-BVQA: Referenzfreie Bewertung der Videoqualität",
       summary: "Ein Deep-Learning-System mit geringer Komplexität zur referenzfreien Bewertung von Videoqualität.",
       role: "Forschung und Implementierung",
       linkLabel: "Quellcode ansehen",

@@ -1,6 +1,7 @@
 export const en = {
   name: "Erfan Asadi",
   siteName: "Living Workbench",
+  seoRole: "Frontend Tech Lead & AI Product Engineer",
   description: "Erfan Asadi is a frontend tech lead and AI-powered product engineer. Explore his engineering case studies and research publications.",
   skip: "Skip to content",
   footer: { resources: "Resources", backToTop: "Back to top" },

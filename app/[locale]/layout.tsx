@@ -2,28 +2,17 @@ import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteNav } from "@/components/site-nav";
 import { getLocale, getPortfolio } from "@/lib/i18n";
-import { localizedPath, locales } from "@/lib/locales";
+import { localizedPath } from "@/lib/locales";
+import { siteLocales, siteUrl } from "@/lib/seo";
 import { Document } from "@/components/document";
 
 type LocaleLayoutProps = LayoutProps<"/[locale]">;
 
 export const dynamicParams = false;
+export const metadata: Metadata = { metadataBase: new URL(siteUrl) };
 
 export function generateStaticParams() {
-  return Object.keys(locales).map((locale) => ({ locale }));
-}
-
-export async function generateMetadata({ params }: LocaleLayoutProps): Promise<Metadata> {
-  const locale = await getLocale(params);
-  const { messages: m } = await getPortfolio(locale);
-  const title = `${m.name} | ${m.siteName}`;
-  return {
-    title: { default: m.name, template: `%s | ${m.name}` },
-    description: m.description,
-    applicationName: m.siteName,
-    openGraph: { title, description: m.description, type: "website", siteName: m.siteName },
-    twitter: { card: "summary", title, description: m.description },
-  };
+  return siteLocales.map((locale) => ({ locale }));
 }
 
 export default async function RootLayout({ children, params }: LocaleLayoutProps) {

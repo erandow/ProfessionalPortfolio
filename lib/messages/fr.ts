@@ -5,6 +5,7 @@ const notFound = { title: "Page introuvable", back: "Retour à l’accueil" };
 export const messages: Messages = {
   name: "Erfan Asadi",
   siteName: "Living Workbench",
+  seoRole: "Responsable technique frontend et ingénieur produit IA",
   description: "Erfan Asadi est responsable technique frontend et ingénieur produit spécialisé en IA. Découvrez ses études de cas et ses publications scientifiques.",
   skip: "Aller au contenu",
   footer: { resources: "Ressources", backToTop: "Haut de page" },
@@ -158,6 +159,7 @@ export const content: ContentTranslation = {
     ekb: {
       category: "Édition scientifique",
       title: "Piloter la refonte du frontend d’EKB",
+      seoTitle: "Refonte de la plateforme de revues de la Banque égyptienne du savoir",
       summary: "Je dirige quatre ingénieurs qui reconstruisent en Next.js la plateforme de revues de la Banque égyptienne du savoir. Je relis chaque pull request frontend. J’ai développé les parcours de soumission et de révision des auteurs, l’espace d’évaluation des manuscrits et les outils qui permettent aux éditeurs de publier un article accepté.",
       role: "Responsable technique frontend chez NotionWave",
       experience: [
@@ -252,6 +254,7 @@ export const content: ContentTranslation = {
     "lc-bvqa": {
       category: "IA appliquée",
       title: "Estimer la qualité vidéo sans référence",
+      seoTitle: "LC-BVQA : évaluation de la qualité vidéo sans référence",
       summary: "Un système d’apprentissage profond à faible complexité pour évaluer la qualité vidéo sans référence.",
       role: "Recherche et mise en œuvre",
       linkLabel: "Voir le code source",

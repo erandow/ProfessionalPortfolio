@@ -13,9 +13,10 @@ import graduationPortrait from "@/assets/erfan-graduation.webp";
 import { HobbyGallery } from "@/components/hobby-gallery";
 import { getHobbies } from "@/lib/hobbies";
 import { ProjectGrid } from "@/components/project-grid";
-import { profile, showHobbies } from "@/lib/content";
+import { profile, showHobbies, videoQualityPaper } from "@/lib/content";
 import { getLocale, getPortfolio } from "@/lib/i18n";
 import { localizedPath } from "@/lib/locales";
+import { pageMetadata } from "@/lib/seo";
 
 const contactMethods = [
   { label: "Email", detail: profile.email, href: `mailto:${profile.email}`, Icon: Mail },
@@ -24,6 +25,16 @@ const contactMethods = [
   { label: "Phone", detail: profile.phone, href: `tel:${profile.phone.replaceAll(" ", "")}`, Icon: Phone },
   { label: "Twitter", detail: `@${profile.twitter}`, href: `https://x.com/${profile.twitter}`, Icon: Twitter },
 ];
+
+export async function generateMetadata({ params }: PageProps<"/[locale]">) {
+  const locale = await getLocale(params);
+  const { messages: m } = await getPortfolio(locale);
+  return pageMetadata(locale, "/", {
+    title: `${m.name} | ${m.seoRole}`,
+    description: m.description,
+    siteName: m.siteName,
+  });
+}
 
 export default async function Home({ params }: PageProps<"/[locale]">) {
   const locale = await getLocale(params);
@@ -158,10 +169,17 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
                   <p className="academic-byline" lang="en"><bdi>{beforeName}<strong>{profile.name}</strong>{afterName}</bdi></p>
                   <p>{paper.summary}</p>
                   {paper.paperUrl && (
-                    <a href={paper.paperUrl} target="_blank" rel="noopener noreferrer" className="academic-paper-link">
-                      {h.readPaper}<span className="sr-only"> · <bdi lang="en">{paper.title}</bdi> ({h.newTab})</span>
-                      <ArrowUpRight size={16} aria-hidden="true" />
-                    </a>
+                    <div className="publication-links">
+                      <a href={paper.paperUrl} target="_blank" rel="noopener noreferrer" className="academic-paper-link">
+                        {h.readPaper}<span className="sr-only"> · <bdi lang="en">{paper.title}</bdi> ({h.newTab})</span>
+                        <ArrowUpRight size={16} aria-hidden="true" />
+                      </a>
+                      {paper.paperUrl === videoQualityPaper.paperUrl && (
+                        <Link href={localizedPath(locale, "/work/lc-bvqa")} className="academic-paper-link">
+                          {m.work.readFor.replace("{project}", "LC-BVQA")}
+                        </Link>
+                      )}
+                    </div>
                   )}
                 </li>
               );
