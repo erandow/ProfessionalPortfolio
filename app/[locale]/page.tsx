@@ -41,6 +41,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
   const [portfolio, hobbies] = await Promise.all([getPortfolio(locale), showHobbies ? getHobbies() : []]);
   const { messages: m, projects, experience, education, publications } = portfolio;
   const h = m.home;
+  const aiGuide = projects.find(({ slug }) => slug === "ekb-ai-guide");
   return (
     <>
       <section className="hero" aria-labelledby="intro-title">
@@ -74,7 +75,14 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
             <div>
               <p className="eyebrow section-kicker"><Asterisk size={17} aria-hidden="true" /> {h.portfolio}</p>
               <h2 id="selected-title">{h.selectedWork}<span>.</span></h2>
-              <Link href={localizedPath(locale, "/work")} className="button button-light">{m.work.all}</Link>
+              <div className="selected-work-actions">
+                <Link href={localizedPath(locale, "/work")} className="button button-light">{m.work.all}</Link>
+                {aiGuide && (
+                  <Link href={localizedPath(locale, `/work/${aiGuide.slug}`)} className="button button-light">
+                    {aiGuide.seoTitle}
+                  </Link>
+                )}
+              </div>
             </div>
             <picture className="selected-work-portrait">
               <source media="(prefers-reduced-motion: no-preference)" srcSet={workTyping.src} />

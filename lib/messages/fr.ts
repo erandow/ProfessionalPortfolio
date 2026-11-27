@@ -182,6 +182,7 @@ export const content: ContentTranslation = {
     "ekb-ai-guide": {
       category: "IA pour l’administration des revues",
       title: "Comment j’ai développé le guide IA",
+      seoTitle: "Guide IA de la Banque égyptienne du savoir",
       summary: "J’ai développé pour la Banque égyptienne du savoir un assistant bilingue qui trouve une réponse dans la documentation, en cite la source et guide l’administrateur jusqu’au champ recherché.",
       role: "Responsable technique frontend chez NotionWave",
       experience: [

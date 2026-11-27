@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: CasePageProps): Promise<Metad
   const { locale, messages, project } = await getCaseStudy(params);
   if (!project) return {};
 
-  const title = project.seoTitle ?? (project.slug === "ekb-ai-guide" ? project.title : project.name);
+  const title = project.seoTitle ?? project.name;
   return pageMetadata(locale, `/work/${project.slug}`, {
     title: `${title} | ${messages.name}`,
     description: project.summary,

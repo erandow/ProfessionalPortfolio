@@ -51,6 +51,7 @@ export const projects = [
     name: "EKB AI Guide",
     category: "AI for journal administration",
     title: "How I built the AI Guide",
+    seoTitle: "Egyptian Knowledge Bank AI Guide",
     summary: "I built a bilingual assistant for the Egyptian Knowledge Bank that finds an answer in the product documentation, cites the source and takes a journal administrator to the field they need.",
     role: "Frontend Tech Lead at NotionWave",
     stack: ["TypeScript", "Next.js", "NestJS", "Elasticsearch", "Vertex AI"],

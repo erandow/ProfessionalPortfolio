@@ -182,6 +182,7 @@ export const content: ContentTranslation = {
     "ekb-ai-guide": {
       category: "KI für die Zeitschriftenverwaltung",
       title: "Wie ich den KI-Assistenten entwickelt habe",
+      seoTitle: "KI-Assistent der Egyptian Knowledge Bank",
       summary: "Für die Egyptian Knowledge Bank habe ich einen zweisprachigen Assistenten entwickelt. Er findet Antworten in der Produktdokumentation, nennt die Quelle und führt die Zeitschriftenverwaltung zum gesuchten Feld.",
       role: "Technischer Leiter für Frontend-Entwicklung bei NotionWave",
       experience: [
