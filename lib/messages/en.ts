@@ -41,6 +41,7 @@ export const en = {
     scroll: "Scroll down",
     portfolio: "Portfolio",
     selectedWork: "Selected work",
+    aiGuideLink: "AI help for journal administrators",
     workAlt: "Illustration of Erfan Asadi typing at a desk with a laptop and an open sketchbook",
     career: "Career",
     experience: "Experience",

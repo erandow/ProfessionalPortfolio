@@ -30,6 +30,7 @@ export const messages: Messages = {
     tagline: "Une ingénierie rigoureuse.", taglineEmphasis: "Un esprit joueur.",
     viewWork: "Voir les projets", welcome: "Bienvenue !", scroll: "Défiler vers le bas",
     portfolio: "Portfolio", selectedWork: "Projets sélectionnés",
+    aiGuideLink: "Un assistant IA pour les équipes éditoriales",
     workAlt: "Illustration d’Erfan Asadi travaillant sur un ordinateur portable à côté d’un carnet ouvert",
     career: "Parcours", experience: "Expérience",
     experienceAlt: "Illustration d’Erfan Asadi présentant un tableau de projet à son équipe au bureau",
@@ -182,7 +183,7 @@ export const content: ContentTranslation = {
     "ekb-ai-guide": {
       category: "IA pour l’administration des revues",
       title: "Comment j’ai développé le guide IA",
-      seoTitle: "Guide IA de la Banque égyptienne du savoir",
+      seoTitle: "Un assistant IA pour la Banque égyptienne du savoir",
       summary: "J’ai développé pour la Banque égyptienne du savoir un assistant bilingue qui trouve une réponse dans la documentation, en cite la source et guide l’administrateur jusqu’au champ recherché.",
       role: "Responsable technique frontend chez NotionWave",
       experience: [
